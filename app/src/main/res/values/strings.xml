@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">nameBattler</string>
+    <string name="battleStart">バトル開始</string>
+    <string name="character_list">キャラ一覧</string>
+    <string name="battle_start">バトル開始</string>
+    <string name="title_name">ネームバトラー</string>
+</resources>
