@@ -4,4 +4,5 @@
     <string name="character_list">キャラ一覧</string>
     <string name="battle_start">バトル開始</string>
     <string name="title_name">ネームバトラー</string>
+    <string name="btn_new_create">新しく作成する</string>
 </resources>
