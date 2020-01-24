@@ -8,12 +8,19 @@ import androidx.recyclerview.widget.RecyclerView
 /**
  * ViewHolder の実装（各要素を表示するための View を保持する）
  */
+class CharaListViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+    var label: TextView? = null
+    var button: Button? = null
 
-class CharaListViewHolder (private val view: View) : RecyclerView.ViewHolder(view) {
-    val label: TextView by lazy {
-        view.findViewById<TextView>(R.id.label)
+    init {
+        label = view.findViewById(R.id.label)
+        button = view.findViewById(R.id.button)
     }
-    val button: Button by lazy {
-        view.findViewById<Button>(R.id.button)
-    }
+
+
+
+
+
+
+
 }

@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 class CharaListAdapter(private val data: IntArray): RecyclerView.Adapter<CharaListViewHolder>()
 {
     /** 表示用データの要素数（ここでは IntArray のサイズ） */
-    override fun getItemCount(): Int = data.size
+    //override fun getItemCount(): Int = data.size
+    override fun getItemCount(): Int = 10
 
     /** 新しく ViewHolder オブジェクトを生成するための実装 */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharaListViewHolder
@@ -20,8 +21,8 @@ class CharaListAdapter(private val data: IntArray): RecyclerView.Adapter<CharaLi
     /** position の位置のデータを使って、表示内容を適切に設定（更新）する */
     override fun onBindViewHolder(holder: CharaListViewHolder, position: Int) {
         val num = data[position]
-        holder.label.text = "Element-$num"
-        holder.button.text = "Button-$num"
+        holder.label?.text = "Element-$num"
+        holder.button?.text = "Button-$num"
     }
 
 }
