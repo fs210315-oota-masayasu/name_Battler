@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import androidx.recyclerview.widget.RecyclerView
 
-class CharacterListActivity : AppCompatActivity() {
+class CharacterListActivity : AppCompatActivity()
+{
     // RecyclerView 本体、および、LayoutManager と Adapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var layoutManager: RecyclerView.LayoutManager
@@ -15,9 +16,10 @@ class CharacterListActivity : AppCompatActivity() {
     // Adapter にセットするデータ (1～100)
     private val data = IntArray(100) { it + 1 }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.list_view)
+        setContentView(R.layout.activity_character_list)
 
         layoutManager = LinearLayoutManager(this)
         adapter = CharaListAdapter(data)
