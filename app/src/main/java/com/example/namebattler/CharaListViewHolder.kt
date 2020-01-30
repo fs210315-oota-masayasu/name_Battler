@@ -13,8 +13,8 @@ class CharaListViewHolder (view: View) : RecyclerView.ViewHolder(view) {
     var button: Button? = null
 
     init {
-        label = view.findViewById(R.id.label)
-        button = view.findViewById(R.id.button)
+        label = view.findViewById(R.id.txt_job)
+        button = view.findViewById(R.id.btn_hidden)
     }
 
 

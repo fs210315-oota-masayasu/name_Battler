@@ -9,7 +9,7 @@ class CharaListAdapter(private val data: IntArray): RecyclerView.Adapter<CharaLi
 {
     /** 表示用データの要素数（ここでは IntArray のサイズ） */
     //override fun getItemCount(): Int = data.size
-    override fun getItemCount(): Int = 10
+    override fun getItemCount(): Int = 8
 
     /** 新しく ViewHolder オブジェクトを生成するための実装 */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharaListViewHolder
