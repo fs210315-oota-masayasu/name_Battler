@@ -16,13 +16,23 @@ class CharaListAdapter(private val data: IntArray): RecyclerView.Adapter<CharaLi
     {
         val inflater = LayoutInflater.from(parent.context)
         return CharaListViewHolder(inflater.inflate(R.layout.list_view, parent, false))
+
+
+
     }
 
     /** position の位置のデータを使って、表示内容を適切に設定（更新）する */
     override fun onBindViewHolder(holder: CharaListViewHolder, position: Int) {
         val num = data[position]
-        holder.label?.text = "Element-$num"
+        val strings = arrayOf("ナイト", "アーチャー", "クレリック","ナイト2", "アーチャー2", "クレリック2","ナイト3", "アーチャー3", "クレリック3")
+        //holder.label?.text = "Element-$num"
+        holder.jobName?.text = strings[position]
         holder.button?.text = "Button-$num"
-    }
 
+
+
+
+
+
+    }
 }

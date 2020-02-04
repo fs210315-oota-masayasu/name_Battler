@@ -26,6 +26,8 @@ class CharacterListActivity : AppCompatActivity()
         recyclerView = findViewById<RecyclerView>(R.id.list_view).also{
             it.layoutManager = layoutManager
             it.adapter = adapter
+
+
         }
 
     }
