@@ -1,5 +1,6 @@
 package com.example.namebattler
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -10,7 +11,7 @@ interface CharactersDao {
 
     // シンプルなSELECTクエリ
     @Query("SELECT * FROM CHARACTERS")
-    fun getAll(): List<Characters>
+    fun getAllCharacters(): LiveData<List<Characters>>
 
     //データの作成：引数（データモデルのクラス）
     @Insert

@@ -3,11 +3,13 @@ package com.example.namebattler
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.sql.Date
 
 @Entity(tableName = "CHARACTERS")
 data  class Characters constructor(
     @PrimaryKey(autoGenerate = true)
+    val ID : Int,
+
+    @ColumnInfo(name = "name")
     val NAME : String,
 
     @ColumnInfo(name = "JOB")
@@ -32,5 +34,5 @@ data  class Characters constructor(
     val LUCK: Int,
 
     @ColumnInfo(name = "CREATE_AT")
-    val CREATE_AT: Date?
+    val CREATE_AT: Long
 )
