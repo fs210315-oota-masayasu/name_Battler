@@ -4,20 +4,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
 
 class MainActivity : AppCompatActivity() {
-    companion object {
+/*    companion object {
      lateinit var database: AppDatabase
-    }
+    }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        database = Room.databaseBuilder(applicationContext, AppDatabase::class.java,"name_battler.db").build()
-        //create()
-        //Log.d("TAG", charactersList.toString())
+        //database = AppDatabase.getInstance(applicationContext)
 
         val sendToCharacterList: Button = findViewById(R.id.btn_character_list)
 
@@ -26,12 +23,14 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-/*
-    private fun create(){
+
+/*    private fun create(){
         val dao = database.charactersDao()
         dao.insert(Characters(0,"test_name",100,100,100,100,100,100,0, 0))
         //eturn dao.getAllCharacters()
     }*/
+
+
 
 /*
     // データモデルを作成

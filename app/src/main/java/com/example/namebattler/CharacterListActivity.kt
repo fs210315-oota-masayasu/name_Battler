@@ -1,11 +1,8 @@
 package com.example.namebattler
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import androidx.recyclerview.widget.RecyclerView
 
 class CharacterListActivity : AppCompatActivity()
@@ -29,16 +26,16 @@ class CharacterListActivity : AppCompatActivity()
             it.layoutManager = layoutManager
             it.adapter = adapter
         }
-        var charactersList = create()
-        Log.d("TAG", charactersList.toString())
+/*        var charactersList = create()
+        Log.d("TAG", charactersList.toString())*/
 
     }
 
-    private fun create(): LiveData<List<Characters>> {
+/*    private fun create(): LiveData<List<Characters>> {
         val dao = MainActivity.database.charactersDao()
-        dao.insert(Characters(0,"test_name",100,100,100,100,100,100,0, 0))
+        dao.insert(Characters("test_name",100,100,100,100,100,100,0, 0))
         return dao.getAllCharacters()
-    }
+    }*/
 
 
 }
