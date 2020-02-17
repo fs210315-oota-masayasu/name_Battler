@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/btn_battle_start"
+        android:id="@+id/btn_party_create"
         android:layout_width="250dp"
         android:layout_height="70dp"
         android:layout_marginBottom="8dp"
@@ -39,7 +39,7 @@
         android:layout_width="250dp"
         android:layout_height="70dp"
         android:text="@string/character_list"
-        app:layout_constraintBottom_toTopOf="@+id/btn_battle_start"
+        app:layout_constraintBottom_toTopOf="@+id/btn_party_create"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

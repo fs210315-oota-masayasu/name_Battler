@@ -21,6 +21,9 @@
         <activity android:name=".CharacterListActivity">
 
         </activity>
+        <activity android:name=".PartyCreateActivity">
+
+        </activity>
 
 
     </application>
