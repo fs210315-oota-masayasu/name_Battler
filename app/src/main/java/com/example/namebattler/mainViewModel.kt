@@ -3,6 +3,8 @@ package com.example.namebattler
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import com.example.namebattler.database.AppDatabase
+import com.example.namebattler.model.Characters
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -20,7 +22,7 @@ class mainViewModel (application: Application) : AndroidViewModel(application) {
     val allCharacters: LiveData<List<Characters>>
 
     init {
-        val charactersdao = AppDatabase.getInstance(application, scope).charactersDao()
+        val charactersdao = AppDatabase.getInstance(application).charactersDao()
         repository = CharactersRepository(charactersdao)
         allCharacters = repository.allCharacters
     }

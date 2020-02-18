@@ -1,12 +1,13 @@
-package com.example.namebattler
+package com.example.namebattler.activitys
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.namebattler.CharaListAdapter
+import com.example.namebattler.R
 
-class CharacterListActivity : AppCompatActivity()
-{
+class CharacterListActivity : AppCompatActivity() {
     // RecyclerView 本体、および、LayoutManager と Adapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var layoutManager: RecyclerView.LayoutManager
@@ -15,27 +16,15 @@ class CharacterListActivity : AppCompatActivity()
     // Adapter にセットするデータ (1～100)
     private val data = IntArray(100) { it + 1 }
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_character_list)
 
         layoutManager = LinearLayoutManager(this)
         adapter = CharaListAdapter(data)
-        recyclerView = findViewById<RecyclerView>(R.id.list_view).also{
+        recyclerView = findViewById<RecyclerView>(R.id.list_view).also {
             it.layoutManager = layoutManager
             it.adapter = adapter
         }
-/*        var charactersList = create()
-        Log.d("TAG", charactersList.toString())*/
-
     }
-
-/*    private fun create(): LiveData<List<Characters>> {
-        val dao = MainActivity.database.charactersDao()
-        dao.insert(Characters("test_name",100,100,100,100,100,100,0, 0))
-        return dao.getAllCharacters()
-    }*/
-
-
 }

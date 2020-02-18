@@ -1,10 +1,10 @@
-package com.example.namebattler
+package com.example.namebattler.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import kotlinx.coroutines.CoroutineScope
+import com.example.namebattler.model.Characters
 
 @Database(entities = [Characters::class], version = 1)
 abstract  class AppDatabase  : RoomDatabase() {
@@ -18,7 +18,7 @@ abstract  class AppDatabase  : RoomDatabase() {
         private const val dbName = "CHARACTERS"
 
 
-        fun getInstance(context: Context, scope: CoroutineScope): AppDatabase {
+        fun getInstance(context: Context): AppDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {
                 return tempInstance
@@ -33,5 +33,6 @@ abstract  class AppDatabase  : RoomDatabase() {
                 return instance
             }
         }
+
     }
 }

@@ -2,14 +2,9 @@ package com.example.namebattler
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import kotlin.coroutines.CoroutineContext
 
 class CharacterListViewModel (application: Application) : AndroidViewModel(application) {
+/*
     private var parentJob = Job()
     private val coroutineContext: CoroutineContext
         get() = parentJob + Dispatchers.Main
@@ -28,16 +23,12 @@ class CharacterListViewModel (application: Application) : AndroidViewModel(appli
         repository.insert(characters)
     }
 
-
-
-
-
-
     override fun onCleared(){
         super.onCleared()
         parentJob.cancel()
     }
 
+*/
 
 
 }

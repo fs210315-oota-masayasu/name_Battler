@@ -1,4 +1,4 @@
-package com.example.namebattler
+package com.example.namebattler.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

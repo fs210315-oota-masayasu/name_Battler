@@ -1,7 +1,8 @@
-package com.example.namebattler
+package com.example.namebattler.activitys
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.namebattler.R
 
 class PartyCreateActivity: AppCompatActivity() {
 
