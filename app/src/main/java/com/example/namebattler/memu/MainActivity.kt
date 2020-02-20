@@ -1,8 +1,11 @@
-package com.example.namebattler.activitys
+package com.example.namebattler.memu
 
 import android.content.Intent
 import android.os.Bundle
 import com.example.namebattler.R
+import com.example.namebattler.characters.CharacterListActivity
+import com.example.namebattler.party.PartyCreateActivity
+import com.example.namebattler.util.ScopedAppActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : ScopedAppActivity() {

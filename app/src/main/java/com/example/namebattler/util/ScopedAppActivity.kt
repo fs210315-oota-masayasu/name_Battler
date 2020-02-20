@@ -1,4 +1,4 @@
-package com.example.namebattler.activitys
+package com.example.namebattler.util
 
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.CoroutineScope

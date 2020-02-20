@@ -1,4 +1,4 @@
-package com.example.namebattler.activitys
+package com.example.namebattler.party
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

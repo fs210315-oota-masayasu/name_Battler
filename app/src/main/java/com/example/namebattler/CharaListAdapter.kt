@@ -29,10 +29,6 @@ class CharaListAdapter(private val data: IntArray): RecyclerView.Adapter<CharaLi
         holder.jobName?.text = strings[position]
         holder.button?.text = "Button-$num"
 
-
-
-
-
-
     }
 }
+

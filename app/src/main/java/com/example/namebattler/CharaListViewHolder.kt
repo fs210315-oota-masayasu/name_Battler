@@ -18,11 +18,4 @@ class CharaListViewHolder (view: View) : RecyclerView.ViewHolder(view) {
         jobName = view.findViewById(R.id.txt_job)
         button = view.findViewById(R.id.btn_hidden)
     }
-
-
-
-
-
-
-
 }

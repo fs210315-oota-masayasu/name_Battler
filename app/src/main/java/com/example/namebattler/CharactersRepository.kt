@@ -2,8 +2,8 @@ package com.example.namebattler
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
-import com.example.namebattler.database.CharactersDao
-import com.example.namebattler.model.Characters
+import com.example.namebattler.data.Characters
+import com.example.namebattler.data.CharactersDao
 
 class CharactersRepository (private val charactersDao : CharactersDao){
     val allCharacters : LiveData<List<Characters>> = charactersDao.getAllCharacters()

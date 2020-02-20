@@ -1,11 +1,10 @@
-package com.example.namebattler.database
+package com.example.namebattler.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.namebattler.model.Characters
 
 @Dao
 interface CharactersDao {

@@ -1,10 +1,11 @@
-package com.example.namebattler
+package com.example.namebattler.memu
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.example.namebattler.database.AppDatabase
-import com.example.namebattler.model.Characters
+import com.example.namebattler.CharactersRepository
+import com.example.namebattler.data.AppDatabase
+import com.example.namebattler.data.Characters
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -18,7 +19,7 @@ class mainViewModel (application: Application) : AndroidViewModel(application) {
         get() = parentJob + Dispatchers.Main
     private val scope = CoroutineScope(coroutineContext)
 
-    private val repository :CharactersRepository
+    private val repository : CharactersRepository
     val allCharacters: LiveData<List<Characters>>
 
     init {
