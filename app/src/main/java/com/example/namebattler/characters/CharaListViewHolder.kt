@@ -1,9 +1,10 @@
-package com.example.namebattler
+package com.example.namebattler.characters
 
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.namebattler.R
 
 /**
  * ViewHolder の実装（各要素を表示するための View を保持する）

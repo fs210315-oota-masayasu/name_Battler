@@ -1,4 +1,4 @@
-package com.example.namebattler
+package com.example.namebattler.characters
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData

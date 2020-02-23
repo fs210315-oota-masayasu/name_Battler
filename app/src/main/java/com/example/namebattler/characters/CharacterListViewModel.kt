@@ -1,4 +1,4 @@
-package com.example.namebattler
+package com.example.namebattler.characters
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

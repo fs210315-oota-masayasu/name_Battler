@@ -1,9 +1,10 @@
-package com.example.namebattler
+package com.example.namebattler.characters
 
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.namebattler.R
 
 class CharaListAdapter(private val data: IntArray): RecyclerView.Adapter<CharaListViewHolder>()
 {
@@ -15,7 +16,13 @@ class CharaListAdapter(private val data: IntArray): RecyclerView.Adapter<CharaLi
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharaListViewHolder
     {
         val inflater = LayoutInflater.from(parent.context)
-        return CharaListViewHolder(inflater.inflate(R.layout.list_view, parent, false))
+        return CharaListViewHolder(
+            inflater.inflate(
+                R.layout.list_view,
+                parent,
+                false
+            )
+        )
 
 
 
