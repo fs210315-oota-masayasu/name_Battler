@@ -5,4 +5,8 @@
     <string name="battle_start">バトル開始</string>
     <string name="title_name">ネームバトラー</string>
     <string name="btn_new_create">新しく作成する</string>
+    <string name="msg_enter_name">名前を入力してください</string>
+    <string name="enter_character_name">Enter Character Name</string>
+    <string name="msg_pls_enter_character_name">名前を入力してください</string>
+    <string name="input_character_name">input character name</string>
 </resources>

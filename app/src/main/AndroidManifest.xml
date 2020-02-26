@@ -24,6 +24,9 @@
         <activity android:name=".party.PartyCreateActivity">
 
         </activity>
+        <activity android:name=".characters.CharacterNewCreate">
+
+        </activity>
 
 
     </application>
