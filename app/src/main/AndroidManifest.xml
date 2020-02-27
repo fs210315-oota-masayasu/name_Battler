@@ -14,20 +14,21 @@
         <activity android:name=".memu.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".characters.CharacterListActivity">
-
         </activity>
+
         <activity android:name=".party.PartyCreateActivity">
-
-        </activity>
-        <activity android:name=".characters.CharacterNewCreate">
-
         </activity>
 
+        <activity android:name=".characters.CharacterNewCreateActivity">
+        </activity>
+
+        <activity android:name=".characters.GeneratedCharacterCompletionActivity">
+        </activity>
 
     </application>
 

@@ -9,4 +9,11 @@
     <string name="enter_character_name">Enter Character Name</string>
     <string name="msg_pls_enter_character_name">名前を入力してください</string>
     <string name="input_character_name">input character name</string>
+    <string name="mp">MP</string>
+    <string name="name">キャラクター名</string>
+    <string name="job">職業名</string>
+    <string name="hp">HP</string>
+    <string name="str">STR</string>
+    <string name="def">DEF</string>
+    <string name="agi">AGI</string>
 </resources>
