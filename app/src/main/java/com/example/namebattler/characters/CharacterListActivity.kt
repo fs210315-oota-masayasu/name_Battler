@@ -1,12 +1,12 @@
 package com.example.namebattler.characters
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.namebattler.R
-import com.example.namebattler.memu.MainViewModel
+import kotlinx.android.synthetic.main.activity_character_list.*
 
 class CharacterListActivity : AppCompatActivity() {
     // RecyclerView 本体、および、LayoutManager と Adapter
@@ -21,7 +21,8 @@ class CharacterListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_character_list)
 
-        val model = ViewModelProviders.of(this)[MainViewModel::class.java]
+        //val model = ViewModelProviders.of(this)[MainViewModel::class.java]
+
 
         layoutManager = LinearLayoutManager(this)
         adapter = CharaListAdapter(data)
@@ -29,5 +30,12 @@ class CharacterListActivity : AppCompatActivity() {
             it.layoutManager = layoutManager
             it.adapter = adapter
         }
+
+        //新しく作成する
+        btn_character_new_create.setOnClickListener {
+            val setCharacterNewCreate = Intent(this, CharacterNewCreateActivity::class.java)
+            startActivity(setCharacterNewCreate)
+        }
+
     }
 }
