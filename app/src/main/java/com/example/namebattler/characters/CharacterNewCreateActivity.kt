@@ -12,7 +12,10 @@ class CharacterNewCreateActivity : ScopedAppActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.character_new_create)
 
+        //DBへのインサート処理 + 画面遷移
         btn_order_character_creation.setOnClickListener {
+
+
             val setGeneratedCharacterCompletion = Intent(this, GeneratedCharacterCompletionActivity::class.java)
             startActivity(setGeneratedCharacterCompletion)
         }

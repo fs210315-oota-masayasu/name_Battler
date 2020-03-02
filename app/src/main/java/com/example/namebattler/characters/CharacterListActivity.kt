@@ -3,9 +3,11 @@ package com.example.namebattler.characters
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.namebattler.R
+import com.example.namebattler.memu.MainViewModel
 import kotlinx.android.synthetic.main.activity_character_list.*
 
 class CharacterListActivity : AppCompatActivity() {
@@ -21,7 +23,11 @@ class CharacterListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_character_list)
 
-        //val model = ViewModelProviders.of(this)[MainViewModel::class.java]
+        val model = ViewModelProviders.of(this)[MainViewModel::class.java]
+
+        //あらかじめMainViewModelにサーバからgetする処理を書いて
+        //ここ以降のどこかでその処理（メソッド）を呼び出して帰ってきた値を画面表示できるようにセットすればいい
+        model.allCharacters
 
 
         layoutManager = LinearLayoutManager(this)
