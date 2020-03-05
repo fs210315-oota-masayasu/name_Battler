@@ -13,6 +13,9 @@ interface CharactersDao {
     @Query("SELECT * FROM CHARACTERS")
     fun getAllCharacters(): LiveData<List<Characters>>
 
+    @Query("SELECT * FROM CHARACTERS WHERE name > :searchToName")
+    fun getCharacterAtName(searchToName :String):LiveData<List<Characters>>
+
     //データの作成：引数（データモデルのクラス）
     @Insert
     fun insert(characters: Characters)

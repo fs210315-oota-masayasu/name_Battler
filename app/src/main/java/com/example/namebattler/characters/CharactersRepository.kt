@@ -8,9 +8,17 @@ import com.example.namebattler.data.CharactersDao
 class CharactersRepository (private val charactersDao : CharactersDao){
     val allCharacters : LiveData<List<Characters>> = charactersDao.getAllCharacters()
 
+    lateinit var nameToSearch : String
+
+    val characterData : LiveData<List<Characters>> = charactersDao.getCharacterAtName(nameToSearch)
+
+
     @WorkerThread
     fun insert(characters: Characters){
         charactersDao.insert(characters)
     }
-
+//    @WorkerThread
+//    fun getCharacterAtName(nameToSearch: String){
+//        charactersDao.getCharacterAtName(nameToSearch)
+//    }
 }

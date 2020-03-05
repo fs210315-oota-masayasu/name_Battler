@@ -9,11 +9,16 @@
     <string name="enter_character_name">Enter Character Name</string>
     <string name="msg_pls_enter_character_name">名前を入力してください</string>
     <string name="input_character_name">input character name</string>
-    <string name="mp">MP</string>
     <string name="name">キャラクター名</string>
-    <string name="job">職業名</string>
-    <string name="hp">HP</string>
-    <string name="str">STR</string>
-    <string name="def">DEF</string>
-    <string name="agi">AGI</string>
+    <string name="display_name_job">職業名</string>
+    <string name="display_name_hp">HP</string>
+    <string name="display_name_mp">MP</string>
+    <string name="display_name_str">STR</string>
+    <string name="display_name_def">DEF</string>
+    <string name="display_name_agi">AGI</string>
+    <string name="ldisplay_name_uck">LUCK</string>
+    <string name="display_name_status">ステータス</string>
+    <string name="btn_continue_to_create">続けて作成する</string>
+    <string name="btn_end_to_create">作成を終了する</string>
+
 </resources>

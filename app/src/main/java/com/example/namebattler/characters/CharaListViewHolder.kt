@@ -16,7 +16,7 @@ class CharaListViewHolder (view: View) : RecyclerView.ViewHolder(view) {
 
     init {
         //label = view.findViewById(R.id.txt_job)
-        jobName = view.findViewById(R.id.txt_job)
+        jobName = view.findViewById(R.id.value_job)
         button = view.findViewById(R.id.btn_hidden)
     }
 }
