@@ -21,4 +21,12 @@
     <string name="btn_continue_to_create">続けて作成する</string>
     <string name="btn_end_to_create">作成を終了する</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- TODO: string of sample -->
+    <string name="hint_word">Word...</string>
+    <string name="button_save">Save</string>
+    <string name="empty_not_saved">Word not saved because it is empty.</string>
+
 </resources>

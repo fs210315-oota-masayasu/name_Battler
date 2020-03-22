@@ -12,7 +12,7 @@ import com.example.namebattler.util.ScopedAppActivity
 import kotlinx.android.synthetic.main.character_new_create.*
 import kotlinx.android.synthetic.main.generated_character_completion.*
 
-
+//キャラクター作成完了画面
 class GeneratedCharacterCompletionActivity : ScopedAppActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,7 @@ class GeneratedCharacterCompletionActivity : ScopedAppActivity() {
 
         val tenmp : LiveData<List<Characters>> = model.allCharacters
 
-        Log.d("TAG", "@@@" + tenmp.toString() + "@@@")
+        Log.d("TAG", "@@@$tenmp@@@")
         model.allCharacters
 
 

@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.namebattler.R
+import com.example.namebattler.memu.MainViewModel
 import kotlinx.android.synthetic.main.activity_character_list.*
 
 class CharacterListActivity : AppCompatActivity() {
+
+    private lateinit var MainViewModel : MainViewModel
     // RecyclerView 本体、および、LayoutManager と Adapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var layoutManager: RecyclerView.LayoutManager

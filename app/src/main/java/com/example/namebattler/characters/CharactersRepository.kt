@@ -14,7 +14,7 @@ class CharactersRepository (private val charactersDao : CharactersDao){
 
 
     @WorkerThread
-    fun insert(characters: Characters){
+    suspend fun insert(characters: Characters){
         charactersDao.insert(characters)
     }
 //    @WorkerThread
