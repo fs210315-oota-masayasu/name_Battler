@@ -13,6 +13,8 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <!-- テスト用アクティビティ -->
+        <!--
+
         <activity android:name=".test.NewWordActivity">
 
         </activity>
@@ -23,8 +25,20 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- テスト用アクティビティ -->
+        </activity>
+
+        -->
+         <!-- テスト用アクティビティ -->
+
+
+
         <activity android:name=".memu.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+
 
             <!--
            テストのためにコメントアウト
@@ -40,7 +54,7 @@
         <activity android:name=".party.PartyCreateActivity">
 
         </activity>
-        <activity android:name=".characters.CharacterNewCreateActivity">
+        <activity android:name=".characters.NewCharacterCreateActivity">
 
         </activity>
         <activity android:name=".characters.GeneratedCharacterCompletionActivity">

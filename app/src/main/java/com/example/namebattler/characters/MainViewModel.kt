@@ -1,9 +1,8 @@
-package com.example.namebattler.memu
+package com.example.namebattler.characters
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.example.namebattler.characters.CharactersRepository
 import com.example.namebattler.data.AppDatabase
 import com.example.namebattler.data.Characters
 import kotlinx.coroutines.CoroutineScope

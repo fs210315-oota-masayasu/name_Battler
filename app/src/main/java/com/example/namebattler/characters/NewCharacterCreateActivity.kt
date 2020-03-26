@@ -7,7 +7,7 @@ import com.example.namebattler.util.ScopedAppActivity
 import kotlinx.android.synthetic.main.character_new_create.*
 
 //キャラクター作成画面
-class CharacterNewCreateActivity : ScopedAppActivity() {
+class NewCharacterCreateActivity : ScopedAppActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,5 +34,9 @@ class CharacterNewCreateActivity : ScopedAppActivity() {
             finish()
         }
     }*/
+
+    companion object {
+        const val EXTRA_REPLY = "com.example.android.wordlistsql.REPLY"
+    }
 
 }
