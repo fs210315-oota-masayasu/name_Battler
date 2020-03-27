@@ -2,46 +2,48 @@ package com.example.namebattler.characters
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.namebattler.R
-import com.example.namebattler.memu.MainViewModel
 import kotlinx.android.synthetic.main.activity_character_list.*
 
 class CharacterListActivity : AppCompatActivity() {
 
-    private lateinit var MainViewModel : MainViewModel
-    // RecyclerView 本体、および、LayoutManager と Adapter
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var layoutManager: RecyclerView.LayoutManager
-    private lateinit var adapter: RecyclerView.Adapter<*>
-
-    // Adapter にセットするデータ (1～100)
-    private val data = IntArray(100) { it + 1 }
+    private val newCharacterCreateActivityRequestCode = 1
+    private lateinit var mainViewModel : MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_character_list)
 
-        //val model = ViewModelProviders.of(this)[MainViewModel::class.java]
+        val recyclerViewOfCharacters = findViewById<RecyclerView>(R.id.list_view)
+        val adapter = CharaListAdapter(this)
 
-        //あらかじめMainViewModelにサーバからgetする処理を書いて
-        //ここ以降のどこかでその処理（メソッド）を呼び出して帰ってきた値を画面表示できるようにセットすればいい
+        recyclerViewOfCharacters.adapter = adapter
+        recyclerViewOfCharacters.layoutManager = LinearLayoutManager(this)
+
+        Log.d("tag", "ListActivityの動作確認_Viewmodelのインスタンス生成前")
+
+        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        mainViewModel.allCharacters.observe(this, Observer { character ->
+            // Update the cached copy of the character in the adapter.
+            character?.let{adapter.setCharacter(it)}
+        })
 
 
-        layoutManager = LinearLayoutManager(this)
-        adapter = CharaListAdapter(data)
-        recyclerView = findViewById<RecyclerView>(R.id.list_view).also {
-            it.layoutManager = layoutManager
-            it.adapter = adapter
-        }
 
-        //新しく作成する
+
+            //新しく作成する
         btn_character_new_create.setOnClickListener {
-            val setCharacterNewCreate = Intent(this, CharacterNewCreateActivity::class.java)
-            startActivity(setCharacterNewCreate)
-        }
+            val setCharacterNewCreate = Intent(this, NewCharacterCreateActivity::class.java)
+            //startActivity(setCharacterNewCreate)
+            startActivityForResult(setCharacterNewCreate,newCharacterCreateActivityRequestCode)
+
+          }
 
     }
 }

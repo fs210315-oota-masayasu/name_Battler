@@ -17,7 +17,7 @@ class WordViewModel(application: Application) : AndroidViewModel(application) {
         repository = WordRepository(wordsDao)
         allWords = repository.allWords
 
-        Log.d("onCreate!!!",allWords.toString())
+        Log.d("tag", allWords.toString())
     }
     fun insert(word: Word) = viewModelScope.launch {
         repository.insert(word)

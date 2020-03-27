@@ -1,6 +1,7 @@
 package com.example.namebattler.data
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -8,8 +9,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(Characters::class), version = 1)
-abstract  class AppDatabase : RoomDatabase() {
+@Database(entities = arrayOf(Characters::class), version = 2, exportSchema = false)
+public abstract  class AppDatabase : RoomDatabase() {
     // DAOを取得する。
     abstract fun charactersDao(): CharactersDao
 
@@ -39,6 +40,8 @@ abstract  class AppDatabase : RoomDatabase() {
             context: Context,
             scope: CoroutineScope
         ): AppDatabase {
+            Log.d("tag", "databaseの動作確認")
+
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
