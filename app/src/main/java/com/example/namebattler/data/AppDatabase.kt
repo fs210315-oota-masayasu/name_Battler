@@ -9,7 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(Characters::class), version = 2, exportSchema = false)
+@Database(entities = arrayOf(Characters::class), version = 2, exportSchema = true)
 public abstract  class AppDatabase : RoomDatabase() {
     // DAOを取得する。
     abstract fun charactersDao(): CharactersDao
