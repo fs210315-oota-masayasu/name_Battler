@@ -8,7 +8,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [Word::class], version = 1, exportSchema = false)
+@Database(entities = [Word::class], version = 1, exportSchema = true)
 public abstract class WordRoomDatabase : RoomDatabase() {
     abstract fun wordDao(): WordDao
 
@@ -51,7 +51,7 @@ public abstract class WordRoomDatabase : RoomDatabase() {
                     "word_database"
                 )
                     .addCallback(WordDatabaseCallback(scope))
-                    .fallbackToDestructiveMigration()
+                    .fallbackToDestructiveMigration() //TODO スキーマバージョン間の移行パス欠落時に破壊的再作成を行う
                     .build()
                 INSTANCE = instance
                 // return instance

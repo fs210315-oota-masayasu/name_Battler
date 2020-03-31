@@ -9,9 +9,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(Characters::class), version = 2, exportSchema = true)
-public abstract  class AppDatabase : RoomDatabase() {
-    // DAOを取得する。
+@Database(entities = [Characters::class], version = 1, exportSchema = true)
+public abstract class AppDatabase : RoomDatabase() {
     abstract fun charactersDao(): CharactersDao
 
     private class AppDatabaseCallback(
@@ -22,10 +21,17 @@ public abstract  class AppDatabase : RoomDatabase() {
             INSTANCE?.let { database ->
                 scope.launch {
                     var characterDao = database.charactersDao()
-                    var accsessCheckCharaData =
-                        Characters("testName", 1, 100, 100, 100, 100, 100, 100, 20000101)
+                    characterDao.deleteAll()
 
-                    characterDao.insert(accsessCheckCharaData)
+                    var accessCheckCharaData = Characters("default_name")
+                    characterDao.insert(accessCheckCharaData)
+
+                    accessCheckCharaData = Characters("mmmmasayasu")
+                    characterDao.insert(accessCheckCharaData)
+
+
+
+                    //Characters("testName", 1, 100, 100, 100, 100, 100, 100, 20000101)
                 }
             }
         }

@@ -2,64 +2,16 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "2cb173ae034b26eba25e9476cf487e69",
+    "identityHash": "8133924ba93c14699a1169780dffbcc9",
     "entities": [
       {
         "tableName": "CHARACTERS",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `JOB` INTEGER NOT NULL, `HP` INTEGER NOT NULL, `MP` INTEGER NOT NULL, `STR` INTEGER NOT NULL, `DEF` INTEGER NOT NULL, `AGI` INTEGER NOT NULL, `LUCK` INTEGER NOT NULL, `CREATE_AT` INTEGER NOT NULL, PRIMARY KEY(`name`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, PRIMARY KEY(`name`))",
         "fields": [
           {
             "fieldPath": "NAME",
             "columnName": "name",
             "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "JOB",
-            "columnName": "JOB",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "HP",
-            "columnName": "HP",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "MP",
-            "columnName": "MP",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "STR",
-            "columnName": "STR",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "DEF",
-            "columnName": "DEF",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "AGI",
-            "columnName": "AGI",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "LUCK",
-            "columnName": "LUCK",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "CREATE_AT",
-            "columnName": "CREATE_AT",
-            "affinity": "INTEGER",
             "notNull": true
           }
         ],
@@ -76,7 +28,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2cb173ae034b26eba25e9476cf487e69')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8133924ba93c14699a1169780dffbcc9')"
     ]
   }
 }
