@@ -4,16 +4,17 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-// TODO 動作検証 No.1　一つのみのカラムで正常に動作できるようにする
+// TODO 動作検証 No.1　一つのみのカラムで正常に動作できるようにする...Clear！
+// TODO 動作検証 No.2　カラムを増やして正常に動作できるようにする...Clear!
 
 @Entity(tableName = "CHARACTERS")
 class Characters (
     @PrimaryKey
     @ColumnInfo(name = "name")
-    val NAME : String
-//    val NAME : String,
+    val NAME : String,
 
-//    @ColumnInfo(name = "JOB")
+    @ColumnInfo(name = "JOB")
+    val JOB: Int
 //    val JOB: Int,
 //
 //    @ColumnInfo(name = "HP")

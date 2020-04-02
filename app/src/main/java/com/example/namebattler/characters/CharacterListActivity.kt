@@ -34,16 +34,11 @@ class CharacterListActivity : AppCompatActivity() {
             character?.let{adapter.setCharacter(it)}
         })
 
-
-
-
             //新しく作成する
         btn_character_new_create.setOnClickListener {
             val setCharacterNewCreate = Intent(this, NewCharacterCreateActivity::class.java)
             //startActivity(setCharacterNewCreate)
             startActivityForResult(setCharacterNewCreate,newCharacterCreateActivityRequestCode)
-
           }
-
     }
 }

@@ -18,19 +18,20 @@ class CharaListAdapter internal constructor(
 
     inner class CharaListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val charaNameView : TextView = itemView.findViewById(R.id.value_name)
+        val charaJobView : TextView = itemView.findViewById(R.id.value_job)
+
         //val charaAgiView :  TextView = itemView.findViewById(R.id.value_status_agi)
-        //val charaJobView : TextView = itemView.findViewById(R.id.value_job)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : CharaListViewHolder {
-        val nameView = inflater.inflate(R.layout.list_view, parent, false)
-        return CharaListViewHolder(nameView)
+        val characterListView = inflater.inflate(R.layout.list_view, parent, false)
+        return CharaListViewHolder(characterListView)
     }
 
     override fun onBindViewHolder(holder: CharaListViewHolder, position: Int){
         val current = character[position]
         holder.charaNameView.text = current.NAME
-
+        holder.charaJobView.text = current.JOB.toString()
     }
 
     internal fun setCharacter(character: List<Characters>){

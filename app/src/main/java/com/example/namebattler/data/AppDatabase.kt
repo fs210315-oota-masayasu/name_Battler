@@ -9,7 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [Characters::class], version = 1, exportSchema = true)
+@Database(entities = [Characters::class], version = 2, exportSchema = true)
 public abstract class AppDatabase : RoomDatabase() {
     abstract fun charactersDao(): CharactersDao
 
@@ -23,13 +23,11 @@ public abstract class AppDatabase : RoomDatabase() {
                     var characterDao = database.charactersDao()
                     characterDao.deleteAll()
 
-                    var accessCheckCharaData = Characters("default_name")
+                    var accessCheckCharaData = Characters("default_name",10)
                     characterDao.insert(accessCheckCharaData)
 
-                    accessCheckCharaData = Characters("mmmmasayasu")
+                    accessCheckCharaData = Characters("mmmmasayasu",20)
                     characterDao.insert(accessCheckCharaData)
-
-
 
                     //Characters("testName", 1, 100, 100, 100, 100, 100, 100, 20000101)
                 }
@@ -54,6 +52,7 @@ public abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     dbName
                 ).addCallback(AppDatabaseCallback(scope))
+                    .fallbackToDestructiveMigration() //schema version間の移行パス欠落時に破壊的再作成を行う
                     .build()
                 INSTANCE = instance
 
