@@ -43,6 +43,7 @@ class TestNewActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
+
             data?.getStringExtra(NewWordActivity.EXTRA_REPLY)?.let {
                 val word = Word(it)
                 wordViewModel.insert(word)

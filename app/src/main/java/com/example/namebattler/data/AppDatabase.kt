@@ -21,6 +21,8 @@ public abstract class AppDatabase : RoomDatabase() {
             INSTANCE?.let { database ->
                 scope.launch {
                     var characterDao = database.charactersDao()
+
+                    //クリア処理
                     characterDao.deleteAll()
 
                     var accessCheckCharaData = Characters("default_name",10)
@@ -62,23 +64,3 @@ public abstract class AppDatabase : RoomDatabase() {
         }
     }
 }
-
-
-
-
-/*            val tempInstance = INSTANCE
-            if (tempInstance != null) {
-                return tempInstance
-            }
-            synchronized(this){
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    AppDatabase::class.java,
-                    dbName
-                ).build()
-                INSTANCE = instance
-                return instance
-            }
-        }
-    }
-}*/

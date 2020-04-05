@@ -55,7 +55,7 @@
         app:layout_constraintVertical_bias="0.05" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/grp_select_job"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -65,7 +65,7 @@
         app:layout_constraintVertical_bias="0.05">
 
         <RadioButton
-            android:id="@+id/radioButton4"
+            android:id="@+id/rbt_select_warrior"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -73,7 +73,7 @@
             android:textSize="30sp" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/rbt_select_wizard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -82,7 +82,7 @@
             android:textSize="30sp" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/rbt_select_priest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -92,7 +92,7 @@
             android:textSize="30sp" />
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/rbt_select_berserker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -113,7 +113,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/grp_select_job"
         app:layout_constraintVertical_bias="0.1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

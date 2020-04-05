@@ -1,7 +1,6 @@
 package com.example.namebattler.characters
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -14,15 +13,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application)  {
     private val repository: CharactersRepository
     val allCharacters: LiveData<List<Characters>>
 
-
     init {
-        Log.d("tag","MainViewModelのインスタン動作確認＜1＞")
+
 
         val charactersDao = AppDatabase.getInstance(application, viewModelScope).charactersDao()
         repository = CharactersRepository(charactersDao)
         allCharacters = repository.allCharacters
-
-        Log.d("tag", "Daoの動作確認$allCharacters")
 
     }
 
