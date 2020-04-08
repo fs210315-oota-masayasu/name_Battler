@@ -14,8 +14,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application)  {
     val allCharacters: LiveData<List<Characters>>
 
     init {
-
-
         val charactersDao = AppDatabase.getInstance(application, viewModelScope).charactersDao()
         repository = CharactersRepository(charactersDao)
         allCharacters = repository.allCharacters

@@ -48,7 +48,7 @@
 
         <TextView
             android:id="@+id/value_status_mp"
-            android:layout_width="44dp"
+            android:layout_width="48dp"
             android:layout_height="match_parent"
             android:layout_gravity="bottom"
             android:gravity="center"
@@ -63,7 +63,7 @@
             android:text="@string/display_name_str" />
 
         <TextView
-            android:id="@+id/txt_status_def"
+            android:id="@+id/value_status_def"
             android:layout_width="44dp"
             android:layout_height="match_parent"
             android:layout_gravity="bottom|start"
@@ -71,7 +71,7 @@
             android:text="@string/display_name_def" />
 
         <TextView
-            android:id="@+id/txt_status_agi"
+            android:id="@+id/value_status_agi"
             android:layout_width="44dp"
             android:layout_height="match_parent"
             android:layout_gravity="bottom|start"

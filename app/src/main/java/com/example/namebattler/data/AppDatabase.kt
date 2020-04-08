@@ -9,7 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [Characters::class], version = 2, exportSchema = true)
+@Database(entities = [Characters::class], version = 3, exportSchema = true)
 public abstract class AppDatabase : RoomDatabase() {
     abstract fun charactersDao(): CharactersDao
 
@@ -25,13 +25,12 @@ public abstract class AppDatabase : RoomDatabase() {
                     //クリア処理
                     characterDao.deleteAll()
 
-                    var accessCheckCharaData = Characters("default_name",10)
+                    var accessCheckCharaData = Characters("default_name",1,10,10,10,10,10,10,10)
                     characterDao.insert(accessCheckCharaData)
 
-                    accessCheckCharaData = Characters("mmmmasayasu",20)
+                    accessCheckCharaData = Characters("mmmmasayasu",2,20,20,20,20,20,20,20)
                     characterDao.insert(accessCheckCharaData)
 
-                    //Characters("testName", 1, 100, 100, 100, 100, 100, 100, 20000101)
                 }
             }
         }

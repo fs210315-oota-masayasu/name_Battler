@@ -57,12 +57,28 @@ class NewCharacterCreateActivity : ScopedAppActivity() {
                 val name = setRadioButton?.text.toString()
                 val job = JobList().getJobList(name)
 
+                // TODO 後で修正
+                // キャラクタークラス（もしくは職業クラス）から値を取得する
+                val hp = 11
+                val mp = 11
+                val str = 11
+                val def = 11
+                val agi = 11
+                val luck = 11
+
+                //作成日時を取得
+                val currentDate = DateConverter().getCurrentDate()
 
                 // TODO 後で消す②
+                // TODO インサートする値できちんと日時表示できるか？
+                val currentDateAtString = DateConverter().convertLongToString(currentDate)
+
                 Log.d("tag","Job val is $job")
+                Log.d("tag", "create_At val long  $currentDate")
+                Log.d("tag", "create_At_String $currentDateAtString")
 
 
-                val characters = Characters(inputName.text.toString(), job)
+                val characters = Characters(inputName.text.toString(), job,hp,mp,str,def,agi,luck,currentDate)
 
                 mainViewModel.insert(characters)
             }

@@ -14,27 +14,26 @@ class Characters (
     val NAME : String,
 
     @ColumnInfo(name = "JOB")
-    val JOB: Int
-//    val JOB: Int,
-//
-//    @ColumnInfo(name = "HP")
-//    val HP: Int,
-//
-//    @ColumnInfo(name = "MP")
-//    val MP: Int,
-//
-//    @ColumnInfo(name = "STR")
-//    val STR: Int,
-//
-//    @ColumnInfo(name = "DEF")
-//    val DEF: Int,
-//
-//    @ColumnInfo(name = "AGI")
-//    val AGI: Int,
-//
-//    @ColumnInfo(name = "LUCK")
-//    val LUCK: Int,
-//
-//    @ColumnInfo(name = "CREATE_AT")
-//    val CREATE_AT: Long
+    val JOB: Int,
+
+    @ColumnInfo(name = "HP")
+    val HP: Int,
+
+    @ColumnInfo(name = "MP")
+    val MP: Int,
+
+    @ColumnInfo(name = "STR")
+    val STR: Int,
+
+    @ColumnInfo(name = "DEF")
+    val DEF: Int,
+
+    @ColumnInfo(name = "AGI")
+    val AGI: Int,
+
+    @ColumnInfo(name = "LUCK")
+    val LUCK: Int,
+
+    @ColumnInfo(name = "CREATE_AT")
+    val CREATE_AT: Long
 )
