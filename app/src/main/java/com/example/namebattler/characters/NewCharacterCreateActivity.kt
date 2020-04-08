@@ -9,7 +9,8 @@ import android.widget.RadioGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.namebattler.R
 import com.example.namebattler.data.Characters
-import com.example.namebattler.data.Jobs
+import com.example.namebattler.data.DateConverter
+import com.example.namebattler.data.JobList
 import com.example.namebattler.util.ScopedAppActivity
 import kotlinx.android.synthetic.main.character_new_create.*
 
@@ -53,8 +54,9 @@ class NewCharacterCreateActivity : ScopedAppActivity() {
                 Log.d("tag","ラジオボタン名：" + setRadioButton?.text.toString())
 
 
-                var name = setRadioButton?.text.toString()
-                var job = Jobs().convertJobnameToValue(name)
+                val name = setRadioButton?.text.toString()
+                val job = JobList().getJobList(name)
+
 
                 // TODO 後で消す②
                 Log.d("tag","Job val is $job")
