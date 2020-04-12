@@ -2,6 +2,7 @@ package com.example.namebattler.characters
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -31,6 +32,16 @@ class CharacterListActivity : AppCompatActivity() {
             // Update the cached copy of the character in the adapter.
             character?.let{adapter.setCharacter(it)}
         })
+        // RecyclerViewのクリックイベント（Adapter内のインターフェース実装）
+        adapter.setOnItemClickListener(object:CharaListAdapter.OnItemClickListener{
+            override fun onItemClickListener(view: View, position: Int, clickedText: String) {
+
+
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+        })
+
 
             //キャラクター作成画面へ遷移
         btn_character_new_create.setOnClickListener {
