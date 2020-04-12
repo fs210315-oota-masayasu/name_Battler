@@ -39,9 +39,6 @@ class NewCharacterCreateActivity : ScopedAppActivity() {
             setRadioButton = radioButton
         }
 
-        //TODO インサート処理の動作確認　名前と職業のみでインサートできるか試してみる...OK
-
-
         //DBへのインサート処理 + 画面遷移
         btn_order_character_creation.setOnClickListener {
 
@@ -70,7 +67,6 @@ class NewCharacterCreateActivity : ScopedAppActivity() {
                 val currentDate = DateConverter().getCurrentDate()
 
                 // TODO 後で消す②
-                // TODO インサートする値できちんと日時表示できるか？
                 val currentDateAtString = DateConverter().convertLongToString(currentDate)
 
                 Log.d("tag","Job val is $job")

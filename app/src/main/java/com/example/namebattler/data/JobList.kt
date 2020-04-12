@@ -11,6 +11,7 @@ class JobList {
     */
 
     private val jobList = mutableListOf("戦士","魔法使い","僧侶","バーサーカー")
+    //職業を追加する場合はaddで
 
     //名前からインデックスを取得
     fun getJobList(name : String): Int {
