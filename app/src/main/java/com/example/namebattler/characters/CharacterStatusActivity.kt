@@ -7,10 +7,7 @@ import com.example.namebattler.R
 import com.example.namebattler.data.CharaState
 import com.example.namebattler.util.ScopedAppActivity
 
-
-//キャラクター作成完了画面
-class GeneratedCharacterCompletionActivity : ScopedAppActivity() {
-
+class CharacterStatusActivity : ScopedAppActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.output_screen_)
@@ -36,15 +33,6 @@ class GeneratedCharacterCompletionActivity : ScopedAppActivity() {
             // 張り付けを実行
             fragmentTransaction.commit()
         }
-
-
-/*        //キャラクター一覧画面へ戻る
-        btn_end_to_character_create.setOnClickListener {
-            val finishCharacterCreate = Intent(this, CharacterListActivity::class.java)
-            finishCharacterCreate.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or  Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            startActivity(finishCharacterCreate)
-
-        }*/
-
     }
+
 }

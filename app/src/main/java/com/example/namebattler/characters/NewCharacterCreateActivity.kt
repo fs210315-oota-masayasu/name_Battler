@@ -8,6 +8,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.namebattler.R
+import com.example.namebattler.data.CharaState
 import com.example.namebattler.data.Characters
 import com.example.namebattler.data.DateConverter
 import com.example.namebattler.data.JobList
@@ -25,6 +26,7 @@ class NewCharacterCreateActivity : ScopedAppActivity() {
 
         //名前
         val inputName = findViewById<EditText>(R.id.set_input_name)
+        var sendToCompleat : CharaState? = null
 
 
         //ラジオボタン
@@ -57,11 +59,11 @@ class NewCharacterCreateActivity : ScopedAppActivity() {
                 // TODO 後で修正
                 // キャラクタークラス（もしくは職業クラス）から値を取得する
                 val hp = 11
-                val mp = 11
-                val str = 11
-                val def = 11
-                val agi = 11
-                val luck = 11
+                val mp = 22
+                val str = 33
+                val def = 44
+                val agi = 55
+                val luck = 66
 
                 //作成日時を取得
                 val currentDate = DateConverter().getCurrentDate()
@@ -76,10 +78,13 @@ class NewCharacterCreateActivity : ScopedAppActivity() {
 
                 val characters = Characters(inputName.text.toString(), job,hp,mp,str,def,agi,luck,currentDate)
 
+                sendToCompleat = CharaState(inputName.text.toString(), JobList().getJobList(job),hp,mp,str,def,agi,luck,currentDate)
+
                 mainViewModel.insert(characters)
             }
 
             val setGeneratedCharacterCompletion = Intent(this, GeneratedCharacterCompletionActivity::class.java)
+            setGeneratedCharacterCompletion.putExtra(CharaState.EXTRA_DATA,sendToCompleat)
             startActivity(setGeneratedCharacterCompletion)
         }
     }

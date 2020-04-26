@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/buttonArea"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    tools:context=".characters.ProcessingAfterCreationFragment">
+
+    <Button
+        android:id="@+id/btn_continue_character_create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:background="#3F51B5"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="@string/btn_continue_to_create"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.060000002" />
+
+    <Button
+        android:id="@+id/btn_end_to_character_create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#3F51B5"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="@string/btn_end_to_create"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_continue_character_create"
+        app:layout_constraintVertical_bias="0.120000005" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

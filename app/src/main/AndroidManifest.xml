@@ -48,6 +48,9 @@
         <activity android:name=".characters.GeneratedCharacterCompletionActivity">
         </activity>
 
+        <activity android:name=".characters.CharacterStatusActivity">
+        </activity>
+
     </application>
 
 </manifest>

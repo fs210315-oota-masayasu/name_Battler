@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
+    android:id="@+id/commonLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".characters.TestFragment">
+    android:layout_height="500dp"
+    android:layout_alignParentStart="false"
+    android:layout_alignParentTop="false"
+    tools:context=".characters.CommonDisplayStatusFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="@string/hello_blank_fragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/value_name"
@@ -46,8 +38,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:text="@string/display_name_status"
-        android:textSize="24sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/value_job"
@@ -55,7 +48,7 @@
 
     <LinearLayout
         android:id="@+id/status_name"
-        android:layout_width="40dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:orientation="vertical"
@@ -68,37 +61,43 @@
             android:id="@+id/txt_status_hp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/display_name_hp" />
+            android:text="@string/display_name_hp"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/txt_status_mp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/display_name_mp" />
+            android:text="@string/display_name_mp"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/txt_status_str"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/display_name_str" />
+            android:text="@string/display_name_str"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/txt_status_def"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/display_name_def" />
+            android:text="@string/display_name_def"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/txt_status_agi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/display_name_agi" />
+            android:text="@string/display_name_agi"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/txt_status_luck"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/ldisplay_name_uck" />
+            android:text="@string/ldisplay_name_uck"
+            android:textSize="30sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -114,32 +113,38 @@
         <TextView
             android:id="@+id/value_status_hp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/value_status_mp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/value_status_str"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/value_status_def"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/value_status_agi"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/value_status_luck"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="30sp" />
     </LinearLayout>
 
 

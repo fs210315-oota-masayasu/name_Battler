@@ -1,12 +1,14 @@
 package com.example.namebattler.characters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.namebattler.R
+import com.example.namebattler.data.CharaState
 import com.example.namebattler.data.Characters
 import com.example.namebattler.data.JobList
 
@@ -21,6 +23,9 @@ class CharaListAdapter internal constructor(
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var character = emptyList<Characters>() // Cached copy of character
 
+    private var sendToCompleat : CharaState? = null
+    private var list  = mutableListOf <CharaState?>()
+
     inner class CharaListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val charaNameView : TextView = itemView.findViewById(R.id.value_name)
         val charaJobView : TextView = itemView.findViewById(R.id.value_job)
@@ -31,7 +36,7 @@ class CharaListAdapter internal constructor(
         val charaAgiView :  TextView = itemView.findViewById(R.id.value_status_agi)
     }
     interface OnItemClickListener{
-        fun onItemClickListener(view: View, position: Int, clickedText: String)
+        fun onItemClickListener(view: View, position: Int, sendToData: CharaState?)
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener){
@@ -56,12 +61,32 @@ class CharaListAdapter internal constructor(
         holder.charaDefView.text = current.DEF.toString()
         holder.charaAgiView.text = current.AGI.toString()
 
+
+        sendToCompleat = CharaState(current.NAME, JobList().getJobList(current.JOB)
+            ,current.HP,current.MP,current.STR,current.DEF,current.AGI,current.LUCK,current.CREATE_AT)
+
+
+
         val pos = position
+
+        list.add(sendToCompleat)
+
+
+        //list?.set(pos, sendToCompleat)
+
+        //var
+
 /*        holder.itemView.setOnClickListener{
         }*/
+
+        //TODO クリックすると画面遷移
         holder.itemView.setOnClickListener{
 
+            val sendTodata = list[pos]
 
+            Log.d("tag"," dataName is $sendTodata" )
+
+            this.listener.onItemClickListener(it,pos, sendTodata)
         }
     }
 

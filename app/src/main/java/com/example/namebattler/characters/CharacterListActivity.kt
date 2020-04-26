@@ -2,6 +2,7 @@ package com.example.namebattler.characters
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -9,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.namebattler.R
+import com.example.namebattler.data.CharaState
 import kotlinx.android.synthetic.main.activity_character_list.*
 
 //キャラクター一覧作成画面
@@ -34,10 +36,16 @@ class CharacterListActivity : AppCompatActivity() {
         })
         // RecyclerViewのクリックイベント（Adapter内のインターフェース実装）
         adapter.setOnItemClickListener(object:CharaListAdapter.OnItemClickListener{
-            override fun onItemClickListener(view: View, position: Int, clickedText: String) {
+            override fun onItemClickListener(view: View, position: Int, sendToData: CharaState?) {
+                Log.d("tag","Listline is $position")
 
+                val intent = Intent(view.context, CharacterStatusActivity::class.java)
+                intent.putExtra(CharaState.EXTRA_DATA,sendToData)
 
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                Log.d("tag","success?")
+
+               startActivity(intent)
+
             }
 
         })
