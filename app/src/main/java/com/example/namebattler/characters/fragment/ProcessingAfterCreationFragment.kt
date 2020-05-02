@@ -1,4 +1,4 @@
-package com.example.namebattler.characters
+package com.example.namebattler.characters.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.namebattler.R
+import com.example.namebattler.characters.activity.CharacterListActivity
+import com.example.namebattler.characters.activity.NewCharacterCreateActivity
 import kotlinx.android.synthetic.main.fragment_processing_after_creation.*
 
-class ProcessingAfterCreationFragment() : Fragment() {
+class ProcessingAfterCreationFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +30,6 @@ class ProcessingAfterCreationFragment() : Fragment() {
 
     companion object {
         @JvmStatic
-
         fun newInstance(): ProcessingAfterCreationFragment {
             return ProcessingAfterCreationFragment()
         }
@@ -37,11 +38,21 @@ class ProcessingAfterCreationFragment() : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        btn_end_to_character_create.setOnClickListener {
-            val finishCharacterCreate = Intent(activity, CharacterListActivity::class.java)
-            finishCharacterCreate.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or  Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            startActivity(finishCharacterCreate)
 
+        //続けて作成する
+        btn_continue_character_create.setOnClickListener {
+            val intentOfContinue = Intent(activity,
+                NewCharacterCreateActivity::class.java)
+            intentOfContinue.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or  Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(intentOfContinue)
+        }
+
+
+        //作成を終了する
+        btn_end_to_character_create.setOnClickListener {
+            val intentOfEnd = Intent(activity, CharacterListActivity::class.java)
+            intentOfEnd.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or  Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(intentOfEnd)
         }
     }
 

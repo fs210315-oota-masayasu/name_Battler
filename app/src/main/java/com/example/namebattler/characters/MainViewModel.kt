@@ -23,4 +23,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application)  {
     fun insert(characters: Characters) = viewModelScope.launch {
         repository.insert(characters)
     }
+
+    fun delete(characters: Characters) = viewModelScope.launch {
+        repository.delete(characters)
+    }
+
+    //お名前重複チェック
+
 }

@@ -65,7 +65,8 @@ class CharaListAdapter internal constructor(
         sendToCompleat = CharaState(current.NAME, JobList().getJobList(current.JOB)
             ,current.HP,current.MP,current.STR,current.DEF,current.AGI,current.LUCK,current.CREATE_AT)
 
-
+        val temp = current.CREATE_AT
+        Log.d("tag", "CREATE_AT = $temp")
 
         val pos = position
 

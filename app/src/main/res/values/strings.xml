@@ -16,7 +16,8 @@
     <string name="display_name_str">STR</string>
     <string name="display_name_def">DEF</string>
     <string name="display_name_agi">AGI</string>
-    <string name="ldisplay_name_uck">LUCK</string>
+    <string name="display_name_luck">LUCK</string>
+    <string name="display_name_create_at">作成日：</string>
     <string name="display_name_status">ステータス</string>
     <string name="btn_continue_to_create">続けて作成する</string>
     <string name="btn_end_to_create">作成を終了する</string>

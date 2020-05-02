@@ -7,7 +7,7 @@
     android:layout_height="500dp"
     android:layout_alignParentStart="false"
     android:layout_alignParentTop="false"
-    tools:context=".characters.CommonDisplayStatusFragment">
+    tools:context=".characters.fragment.CommonDisplayStatusFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -96,7 +96,7 @@
             android:id="@+id/txt_status_luck"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/ldisplay_name_uck"
+            android:text="@string/display_name_luck"
             android:textSize="30sp" />
     </LinearLayout>
 

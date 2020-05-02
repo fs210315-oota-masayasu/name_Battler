@@ -13,6 +13,10 @@ interface CharactersDao {
     @Query("SELECT * FROM CHARACTERS WHERE name > :searchToName")
     fun getCharacterAtName(searchToName :String):LiveData<List<Characters>>
 
+    //nameのレコード数を取得する
+//    @Query("SELECT COUNT(*) FROM CHARACTERS WHERE name > :searchToName")
+//    fun getCountCharacterAtName(searchToName :String):LiveData<List<Characters>>
+
     //データの作成：引数（データモデルのクラス）
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend  fun insert(characters: Characters)

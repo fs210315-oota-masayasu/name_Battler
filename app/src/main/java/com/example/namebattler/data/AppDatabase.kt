@@ -25,10 +25,10 @@ public abstract class AppDatabase : RoomDatabase() {
                     //クリア処理
                     characterDao.deleteAll()
 
-                    var accessCheckCharaData = Characters("default_name",1,10,10,10,10,10,10,10)
+                    var accessCheckCharaData = Characters("default_name",1,10,10,10,10,10,10,1588085823101)
                     characterDao.insert(accessCheckCharaData)
 
-                    accessCheckCharaData = Characters("mmmmasayasu",2,20,20,20,20,20,20,20)
+                    accessCheckCharaData = Characters("mmmmasayasu",2,20,20,20,20,20,20,1588085823101)
                     characterDao.insert(accessCheckCharaData)
 
                 }

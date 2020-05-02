@@ -1,9 +1,11 @@
-package com.example.namebattler.characters
+package com.example.namebattler.characters.activity
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.namebattler.R
+import com.example.namebattler.characters.fragment.CommonDisplayStatusFragment
+import com.example.namebattler.characters.fragment.ProcessingAfterCreationFragment
 import com.example.namebattler.data.CharaState
 import com.example.namebattler.util.ScopedAppActivity
 
@@ -26,7 +28,9 @@ class GeneratedCharacterCompletionActivity : ScopedAppActivity() {
             // インスタンスに対して張り付け方を指定する
             fragmentTransaction.replace(
                 R.id.container,
-                CommonDisplayStatusFragment.newInstance(sendObj as CharaState)
+                CommonDisplayStatusFragment.newInstance(
+                    sendObj as CharaState
+                )
             )
 
             fragmentTransaction.replace(

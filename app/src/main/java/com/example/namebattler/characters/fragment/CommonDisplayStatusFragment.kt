@@ -1,4 +1,4 @@
-package com.example.namebattler.characters
+package com.example.namebattler.characters.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,7 +19,7 @@ private const val ARG_PARAM5 = "param_str"
 private const val ARG_PARAM6 = "param_def"
 private const val ARG_PARAM7 = "param_agi"
 private const val ARG_PARAM8 = "param_luck"
-//private const val ARG_PARAM9 = "param_currentDate"
+//private const val ARG_PARAM9 = "param_current_at"
 
 /**
  * A simple [Fragment] subclass.

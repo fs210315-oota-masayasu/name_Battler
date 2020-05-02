@@ -36,19 +36,19 @@
 
         </activity>
 
-        <activity android:name=".characters.CharacterListActivity">
+        <activity android:name=".characters.activity.CharacterListActivity">
         </activity>
 
         <activity android:name=".party.PartyCreateActivity">
         </activity>
 
-        <activity android:name=".characters.NewCharacterCreateActivity">
+        <activity android:name=".characters.activity.NewCharacterCreateActivity">
         </activity>
 
-        <activity android:name=".characters.GeneratedCharacterCompletionActivity">
+        <activity android:name=".characters.activity.GeneratedCharacterCompletionActivity">
         </activity>
 
-        <activity android:name=".characters.CharacterStatusActivity">
+        <activity android:name=".characters.activity.CharacterStatusActivity">
         </activity>
 
     </application>

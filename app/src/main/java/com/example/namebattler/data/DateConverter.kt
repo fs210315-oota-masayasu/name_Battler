@@ -24,6 +24,14 @@ class DateConverter {
         return simpleDateFormat.format(date)
     }
 
+    @SuppressLint("SimpleDateFormat")
+    fun displayDate(dataString : Long):String{
+        val date = Date(dataString)
+        val simpleDateFormat = SimpleDateFormat("yyyy/MM/dd HH:mm")
+        return simpleDateFormat.format(date)
+
+    }
+
 
 
 }

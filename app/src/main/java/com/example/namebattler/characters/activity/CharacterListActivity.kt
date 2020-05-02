@@ -1,8 +1,7 @@
-package com.example.namebattler.characters
+package com.example.namebattler.characters.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -10,6 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.namebattler.R
+import com.example.namebattler.characters.CharaListAdapter
+import com.example.namebattler.characters.MainViewModel
 import com.example.namebattler.data.CharaState
 import kotlinx.android.synthetic.main.activity_character_list.*
 
@@ -35,15 +36,11 @@ class CharacterListActivity : AppCompatActivity() {
             character?.let{adapter.setCharacter(it)}
         })
         // RecyclerViewのクリックイベント（Adapter内のインターフェース実装）
-        adapter.setOnItemClickListener(object:CharaListAdapter.OnItemClickListener{
+        adapter.setOnItemClickListener(object:
+            CharaListAdapter.OnItemClickListener {
             override fun onItemClickListener(view: View, position: Int, sendToData: CharaState?) {
-                Log.d("tag","Listline is $position")
-
                 val intent = Intent(view.context, CharacterStatusActivity::class.java)
                 intent.putExtra(CharaState.EXTRA_DATA,sendToData)
-
-                Log.d("tag","success?")
-
                startActivity(intent)
 
             }

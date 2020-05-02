@@ -10,6 +10,12 @@ class CharactersRepository (private val charactersDao : CharactersDao){
     suspend fun insert(characters: Characters){
         charactersDao.insert(characters)
     }
+
+    suspend  fun delete(characters: Characters){
+        charactersDao.delete(characters)
+    }
+
+
 //    @WorkerThread
 //    fun getCharacterAtName(nameToSearch: String){
 //        charactersDao.getCharacterAtName(nameToSearch)
