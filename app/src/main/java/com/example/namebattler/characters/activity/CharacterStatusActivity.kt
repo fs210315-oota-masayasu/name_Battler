@@ -10,7 +10,7 @@ import com.example.namebattler.data.CharaState
 import com.example.namebattler.util.ScopedAppActivity
 
 //キャラクター詳細画面
-class CharacterStatusActivity : ScopedAppActivity() {
+class CharacterStatusActivity : ScopedAppActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.output_screen_)
@@ -44,4 +44,23 @@ class CharacterStatusActivity : ScopedAppActivity() {
         }
     }
 
+    /*
+    fun showNoticeDialog() {
+        // Create an instance of the dialog fragment and show it
+        val dialog = AlertDataDelete()
+        dialog.show(supportFragmentManager, "NoticeDialogFragment")
+    }
+
+    override fun onDialogPositiveClick(dialog: DialogFragment) {
+        println("NoticeDialogでOKボタンが押されたよ！")
+
+    }
+
+    override fun onDialogNegativeClick(dialog: DialogFragment) {
+
+    }
+
+
+
+     */
 }

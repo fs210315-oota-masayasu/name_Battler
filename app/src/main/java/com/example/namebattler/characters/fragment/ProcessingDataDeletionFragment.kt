@@ -2,11 +2,11 @@ package com.example.namebattler.characters.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.namebattler.R
@@ -16,6 +16,7 @@ import com.example.namebattler.data.CharaState
 import com.example.namebattler.data.Characters
 import com.example.namebattler.data.DateConverter
 import com.example.namebattler.data.JobList
+import com.example.namebattler.message.AlertDataDelete
 import kotlinx.android.synthetic.main.fragment_processing_data_deletion.*
 
 
@@ -23,17 +24,13 @@ private const val ARG_PARAM_NAME = "param_Name"
 private const val ARG_PARAM_CURRENT_AT = "param_current_at"
 
 //キャラクター詳細画面のボタンエリア
-class ProcessingDataDeletionFragment : Fragment(){
+class ProcessingDataDeletionFragment : Fragment(), AlertDataDelete.NoticeDialogListener {
 
     private var paramName : String? = null
     private var paramCurrentAt : String? = null
     private var paramLongToCurrentAt :Long? = null
     private lateinit var characters : Characters
     
-    //var test: MainViewModel? = null
-
-
-
     companion object {
         @JvmStatic
         fun newInstance(paramCharacter: CharaState) =
@@ -87,69 +84,35 @@ class ProcessingDataDeletionFragment : Fragment(){
         createAt.text = setViewValueCreateAt
 
 
-/*        btn_delete_character_data.setOnClickListener{
-
-            Log.d("tag", "取得できるかテスト：$characters")
-            val mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-
-            test = mainViewModel
-
-            val dialog = AlertDataDelete()
-            dialog.show(this.childFragmentManager, "削除")
-
-
-            //mainViewModel.delete(characters)
-
-            val intentOfDel = Intent(activity,
-                CharacterListActivity::class.java)
-            startActivity(intentOfDel)
-        }*/
-
-
-    }
-
-    //TODO ボタンイベント
-    override fun onStart(){
-        super.onStart()
-
-        val temp = paramLongToCurrentAt
-
-
         btn_delete_character_data.setOnClickListener{
+            val dialog = AlertDataDelete()
 
-            Log.d("tag", "取得できるかテスト：$characters")
-            val mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-
-            //mainViewModel.delete(characters)
-
-            val intentOfDel = Intent(activity,
-                CharacterListActivity::class.java)
-            startActivity(intentOfDel)
+            //childFragmentManagerを利用してDialogFragmentを自分の子として追加する
+            dialog.show(childFragmentManager, "NoticeDialogFragment")
         }
 
 
-
     }
-/*
+
     override fun onDialogPositiveClick(dialog: DialogFragment) {
-        println("NoticeDialogでOKボタンが押されたよ！")
-        test?.delete(characters)
+        delete()
+
+        val intentOfDel = Intent(activity,
+            CharacterListActivity::class.java)
+        startActivity(intentOfDel)
 
     }
-*/
 
-/*
     override fun onDialogNegativeClick(dialog: DialogFragment) {
         println("NoticeDialogでCancelボタンが押されたよ！")
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
 
-        val targetFragment = this.targetFragment
-
+    //キャラクター削除
+    private fun delete(){
+        val mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        mainViewModel.delete(characters)
     }
-*/
 
 
 }
