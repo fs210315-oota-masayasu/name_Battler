@@ -12,10 +12,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.namebattler.R
 import com.example.namebattler.characters.MainViewModel
 import com.example.namebattler.characters.activity.CharacterListActivity
-import com.example.namebattler.data.CharaState
-import com.example.namebattler.data.Characters
-import com.example.namebattler.data.DateConverter
-import com.example.namebattler.data.JobList
+import com.example.namebattler.data.characterData.CharacterHolder
+import com.example.namebattler.data.database.Characters
+import com.example.namebattler.data.database.DateConverter
+import com.example.namebattler.data.jobData.JobManager
 import com.example.namebattler.message.AlertDataDelete
 import kotlinx.android.synthetic.main.fragment_processing_data_deletion.*
 
@@ -33,16 +33,26 @@ class ProcessingDataDeletionFragment : Fragment(), AlertDataDelete.NoticeDialogL
     
     companion object {
         @JvmStatic
-        fun newInstance(paramCharacter: CharaState) =
+        fun newInstance(paramCharacter: CharacterHolder) =
             ProcessingDataDeletionFragment().apply {
                 paramName = paramCharacter.name
-                paramCurrentAt = DateConverter().displayDate(paramCharacter.currentDate)
+                paramCurrentAt = DateConverter()
+                    .convertLongToString(paramCharacter.currentDate)
 
                 paramLongToCurrentAt = paramCharacter.currentDate
 
-                characters = Characters(paramCharacter.name, JobList().getJobList(paramCharacter.job),
-                    paramCharacter.hp,paramCharacter.mp
-                    ,paramCharacter.str,paramCharacter.def,paramCharacter.agi,paramCharacter.luck,paramCharacter.currentDate)
+                characters = Characters(
+                    paramCharacter.name,
+                    JobManager().getJobList(paramCharacter.job),
+                    paramCharacter.hp,
+                    paramCharacter.mp
+                    ,
+                    paramCharacter.str,
+                    paramCharacter.def,
+                    paramCharacter.agi,
+                    paramCharacter.luck,
+                    paramCharacter.currentDate
+                )
 
 
                 arguments = Bundle().apply {

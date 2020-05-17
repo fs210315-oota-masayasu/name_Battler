@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.namebattler.R
 import com.example.namebattler.characters.CharaListAdapter
 import com.example.namebattler.characters.MainViewModel
-import com.example.namebattler.data.CharaState
+import com.example.namebattler.data.characterData.CharacterHolder
 import kotlinx.android.synthetic.main.activity_character_list.*
 
-//キャラクター一覧作成画面
+//キャラクター一覧画面
 class CharacterListActivity : AppCompatActivity() {
 
     private val newCharacterCreateActivityRequestCode = 1
-    private lateinit var mainViewModel : MainViewModel
+    private lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,28 +31,35 @@ class CharacterListActivity : AppCompatActivity() {
         recyclerViewOfCharacters.layoutManager = LinearLayoutManager(this)
 
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+
         mainViewModel.allCharacters.observe(this, Observer { character ->
             // Update the cached copy of the character in the adapter.
-            character?.let{adapter.setCharacter(it)}
+            character?.let {
+                adapter.setCharacter(it)
+
+            }
         })
+
+
         // RecyclerViewのクリックイベント（Adapter内のインターフェース実装）
-        adapter.setOnItemClickListener(object:
+        adapter.setOnItemClickListener(object :
             CharaListAdapter.OnItemClickListener {
-            override fun onItemClickListener(view: View, position: Int, sendToData: CharaState?) {
+            override fun onItemClickListener(view: View, position: Int, sendToData: CharacterHolder?) {
                 val intent = Intent(view.context, CharacterStatusActivity::class.java)
-                intent.putExtra(CharaState.EXTRA_DATA,sendToData)
-               startActivity(intent)
+                intent.putExtra(CharacterHolder.EXTRA_DATA, sendToData)
+                startActivity(intent)
 
             }
 
         })
-
-
-            //キャラクター作成画面へ遷移
+        //キャラクター作成画面へ遷移
         btn_character_new_create.setOnClickListener {
             val setCharacterNewCreate = Intent(this, NewCharacterCreateActivity::class.java)
             //startActivity(setCharacterNewCreate)
-            startActivityForResult(setCharacterNewCreate,newCharacterCreateActivityRequestCode)
-          }
+            startActivityForResult(setCharacterNewCreate, newCharacterCreateActivityRequestCode)
+        }
     }
 }
+
+

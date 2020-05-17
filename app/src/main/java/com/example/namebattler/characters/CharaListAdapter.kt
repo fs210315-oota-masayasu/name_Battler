@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.namebattler.R
-import com.example.namebattler.data.CharaState
-import com.example.namebattler.data.Characters
-import com.example.namebattler.data.JobList
+import com.example.namebattler.data.characterData.CharacterHolder
+import com.example.namebattler.data.database.Characters
+import com.example.namebattler.data.jobData.JobManager
 
-
+//キャラクター一覧画面
 class CharaListAdapter internal constructor(
 
     context: Context
@@ -23,8 +23,8 @@ class CharaListAdapter internal constructor(
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var character = emptyList<Characters>() // Cached copy of character
 
-    private var sendToCompleat : CharaState? = null
-    private var list  = mutableListOf <CharaState?>()
+    private var sendToCompleat : CharacterHolder? = null
+    private var list  = mutableListOf <CharacterHolder?>()
 
     inner class CharaListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val charaNameView : TextView = itemView.findViewById(R.id.value_name)
@@ -36,7 +36,7 @@ class CharaListAdapter internal constructor(
         val charaAgiView :  TextView = itemView.findViewById(R.id.value_status_agi)
     }
     interface OnItemClickListener{
-        fun onItemClickListener(view: View, position: Int, sendToData: CharaState?)
+        fun onItemClickListener(view: View, position: Int, sendToData: CharacterHolder?)
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener){
@@ -54,7 +54,8 @@ class CharaListAdapter internal constructor(
     override fun onBindViewHolder(holder: CharaListViewHolder, position: Int){
         val current = character[position]
         holder.charaNameView.text = current.NAME
-        holder.charaJobView.text = JobList().getJobList(current.JOB) // インデックスから名前を取得
+        holder.charaJobView.text = JobManager()
+            .getJobList(current.JOB) // インデックスから名前を取得
         holder.charaHpView.text = current.HP.toString()
         holder.charaMpView.text = current.MP.toString()
         holder.charaStrView.text = current.STR.toString()
@@ -62,8 +63,19 @@ class CharaListAdapter internal constructor(
         holder.charaAgiView.text = current.AGI.toString()
 
 
-        sendToCompleat = CharaState(current.NAME, JobList().getJobList(current.JOB)
-            ,current.HP,current.MP,current.STR,current.DEF,current.AGI,current.LUCK,current.CREATE_AT)
+        sendToCompleat =
+            CharacterHolder(
+                current.NAME,
+                JobManager().getJobList(current.JOB)
+                ,
+                current.HP,
+                current.MP,
+                current.STR,
+                current.DEF,
+                current.AGI,
+                current.LUCK,
+                current.CREATE_AT
+            )
 
         val temp = current.CREATE_AT
         Log.d("tag", "CREATE_AT = $temp")

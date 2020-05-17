@@ -1,8 +1,8 @@
-package com.example.namebattler.data
+package com.example.namebattler.data.characterData
 
 import java.io.Serializable
 
-data class CharaState(
+data class CharacterHolder(
     val name : String,
     val job : String,
     val hp : Int,

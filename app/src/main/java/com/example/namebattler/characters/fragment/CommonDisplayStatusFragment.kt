@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.namebattler.R
-import com.example.namebattler.data.CharaState
+import com.example.namebattler.data.characterData.CharacterHolder
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,7 +42,7 @@ class CommonDisplayStatusFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(paramCharacter: CharaState) =
+        fun newInstance(paramCharacter: CharacterHolder) =
             CommonDisplayStatusFragment().apply {
                 //Object内に格納されている値を取り出してセットする
                 paramName = paramCharacter.name

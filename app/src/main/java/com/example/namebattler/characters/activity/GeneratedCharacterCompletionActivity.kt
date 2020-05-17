@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.namebattler.R
 import com.example.namebattler.characters.fragment.CommonDisplayStatusFragment
 import com.example.namebattler.characters.fragment.ProcessingAfterCreationFragment
-import com.example.namebattler.data.CharaState
+import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.util.ScopedAppActivity
 
 
@@ -19,7 +19,7 @@ class GeneratedCharacterCompletionActivity : ScopedAppActivity() {
 
         // Serializableを使ってobjectをFragmentへ渡す
         if (savedInstanceState == null) {
-            val sendObj = intent.getSerializableExtra(CharaState.EXTRA_DATA)
+            val sendObj = intent.getSerializableExtra(CharacterHolder.EXTRA_DATA)
 
             // FragmentManagerのインスタンス生成
             val fragmentManager: FragmentManager = supportFragmentManager
@@ -29,7 +29,7 @@ class GeneratedCharacterCompletionActivity : ScopedAppActivity() {
             fragmentTransaction.replace(
                 R.id.container,
                 CommonDisplayStatusFragment.newInstance(
-                    sendObj as CharaState
+                    sendObj as CharacterHolder
                 )
             )
 

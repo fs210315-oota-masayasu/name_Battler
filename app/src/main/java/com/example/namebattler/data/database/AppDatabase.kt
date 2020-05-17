@@ -1,4 +1,4 @@
-package com.example.namebattler.data
+package com.example.namebattler.data.database
 
 import android.content.Context
 import android.util.Log
@@ -25,10 +25,32 @@ public abstract class AppDatabase : RoomDatabase() {
                     //クリア処理
                     characterDao.deleteAll()
 
-                    var accessCheckCharaData = Characters("default_name",1,10,10,10,10,10,10,1588085823101)
+                    var accessCheckCharaData =
+                        Characters(
+                            "テスト太郎",
+                            1,
+                            10,
+                            10,
+                            10,
+                            10,
+                            10,
+                            10,
+                            1588085823101
+                        )
                     characterDao.insert(accessCheckCharaData)
 
-                    accessCheckCharaData = Characters("mmmmasayasu",2,20,20,20,20,20,20,1588085823101)
+                    accessCheckCharaData =
+                        Characters(
+                            "デフォルトネーム",
+                            2,
+                            20,
+                            20,
+                            20,
+                            20,
+                            20,
+                            20,
+                            1588085823101
+                        )
                     characterDao.insert(accessCheckCharaData)
 
                 }
@@ -47,12 +69,17 @@ public abstract class AppDatabase : RoomDatabase() {
         ): AppDatabase {
             Log.d("tag", "databaseの動作確認")
 
-            return INSTANCE ?: synchronized(this) {
+            return INSTANCE
+                ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
                     dbName
-                ).addCallback(AppDatabaseCallback(scope))
+                ).addCallback(
+                    AppDatabaseCallback(
+                        scope
+                    )
+                )
                     .fallbackToDestructiveMigration() //schema version間の移行パス欠落時に破壊的再作成を行う
                     .build()
                 INSTANCE = instance

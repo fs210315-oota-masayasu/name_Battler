@@ -1,4 +1,4 @@
-package com.example.namebattler.data
+package com.example.namebattler.data.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
@@ -10,12 +10,16 @@ interface CharactersDao {
     @Query("SELECT * FROM CHARACTERS")
     fun getAllCharacters(): LiveData<List<Characters>>
 
-    @Query("SELECT * FROM CHARACTERS WHERE name > :searchToName")
-    fun getCharacterAtName(searchToName :String):LiveData<List<Characters>>
+    @Query("SELECT * FROM CHARACTERS WHERE name > :searchName")
+    fun getCharacterAtName(searchName :String):LiveData<List<Characters>>
 
-    //nameのレコード数を取得する
-//    @Query("SELECT COUNT(*) FROM CHARACTERS WHERE name > :searchToName")
-//    fun getCountCharacterAtName(searchToName :String):LiveData<List<Characters>>
+    //nameが重複しているレコード数を取得する
+    @Query("SELECT COUNT(*) FROM CHARACTERS WHERE name = :searchName")
+    fun countOverlap(searchName : String): Int
+
+    //アップデート処理
+    @Update(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun update(characters: Characters)
 
     //データの作成：引数（データモデルのクラス）
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -31,7 +35,7 @@ interface CharactersDao {
 
     //データの削除
     @Delete
-    suspend  fun delete(characters: Characters)
+    suspend fun delete(characters: Characters)
 
     @Query("DELETE FROM CHARACTERS")
     suspend fun deleteAll()

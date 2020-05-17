@@ -2,7 +2,10 @@ package com.example.namebattler.characters.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.view.Gravity
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
@@ -10,15 +13,16 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.namebattler.R
 import com.example.namebattler.characters.MainViewModel
-import com.example.namebattler.data.CharaState
-import com.example.namebattler.data.Characters
-import com.example.namebattler.data.DateConverter
-import com.example.namebattler.data.JobList
+import com.example.namebattler.data.characterData.CharacterHolder
+import com.example.namebattler.data.characterData.Player
+import com.example.namebattler.data.database.Characters
+import com.example.namebattler.data.jobData.JobManager
 import com.example.namebattler.util.ScopedAppActivity
 import kotlinx.android.synthetic.main.character_new_create.*
+import kotlin.concurrent.thread
 
 //キャラクター作成画面
-class NewCharacterCreateActivity : ScopedAppActivity() {
+class NewCharacterCreateActivity : ScopedAppActivity(), TextWatcher {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,167 +32,112 @@ class NewCharacterCreateActivity : ScopedAppActivity() {
 
         //名前
         val inputName = findViewById<EditText>(R.id.set_input_name)
-        var sendToCompleat: CharaState? = null
-
+        inputName.addTextChangedListener(this)
 
         //ラジオボタン
-
         val radioGroup = findViewById<RadioGroup>(R.id.grp_select_job)
         radioGroup.clearCheck()
-        var setRadioButton: RadioButton? = null
-
+        var radioButton : RadioButton? = null
 
             radioGroup.setOnCheckedChangeListener { _, checkedId ->
                 // checkedIdから、選択されたRadioButtonを取得
-                val radioButton = findViewById<RadioButton>(checkedId)
-                setRadioButton = radioButton
+                radioButton = findViewById(checkedId)
+                //setRadioButton = radioButton
             }
-
 
         //DBへのインサート処理 + 画面遷移
         btn_order_character_creation.setOnClickListener {
 
             val checked = radioGroup.checkedRadioButtonId
 
-            Log.d("tag", "ラジオボタンID：$checked")
-
-
-
             val chkEmpty = inputName.text.toString().trim()
 
+            //バリデーションチェック
             when {
                 chkEmpty.isEmpty() -> {
-                    Toast.makeText(this, "名前を入力してください", Toast.LENGTH_SHORT).show()
+                    inputName.error = "名前を入力してください"
                 }
                 checked != -1  -> {
                     Log.d("tag", inputName.text.toString())
 
-                    Log.d("tag", "ラジオボタン名：" + setRadioButton?.text.toString())
+                    Log.d("tag", "ラジオボタン名：" + radioButton?.text.toString())
 
 
-                    val name = setRadioButton?.text.toString()
-                    val job = JobList().getJobList(name)
+                    val jobName = radioButton?.text.toString()
+                    val job = JobManager()
+                        .getJobList(jobName)
 
-                    //名前重複チェック
+                    //Playerクラスよりパラメータを取得
+                    val character = Player(inputName.text.toString() ,job).getParam()
 
+                    thread{
+                        //名前の重複チェック（重複=update、not=insert）
+                        when (val cnt = mainViewModel.countOverlap(inputName.text.toString())) {
+                            0 -> {
+                                mainViewModel.insert(character!!)
+                            }
+                            1 -> {
+                                mainViewModel.update(character!!)
+                            }
+                            else -> {
+                                println("《出力テスト:null》")
+                                Log.d("tag", cnt.toString())
+                                println("《出力テスト:null》")
+                            }
+                        }
 
-
-
-                    // TODO 後で修正
-                    // キャラクタークラス（もしくは職業クラス）から値を取得する
-                    val hp = 11
-                    val mp = 22
-                    val str = 33
-                    val def = 44
-                    val agi = 55
-                    val luck = 66
-
-                    //作成日時を取得
-                    val currentDate = DateConverter().getCurrentDate()
-
-                    // TODO 後で消す②
-                    val currentDateAtString = DateConverter().convertLongToString(currentDate)
-
-
-                    val characters = Characters(
-                        inputName.text.toString(),
-                        job,
-                        hp,
-                        mp,
-                        str,
-                        def,
-                        agi,
-                        luck,
-                        currentDate
-                    )
-
-                    sendToCompleat = CharaState(
-                        inputName.text.toString(),
-                        JobList().getJobList(job),
-                        hp,
-                        mp,
-                        str,
-                        def,
-                        agi,
-                        luck,
-                        currentDate
-                    )
-
-                    mainViewModel.insert(characters)
+                    }
 
                     val setGeneratedCharacterCompletion =
                         Intent(this, GeneratedCharacterCompletionActivity::class.java)
-                    setGeneratedCharacterCompletion.putExtra(CharaState.EXTRA_DATA, sendToCompleat)
+                    setGeneratedCharacterCompletion.putExtra(CharacterHolder.EXTRA_DATA, setCharacterHolder(character))
                     startActivity(setGeneratedCharacterCompletion)
 
                 }
                 else -> {
-                    Toast.makeText(this, "職業を選択してください", Toast.LENGTH_SHORT).show()
+                    val ms= Toast.makeText(this, "職業を選択してください", Toast.LENGTH_LONG)
+                    ms.setGravity(Gravity.CENTER, 0, 0)
+                    ms.show()
                 }
             }
 
         }
     }
+
+    private fun setCharacterHolder(characters : Characters?): CharacterHolder? {
+        return if (characters != null) {
+            CharacterHolder(
+                characters.NAME,
+                JobManager().getJobList(characters.JOB),
+                characters.HP,
+                characters.MP,
+                characters.STR,
+                characters.DEF,
+                characters.AGI,
+                characters.LUCK,
+                characters.CREATE_AT
+            )
+        }else{
+            throw IllegalArgumentException("The value is not set correctly.(characters is null !!)")
+        }
+    }
+
+    override fun afterTextChanged(s: Editable?) {
+        val inputStr = s.toString()
+
+        if (inputStr.length > 20){
+            //名前
+            val inputName = findViewById<EditText>(R.id.set_input_name)
+            inputName.error = "20文字以内で入力してください。"
+        }
+    }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+    }
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+    }
+
 }
-
-
-
-
-
-            // TODO 後で消す④
-            //名前チェック すでにインサートされている場合はエラー表示
-
-            //if (inputName.text != null || setRadioButton?.text != null){
-/*                Log.d("tag", inputName.text.toString())
-
-                Log.d("tag","ラジオボタン名：" + setRadioButton?.text.toString())
-
-
-                val name = setRadioButton?.text.toString()
-                val job = JobList().getJobList(name)
-
-                // TODO 後で修正
-                // キャラクタークラス（もしくは職業クラス）から値を取得する
-                val hp = 11
-                val mp = 22
-                val str = 33
-                val def = 44
-                val agi = 55
-                val luck = 66
-
-                //作成日時を取得
-                val currentDate = DateConverter().getCurrentDate()
-
-                // TODO 後で消す②
-                val currentDateAtString = DateConverter().convertLongToString(currentDate)
-
-
-                val characters = Characters(inputName.text.toString(), job,hp,mp,str,def,agi,luck,currentDate)
-
-                sendToCompleat = CharaState(inputName.text.toString(), JobList().getJobList(job),hp,mp,str,def,agi,luck,currentDate)
-
-                mainViewModel.insert(characters)
-
-                val setGeneratedCharacterCompletion = Intent(this, GeneratedCharacterCompletionActivity::class.java)
-                setGeneratedCharacterCompletion.putExtra(CharaState.EXTRA_DATA,sendToCompleat)
-                startActivity(setGeneratedCharacterCompletion)*/
-
-
-
-//            }else{
-//                Log.d("tag", "名前か職業が入力されていないよ")
-
-//            }
-
-
-
-            //if (set_input_name.text != null){
-              //  Log.d("tag", inputName.text.toString())
-            //}
-
-
-
-//        }
-//    }
-
-//}

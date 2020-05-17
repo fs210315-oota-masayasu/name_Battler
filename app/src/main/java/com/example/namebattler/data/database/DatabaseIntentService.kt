@@ -1,4 +1,4 @@
-package com.example.namebattler.data
+package com.example.namebattler.data.database
 
 import android.annotation.SuppressLint
 import android.app.IntentService

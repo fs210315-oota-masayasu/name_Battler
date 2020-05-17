@@ -1,4 +1,4 @@
-package com.example.namebattler.data
+package com.example.namebattler.data.database
 
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
@@ -18,14 +18,7 @@ class DateConverter {
      * データベースから取得した値を「yyyy/MM/dd HH:mm:ss」の形の文字列として扱うことができる
      */
     @SuppressLint("SimpleDateFormat")
-    fun convertLongToString(dateLong : Long) : String{
-        val date = Date(dateLong)
-        val simpleDateFormat = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
-        return simpleDateFormat.format(date)
-    }
-
-    @SuppressLint("SimpleDateFormat")
-    fun displayDate(dataString : Long):String{
+    fun convertLongToString(dataString : Long):String{
         val date = Date(dataString)
         val simpleDateFormat = SimpleDateFormat("yyyy/MM/dd HH:mm")
         return simpleDateFormat.format(date)
