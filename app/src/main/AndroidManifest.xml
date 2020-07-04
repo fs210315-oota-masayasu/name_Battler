@@ -39,7 +39,10 @@
         <activity android:name=".characters.activity.CharacterListActivity">
         </activity>
 
-        <activity android:name=".party.PartyCreateActivity">
+        <activity android:name=".party.PartyFormationActivity">
+        </activity>
+
+        <activity android:name=".party.BattleLobbyActivity">
         </activity>
 
         <activity android:name=".characters.activity.NewCharacterCreateActivity">
@@ -50,6 +53,11 @@
 
         <activity android:name=".characters.activity.CharacterStatusActivity">
         </activity>
+
+        <activity android:name=".battle.activity.BattleMainActivity">
+        </activity>
+
+
 
     </application>
 

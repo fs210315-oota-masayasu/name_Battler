@@ -27,8 +27,8 @@ public abstract class AppDatabase : RoomDatabase() {
 
                     var accessCheckCharaData =
                         Characters(
-                            "テスト太郎",
-                            1,
+                            "ゆうしゃ",
+                            0,
                             10,
                             10,
                             10,
@@ -41,8 +41,8 @@ public abstract class AppDatabase : RoomDatabase() {
 
                     accessCheckCharaData =
                         Characters(
-                            "デフォルトネーム",
-                            2,
+                            "けんじゃ",
+                            1,
                             20,
                             20,
                             20,
@@ -52,6 +52,49 @@ public abstract class AppDatabase : RoomDatabase() {
                             1588085823101
                         )
                     characterDao.insert(accessCheckCharaData)
+
+                    accessCheckCharaData =
+                        Characters(
+                            "しさい",
+                            2,
+                            30,
+                            30,
+                            30,
+                            30,
+                            30,
+                            30,
+                            1588085823101
+                        )
+                    characterDao.insert(accessCheckCharaData)
+
+                    accessCheckCharaData =
+                        Characters(
+                            "おに",
+                            3,
+                            40,
+                            40,
+                            40,
+                            40,
+                            40,
+                            40,
+                            1588085823101
+                        )
+                    characterDao.insert(accessCheckCharaData)
+
+                    accessCheckCharaData =
+                        Characters(
+                            "せんし",
+                            0,
+                            50,
+                            50,
+                            50,
+                            50,
+                            50,
+                            50,
+                            1588085823101
+                        )
+                    characterDao.insert(accessCheckCharaData)
+
 
                 }
             }

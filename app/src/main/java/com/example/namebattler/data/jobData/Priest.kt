@@ -1,17 +1,34 @@
 package com.example.namebattler.data.jobData
 
-class Priest:JobManager.JobInterface(){
-    override fun generateParam(): MutableList<Int> {
-        val hp = 301
-        val mp = 302
-        val str = 303
-        val def = 304
-        val agi = 305
-        val luck = 306
-        return mutableListOf(hp,mp,str,def,agi,luck)
+private const val SUPPLY_HP = 15
+    private const val SUPPLY_MP = 25
+    private const val SUPPLY_STR = 10
+    private const val SUPPLY_DEF = 5
+    private const val SUPPLY_AGI = 0
+    private const val SUPPLY_LUCK = 20
+
+class Priest : JobManager.JobAbstract() {
+
+    override var hp: Int = 0
+    override var mp: Int = 0
+    override var str: Int = 0
+    override var def: Int = 0
+    override var agi: Int = 0
+    override var luck: Int = 0
+
+    override var supplyBox: List<Int> =
+        listOf(SUPPLY_HP, SUPPLY_MP, SUPPLY_STR, SUPPLY_DEF, SUPPLY_AGI, SUPPLY_LUCK)
+
+    override fun addParam(){
+        this.uniqueVale()
     }
 
-    override fun testMethod():Int{
-        return 300
+    override fun uniqueVale() {
+        this.hp = supplyBox[0]
+        this.mp = supplyBox[1]
+        this.str = supplyBox[2]
+        this.def = supplyBox[3]
+        this.agi = supplyBox[4]
+        this.luck = supplyBox[5]
     }
 }

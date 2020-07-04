@@ -13,9 +13,14 @@ interface CharactersDao {
     @Query("SELECT * FROM CHARACTERS WHERE name > :searchName")
     fun getCharacterAtName(searchName :String):LiveData<List<Characters>>
 
+    //登録件数取得
+    @Query("SELECT COUNT(*) FROM CHARACTERS")
+    fun numOfRegistrations():Int
+
     //nameが重複しているレコード数を取得する
     @Query("SELECT COUNT(*) FROM CHARACTERS WHERE name = :searchName")
     fun countOverlap(searchName : String): Int
+
 
     //アップデート処理
     @Update(onConflict = OnConflictStrategy.IGNORE)

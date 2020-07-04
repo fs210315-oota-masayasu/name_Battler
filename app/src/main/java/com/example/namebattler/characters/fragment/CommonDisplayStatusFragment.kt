@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import com.example.namebattler.R
 import com.example.namebattler.data.characterData.CharacterHolder
 
-// TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param_Name"
 private const val ARG_PARAM2 = "param_Job"
@@ -21,14 +20,7 @@ private const val ARG_PARAM7 = "param_agi"
 private const val ARG_PARAM8 = "param_luck"
 //private const val ARG_PARAM9 = "param_current_at"
 
-/**
- * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [TestFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [TestFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class CommonDisplayStatusFragment : Fragment() {
 
     private var paramName : String? = null

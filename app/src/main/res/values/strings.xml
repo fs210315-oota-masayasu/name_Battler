@@ -1,14 +1,18 @@
 <resources>
     <string name="app_name">nameBattler</string>
     <string name="battleStart">バトル開始</string>
+    <string name="next_turn">次のターン</string>
     <string name="character_list">キャラ一覧</string>
     <string name="battle_start">バトル開始</string>
+    <string name="battle_main">バトル</string>
     <string name="title_name">ネームバトラー</string>
     <string name="btn_new_create">新しく作成する</string>
     <string name="msg_enter_name">名前を入力してください</string>
     <string name="enter_character_name">Enter Character Name</string>
     <string name="msg_pls_enter_character_name">名前を入力してください</string>
     <string name="input_character_name">input character name</string>
+    <string name="colon">:</string>
+    <string name="slash">/</string>
     <string name="name">キャラクター名</string>
     <string name="display_name_job">職業名</string>
     <string name="display_name_hp">HP</string>
@@ -30,5 +34,19 @@
     <string name="hint_id">ID...</string>
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Word not saved because it is empty.</string>
+    <string name="vs">VS</string>
+    <string name="screen_back">戻る</string>
+    <string name="isCreate">作成する</string>
+    <string name="berserker">バーサーカー</string>
+    <string name="Priest">僧侶</string>
+    <string name="Spellcaster">魔法使い</string>
+    <string name="Warrior">戦士</string>
+    <string name="input_name">name</string>
+    <string name="select_job">職業を選択してください</string>
+    <string name="isDelete">削除する</string>
+    <string name="fight_this_opponent">この相手と戦う</string>
+    <string name="reselect">相手を選びなおす</string>
+    <string name="start_at_this_party">このパーティで開始</string>
+
 
 </resources>

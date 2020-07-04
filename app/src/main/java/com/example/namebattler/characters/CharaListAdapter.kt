@@ -1,7 +1,6 @@
 package com.example.namebattler.characters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import com.example.namebattler.data.jobData.JobManager
 
 //キャラクター一覧画面
 class CharaListAdapter internal constructor(
-
     context: Context
 ) : RecyclerView.Adapter<CharaListAdapter.CharaListViewHolder>() {
 
@@ -23,7 +21,7 @@ class CharaListAdapter internal constructor(
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var character = emptyList<Characters>() // Cached copy of character
 
-    private var sendToCompleat : CharacterHolder? = null
+    private var sendToComplete : CharacterHolder? = null
     private var list  = mutableListOf <CharacterHolder?>()
 
     inner class CharaListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -62,8 +60,7 @@ class CharaListAdapter internal constructor(
         holder.charaDefView.text = current.DEF.toString()
         holder.charaAgiView.text = current.AGI.toString()
 
-
-        sendToCompleat =
+        sendToComplete =
             CharacterHolder(
                 current.NAME,
                 JobManager().getJobList(current.JOB)
@@ -77,33 +74,16 @@ class CharaListAdapter internal constructor(
                 current.CREATE_AT
             )
 
-        val temp = current.CREATE_AT
-        Log.d("tag", "CREATE_AT = $temp")
+        list.add(sendToComplete)
 
-        val pos = position
-
-        list.add(sendToCompleat)
-
-
-        //list?.set(pos, sendToCompleat)
-
-        //var
-
-/*        holder.itemView.setOnClickListener{
-        }*/
 
         //TODO クリックすると画面遷移
         holder.itemView.setOnClickListener{
 
-            val sendTodata = list[pos]
-
-            Log.d("tag"," dataName is $sendTodata" )
-
-            this.listener.onItemClickListener(it,pos, sendTodata)
+            val sendToData = list[position]
+            this.listener.onItemClickListener(it, position, sendToData)
         }
     }
-
-
     internal fun setCharacter(character: List<Characters>){
         this.character = character
         notifyDataSetChanged()

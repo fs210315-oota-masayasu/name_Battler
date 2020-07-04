@@ -20,12 +20,13 @@ class CharactersRepository (private val charactersDao : CharactersDao){
         charactersDao.delete(characters)
     }
 
-     fun countOverlap(searchName: String) : Int{
+    fun numOfRegistrations() :Int{
+        return charactersDao.numOfRegistrations()
+    }
+
+     fun countOverlap(searchName: String) : Int?{
         return charactersDao.countOverlap(searchName)
     }
-/*    fun overlapCount(name :String) : Int {
-       return charactersDao.overlapCount()
-    }*/
 
     fun areYouThere(name :String)  : LiveData<List<Characters>>{
         return charactersDao.getCharacterAtName(name)

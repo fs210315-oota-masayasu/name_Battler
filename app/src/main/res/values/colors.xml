@@ -4,6 +4,13 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
+    <color name="buttonColor">#3F51B5</color>
+    <color name = "inactiveColor">#FFBDBEBD</color>
+    <color name="excessColor">#FF4B00</color>
+
     <!-- TODO: color of sample  -->
     <color name="buttonLabel">#d3d3d3</color>
+    <color name="default_txt_color">#FFFFFF</color>
+
+
 </resources>

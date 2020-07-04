@@ -10,6 +10,9 @@ import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.namebattler.R
 import com.example.namebattler.characters.MainViewModel
@@ -17,6 +20,7 @@ import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.data.characterData.Player
 import com.example.namebattler.data.database.Characters
 import com.example.namebattler.data.jobData.JobManager
+import com.example.namebattler.memu.HeaderFragment
 import com.example.namebattler.util.ScopedAppActivity
 import kotlinx.android.synthetic.main.character_new_create.*
 import kotlin.concurrent.thread
@@ -27,6 +31,27 @@ class NewCharacterCreateActivity : ScopedAppActivity(), TextWatcher {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.character_new_create)
+
+        //ヘッダー
+        if (savedInstanceState == null){
+            // FragmentManagerのインスタンス生成
+            val fragmentManager: FragmentManager = supportFragmentManager
+            // FragmentTransactionのインスタンスを取得
+            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            // インスタンスに対して張り付け方を指定する
+            fragmentTransaction.replace(
+                R.id.header_area,
+                HeaderFragment.newInstance(
+                    "キャラ作成"
+                )
+            )
+            // 張り付けを実行
+            fragmentTransaction.commit()
+        }
+
+
+
+
 
         val mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
@@ -68,25 +93,41 @@ class NewCharacterCreateActivity : ScopedAppActivity(), TextWatcher {
                         .getJobList(jobName)
 
                     //Playerクラスよりパラメータを取得
-                    val character = Player(inputName.text.toString() ,job).getParam()
+                    val character = Player(inputName.text.toString() ,job).getParam()?:
+                    Characters(
+                        "Error:パラメータ取得失敗",
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    )
 
-                    thread{
-                        //名前の重複チェック（重複=update、not=insert）
-                        when (val cnt = mainViewModel.countOverlap(inputName.text.toString())) {
-                            0 -> {
-                                mainViewModel.insert(character!!)
+                    //名前の重複チェック（重複=update、not=insert）
+                    mainViewModel.apply {
+                        countOverlap.observe(this@NewCharacterCreateActivity, Observer {
+                            when (it) {
+                                0 -> {
+                                    mainViewModel.insert(character)
+                                }
+                                1 -> {
+                                    mainViewModel.update(character)
+                                }
+                                else -> {
+                                    println("《出力テスト:null》")
+                                    Log.d("tag", it.toString())
+                                    println("《出力テスト:null》")
+                                }
                             }
-                            1 -> {
-                                mainViewModel.update(character!!)
-                            }
-                            else -> {
-                                println("《出力テスト:null》")
-                                Log.d("tag", cnt.toString())
-                                println("《出力テスト:null》")
-                            }
+                        })
+                        thread {
+                            confirm(inputName.text.toString())
                         }
-
                     }
+
 
                     val setGeneratedCharacterCompletion =
                         Intent(this, GeneratedCharacterCompletionActivity::class.java)

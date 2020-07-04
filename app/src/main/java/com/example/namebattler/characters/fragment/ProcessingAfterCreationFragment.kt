@@ -55,12 +55,4 @@ class ProcessingAfterCreationFragment : Fragment() {
             startActivity(intentOfEnd)
         }
     }
-
-//        fun newInstance() =
-//            ProcessingAfterCreationFragment().apply{
-//                arguments = Bundle().apply{
-//                                    }
-//            }
-
-
 }

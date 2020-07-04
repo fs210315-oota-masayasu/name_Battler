@@ -15,6 +15,6 @@ data class CharacterHolder(
 
 ): Serializable{
     companion object {
-        val EXTRA_DATA = "EXTRA_DATA"
+        const val EXTRA_DATA = "EXTRA_DATA"
     }
 }
