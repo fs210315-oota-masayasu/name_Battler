@@ -3,10 +3,25 @@ package com.example.namebattler.data.enemyData
 import com.example.namebattler.data.characterData.Player
 import com.example.namebattler.data.database.Characters
 import com.example.namebattler.data.jobData.JobManager
+import com.example.namebattler.util.OperationIdEnum
 import kotlin.random.Random
 
 class EnemyManager {
     private val enemyNameList = EnemyList()
+
+    fun selectEnemyOperation() :String{
+        return when {
+            (0..2).random() == 0 -> {
+                OperationIdEnum.OFFENSIVE.text
+            }
+            (0..2).random() == 1 -> {
+                OperationIdEnum.DEFENSIVE.text
+            }
+            else -> {
+                OperationIdEnum.FLEXIBLE.text
+            }
+        }
+    }
 
     fun getEnemyData() : List<Characters>{
 

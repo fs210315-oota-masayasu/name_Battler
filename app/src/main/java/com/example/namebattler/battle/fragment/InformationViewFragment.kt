@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.namebattler.R
-import com.example.namebattler.data.battleData.OutputInformationHolder
+import com.example.namebattler.data.battleData.CharacterInformationHolder
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,13 +17,13 @@ private const val ARG_PARAM1 = "param1"
 
 class InformationViewFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var informationData : OutputInformationHolder? = null
+    private var informationData : CharacterInformationHolder? = null
     private var param2: String? = null
 
     companion object {
 
         @JvmStatic
-        fun newInstance(informationData : OutputInformationHolder) =
+        fun newInstance(informationData : CharacterInformationHolder) =
             InformationViewFragment().apply {
                 arguments = Bundle().apply {
 
@@ -36,7 +36,7 @@ class InformationViewFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            informationData = it.getSerializable(ARG_PARAM1) as OutputInformationHolder?
+            informationData = it.getSerializable(ARG_PARAM1) as CharacterInformationHolder?
             //param2 = it.getString(ARG_PARAM2)*/
         }
     }
@@ -51,14 +51,19 @@ class InformationViewFragment : Fragment() {
 
     override fun onViewCreated(view :View, savedInstanceState: Bundle?){
         val args : Bundle? = arguments
-        val informationData = args?.getSerializable(ARG_PARAM1) as OutputInformationHolder?
+        val informationData = args?.getSerializable(ARG_PARAM1) as CharacterInformationHolder?
 
         val name = informationData?.name
         val maxHp = informationData?.maxHp
         val currentHp = informationData?.currentHp
         val maxMp = informationData?.maxMp
         val currentMp = informationData?.currentMp
-        val cond = informationData?.cond
+
+        val pairList = informationData?.cond?: mutableMapOf()
+        //condListからStringのみ抽出してListへ格納
+        var condList =  pairList.flatMap { listOf(it.key) }
+        //List内の値を連結
+        val cond = condList.joinToString(separator = " ")
 
         val nameView : TextView = view.findViewById(R.id.txt_value_name)
         val maxHpView : TextView = view.findViewById(R.id.txt_value_max_hp)
@@ -68,10 +73,10 @@ class InformationViewFragment : Fragment() {
         val condView : TextView = view.findViewById(R.id.txt_value_condition)
 
         nameView.text = name
-        maxHpView.text = maxHp
-        currentHpView.text = currentHp
-        maxMpView.text = maxMp
-        currentMpView.text = currentMp
+        maxHpView.text = maxHp.toString()
+        currentHpView.text = currentHp.toString()
+        maxMpView.text = maxMp.toString()
+        currentMpView.text = currentMp.toString()
         condView.text = cond
     }
 

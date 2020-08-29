@@ -2,6 +2,8 @@ package com.example.namebattler.data.battleData
 
 import androidx.lifecycle.MutableLiveData
 import com.example.namebattler.data.characterData.CharacterHolder
+import com.example.namebattler.util.Belong
+import com.example.namebattler.util.TotalIndexEnum
 
 class InformationManager {
 
@@ -10,215 +12,145 @@ class InformationManager {
         return instance
     }
 
+    var informationNotice = MutableLiveData<ArrayList<CharacterInformationHolder>>()
 
-/*    //TODO テスト
-    var testString : String = ""
+    private var characterInfomation = mutableListOf <CharacterInformationHolder>()
 
-    fun setString(text : String){
-        testString = text
-    }
-    fun getString() :String{
-        Log.d("tag", "text is [ $testString ]")
-        return testString
-    }*/
-
-    var informationNotice = MutableLiveData<ArrayList<OutputInformationHolder>>()
-    //var informationLiveData = MutableLiveData<InformationHolder>()
-
-/*
-
-    fun getInformationHolder(
-        enemy: ArrayList<CharacterHolder>,
-        party: ArrayList<CharacterHolder>
-    ): InformationHolder {
-        return initInformationHolder(enemy, party)
-    }
-*/
-
-
-/*
-    fun setNotice(informationHolder: InformationHolder) {
-        informationLiveData.postValue(informationHolder)
-    }
-*/
-
-
-
-
-    fun setInformationNotice(OutputInformationList: ArrayList<OutputInformationHolder>) {
-        informationNotice.postValue(OutputInformationList)
+    fun setInformationNotice(characterInformationList: ArrayList<CharacterInformationHolder>) {
+        informationNotice.postValue(characterInformationList)
     }
 
-    private fun String.setOutputInformationHolder(holder: CharacterHolder): OutputInformationHolder {
-        return OutputInformationHolder(
+    private fun Int.setOutputInformationHolder(holder: CharacterHolder, condition :MutableMap<String,Int>): CharacterInformationHolder {
+        return CharacterInformationHolder(
+            this,
+            holder.belong,
             holder.name,
-            holder.hp.toString(),
-            holder.hp.toString(),
-            holder.mp.toString(),
-            holder.mp.toString(),
-            this
+            holder.job,
+            holder.hp,
+            holder.hp,
+            holder.mp,
+            holder.mp,
+            holder.str,
+            0,
+            holder.def,
+            0,
+            holder.agi,
+            0,
+            holder.luck,
+            0,
+            condition
         )
     }
 
-    fun getOutputInformationHolder(
-        enemy: ArrayList<CharacterHolder>,
-        party: ArrayList<CharacterHolder>
-    ): ArrayList<OutputInformationHolder> {
-        val firstEnemyHolder = "".setOutputInformationHolder(enemy[EnemyIndexEnum.FIRST_ENEMY.id])
-        val secondEnemyHolder = "".setOutputInformationHolder(enemy[EnemyIndexEnum.SECOND_ENEMY.id])
-        val thirdEnemyHolder = "".setOutputInformationHolder(enemy[EnemyIndexEnum.THIRD_ENEMY.id])
+    private fun Int.setOutputInformationHolder(holder: CharacterInformationHolder?): CharacterInformationHolder {
+        return CharacterInformationHolder(
+            this,
+            holder!!.belong,
+            holder.name,
+            holder.job,
+            holder.maxHp,
+            holder.currentHp,
+            holder.maxMp,
+            holder.currentMp,
+            holder.str,
+            holder.effectTimeOfStr,
+            holder.def,
+            holder.effectTimeOfDef,
+            holder.agi,
+            holder.effectTimeOfAgi,
+            holder.luck,
+            holder.effectTimeOfLuck,
+            holder.cond
+        )
+    }
 
-        val firstPartyHolder = "".setOutputInformationHolder(party[PartyIndexEnum.FIRST_PARTY.id])
-        val secondPartyHolder = "".setOutputInformationHolder(party[PartyIndexEnum.SECOND_PARTY.id])
-        val thirdPartyHolder = "".setOutputInformationHolder(party[PartyIndexEnum.THIRD_PARTY.id])
+    fun getOutputInformationList(
+        enemy: ArrayList<CharacterInformationHolder>,
+        player: ArrayList<CharacterInformationHolder>
+    ): ArrayList<CharacterInformationHolder> {
+        val firstEnemyHolder = TotalIndexEnum.FIRST_ENEMY.id.setOutputInformationHolder(enemy[0])
+        val secondEnemyHolder = TotalIndexEnum.SECOND_ENEMY.id.setOutputInformationHolder(enemy[1])
+        val thirdEnemyHolder = TotalIndexEnum.THIRD_ENEMY.id.setOutputInformationHolder(enemy[2])
+
+        val firstPlayerHolder = TotalIndexEnum.FIRST_PLAYER.id.setOutputInformationHolder(player[0])
+        val secondPlayerHolder = TotalIndexEnum.SECOND_PLAYER.id.setOutputInformationHolder(player[1])
+        val thirdPlayerHolder = TotalIndexEnum.THIRD_PLAYER.id.setOutputInformationHolder(player[2])
 
         return arrayListOf(
             firstEnemyHolder,
             secondEnemyHolder,
             thirdEnemyHolder,
-            firstPartyHolder,
-            secondPartyHolder,
-            thirdPartyHolder
+            firstPlayerHolder,
+            secondPlayerHolder,
+            thirdPlayerHolder
         )
     }
 
+    fun initOutputInformationList(characterHolder: ArrayList<CharacterHolder>)
+            : ArrayList<CharacterInformationHolder> {
 
-    fun initOutputInformationHolder(
-        enemy: ArrayList<CharacterHolder>,
-        party: ArrayList<CharacterHolder>
-    )
-            : ArrayList<OutputInformationHolder> {
+        val belong = characterHolder[0].belong
 
-        //val firstEnemyHolder: CharacterHolder = enemy[EnemyEnum.FIRST_ENEMY.id]
-        //val secondEnemyHolder: CharacterHolder = enemy[EnemyEnum.SECOND_ENEMY.id]
-        //val thirdEnemyHolder: CharacterHolder = enemy[EnemyEnum.THIRD_ENEMY.id]
+        var firstHolder : CharacterInformationHolder? = null
+        var secondHolder : CharacterInformationHolder? = null
+        var thirdHolder : CharacterInformationHolder? = null
 
-//        val firstPartyHolder: CharacterHolder = party[PartyEnum.FIRST_PARTY.id]
-//        val secondPartyHolder: CharacterHolder = party[PartyEnum.SECOND_PARTY.id]
-//        val thirdPartyHolder: CharacterHolder = party[PartyEnum.THIRD_PARTY.id]
+        if (belong == Belong.ENEMY.name){
+            firstHolder = TotalIndexEnum.FIRST_ENEMY.id.setOutputInformationHolder(characterHolder[0],
+                mutableMapOf()
+            )
+            secondHolder = TotalIndexEnum.SECOND_ENEMY.id.setOutputInformationHolder(characterHolder[1],
+                mutableMapOf())
+            thirdHolder = TotalIndexEnum.THIRD_ENEMY.id.setOutputInformationHolder(characterHolder[2],
+                mutableMapOf())
+        } else if (belong == Belong.PLAYER.name){
+            firstHolder = TotalIndexEnum.FIRST_PLAYER.id.setOutputInformationHolder(characterHolder[0],
+                mutableMapOf())
+            secondHolder = TotalIndexEnum.SECOND_PLAYER.id.setOutputInformationHolder(characterHolder[1],
+                mutableMapOf())
+            thirdHolder = TotalIndexEnum.THIRD_PLAYER.id.setOutputInformationHolder(characterHolder[2],
+                mutableMapOf())
 
+    }
+        return arrayListOf(firstHolder!!, secondHolder!!, thirdHolder!!)
 
-        val firstEnemyHolder = "".setOutputInformationHolder(enemy[EnemyIndexEnum.FIRST_ENEMY.id])
-        val secondEnemyHolder = "".setOutputInformationHolder(enemy[EnemyIndexEnum.SECOND_ENEMY.id])
-        val thirdEnemyHolder = "".setOutputInformationHolder(enemy[EnemyIndexEnum.THIRD_ENEMY.id])
-
-        val firstPartyHolder = "".setOutputInformationHolder(party[PartyIndexEnum.FIRST_PARTY.id])
-        val secondPartyHolder = "".setOutputInformationHolder(party[PartyIndexEnum.SECOND_PARTY.id])
-        val thirdPartyHolder = "".setOutputInformationHolder(party[PartyIndexEnum.THIRD_PARTY.id])
-
-
-
-        val setArrayList = arrayListOf(
-            firstEnemyHolder,
-            secondEnemyHolder,
-            thirdEnemyHolder,
-            firstPartyHolder,
-            secondPartyHolder,
-            thirdPartyHolder
-        )
-        informationNotice.postValue(setArrayList)
-
-        return setArrayList
     }
 
 
-//        val infoOfFirstEnemy =OutputInformationHolder(
-//            firstEnemyHolder.name,
-//            firstEnemyHolder.hp.toString(),
-//            firstEnemyHolder.hp.toString(),
-//            firstEnemyHolder.mp.toString(),
-//            firstEnemyHolder.mp.toString(),
-//            "")
-
-
-
-/*
-
-    private fun initInformationHolder(
-        enemy: ArrayList<CharacterHolder>,
-        party: ArrayList<CharacterHolder>
-    ): InformationHolder {
-
-        val firstEnemy: CharacterHolder = enemy[0]
-        val secondEnemy: CharacterHolder = enemy[1]
-        val thirdEnemy: CharacterHolder = enemy[2]
-
-        val firstParty: CharacterHolder = party[0]
-        val secondParty: CharacterHolder = party[1]
-        val thirdParty: CharacterHolder = party[2]
-
-        */
-/*  Name :String,
-        MaxHp :String,
-        MaxMp :String,
-        CurrentHp :String,
-        CurrentMp :String,
-        Cond :String,*//*
-
-
-        return InformationHolder(
-            firstEnemy.name,
-            firstEnemy.hp.toString(),
-            firstEnemy.mp.toString(),
-            firstEnemy.hp.toString(),
-            firstEnemy.mp.toString(),
-            "",
-
-            secondEnemy.name,
-            secondEnemy.hp.toString(),
-            secondEnemy.mp.toString(),
-            secondEnemy.hp.toString(),
-            secondEnemy.mp.toString(),
-            "",
-
-            thirdEnemy.name,
-            thirdEnemy.hp.toString(),
-            thirdEnemy.mp.toString(),
-            thirdEnemy.hp.toString(),
-            thirdEnemy.mp.toString(),
-            "",
-
-            firstParty.name,
-            firstParty.hp.toString(),
-            firstParty.mp.toString(),
-            firstParty.hp.toString(),
-            firstParty.mp.toString(),
-            "",
-
-            secondParty.name,
-            secondParty.hp.toString(),
-            secondParty.mp.toString(),
-            secondParty.hp.toString(),
-            secondParty.mp.toString(),
-            "",
-
-            thirdParty.name,
-            thirdParty.hp.toString(),
-            thirdParty.mp.toString(),
-            thirdParty.hp.toString(),
-            thirdParty.mp.toString(),
-            ""
-        )
-
+    private fun resetCharacterHolder(holder: CharacterInformationHolder ):CharacterHolder{
+        return CharacterHolder(
+            holder.belong,
+            holder.name,
+            holder.job,
+            holder.maxHp,
+            holder.maxMp,
+            holder.str,
+            holder.def,
+            holder.agi,
+            holder.luck,
+            0)
     }
-*/
 
-    //インスタンス生成
+
+    fun resetCharacterList(CharacterInformationHolder: ArrayList<CharacterInformationHolder> ):ArrayList<CharacterHolder>{
+
+        val firstHolder : CharacterHolder?
+        val secondHolder : CharacterHolder?
+        val thirdHolder : CharacterHolder?
+
+        firstHolder = resetCharacterHolder(CharacterInformationHolder[0])
+        secondHolder = resetCharacterHolder(CharacterInformationHolder[1])
+        thirdHolder = resetCharacterHolder(CharacterInformationHolder[2])
+
+        return arrayListOf(firstHolder, secondHolder, thirdHolder)
+    }
+
+   //インスタンス生成
     companion object {
         val instance = InformationManager()
     }
 
-    enum class EnemyIndexEnum(val id: Int) {
-        FIRST_ENEMY(0),
-        SECOND_ENEMY(1),
-        THIRD_ENEMY(2),
-    }
 
-    enum class PartyIndexEnum(val id: Int) {
-        FIRST_PARTY(0),
-        SECOND_PARTY(1),
-        THIRD_PARTY(2)
-    }
 
 
 }

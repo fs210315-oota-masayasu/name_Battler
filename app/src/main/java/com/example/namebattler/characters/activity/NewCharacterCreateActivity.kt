@@ -21,6 +21,7 @@ import com.example.namebattler.data.characterData.Player
 import com.example.namebattler.data.database.Characters
 import com.example.namebattler.data.jobData.JobManager
 import com.example.namebattler.memu.HeaderFragment
+import com.example.namebattler.util.Belong
 import com.example.namebattler.util.ScopedAppActivity
 import kotlinx.android.synthetic.main.character_new_create.*
 import kotlin.concurrent.thread
@@ -49,10 +50,6 @@ class NewCharacterCreateActivity : ScopedAppActivity(), TextWatcher {
             fragmentTransaction.commit()
         }
 
-
-
-
-
         val mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         //名前
@@ -67,7 +64,6 @@ class NewCharacterCreateActivity : ScopedAppActivity(), TextWatcher {
             radioGroup.setOnCheckedChangeListener { _, checkedId ->
                 // checkedIdから、選択されたRadioButtonを取得
                 radioButton = findViewById(checkedId)
-                //setRadioButton = radioButton
             }
 
         //DBへのインサート処理 + 画面遷移
@@ -148,6 +144,7 @@ class NewCharacterCreateActivity : ScopedAppActivity(), TextWatcher {
     private fun setCharacterHolder(characters : Characters?): CharacterHolder? {
         return if (characters != null) {
             CharacterHolder(
+                Belong.PLAYER.name, //所属
                 characters.NAME,
                 JobManager().getJobList(characters.JOB),
                 characters.HP,

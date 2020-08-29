@@ -1,4 +1,5 @@
 <resources>
+    <string name="empty">Empty</string>
     <string name="app_name">nameBattler</string>
     <string name="battleStart">バトル開始</string>
     <string name="next_turn">次のターン</string>
@@ -25,9 +26,11 @@
     <string name="display_name_status">ステータス</string>
     <string name="btn_continue_to_create">続けて作成する</string>
     <string name="btn_end_to_create">作成を終了する</string>
+    <string name="change_operation">変更</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment_common</string>
+    <string name="anystringvalue">anyStringValue</string>
 
     <!-- TODO: string of sample -->
     <string name="hint_word">Word...</string>
@@ -47,6 +50,19 @@
     <string name="fight_this_opponent">この相手と戦う</string>
     <string name="reselect">相手を選びなおす</string>
     <string name="start_at_this_party">このパーティで開始</string>
+    <!-- 作戦変更 -->
+    <string name="please_select_a_operation">パーティーの作戦を選んで下ください</string>
+    <string name="offensive_operation">ガンガンいこうぜ</string>
+    <string name="defensive_operation">いのちだいじに</string>
+    <string name="flexible_operation">バッチリがんばれ</string>
+    <string name="decision">決定</string>
+    <!-- バトル結果 -->
+    <string name="challenge_again">再挑戦</string>
+    <string name="next_battle">次の対戦へ</string>
+    <string name="end_battle">対戦を終了する</string>
+
+
+
 
 
 </resources>

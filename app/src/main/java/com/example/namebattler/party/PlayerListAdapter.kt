@@ -10,9 +10,9 @@ import com.example.namebattler.R
 import com.example.namebattler.data.characterData.CharacterHolder
 
 ////BattleLobbyActivity：編成済パーティリスト
-class PartyListAdapter  internal constructor(
+class PlayerListAdapter  internal constructor(
     context : Context
-) : RecyclerView.Adapter<PartyListAdapter.PartyListViewHolder>() {
+) : RecyclerView.Adapter<PlayerListAdapter.PartyListViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     //private var character = emptyList<Characters>() // Cached copy of character

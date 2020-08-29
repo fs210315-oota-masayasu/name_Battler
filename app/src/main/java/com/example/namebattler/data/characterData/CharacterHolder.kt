@@ -3,6 +3,7 @@ package com.example.namebattler.data.characterData
 import java.io.Serializable
 
 data class CharacterHolder(
+    val belong :String,
     val name : String,
     val job : String,
     val hp : Int,
@@ -18,3 +19,4 @@ data class CharacterHolder(
         const val EXTRA_DATA = "EXTRA_DATA"
     }
 }
+

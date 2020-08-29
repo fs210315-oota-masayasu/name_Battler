@@ -10,6 +10,7 @@ import com.example.namebattler.R
 import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.data.database.Characters
 import com.example.namebattler.data.jobData.JobManager
+import com.example.namebattler.util.Belong
 
 //BattleLobbyActivity：敵パーティリスト
 class EnemyListAdapter internal constructor(context : Context
@@ -50,9 +51,9 @@ class EnemyListAdapter internal constructor(context : Context
 
         sendToComplete =
             CharacterHolder(
+                Belong.ENEMY.name,
                 current.NAME,
-                JobManager().getJobList(current.JOB)
-                ,
+                JobManager().getJobList(current.JOB),
                 current.HP,
                 current.MP,
                 current.STR,

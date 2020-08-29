@@ -57,6 +57,9 @@
         <activity android:name=".battle.activity.BattleMainActivity">
         </activity>
 
+        <activity android:name=".battle.activity.OperationChangeActivity">
+        </activity>
+
 
 
     </application>

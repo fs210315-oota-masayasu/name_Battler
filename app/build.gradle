@@ -33,6 +33,16 @@ android {
 
     sourceSets {
         androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
+
+        main {
+            res.srcDirs =
+                    [
+                            'src/main/res/layouts/battles',
+                            'src/main/res/layouts',
+                            'src/main/res'
+
+                    ]
+        }
     }
 }
 

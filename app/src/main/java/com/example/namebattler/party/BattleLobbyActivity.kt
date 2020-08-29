@@ -69,7 +69,7 @@ class BattleLobbyActivity : AppCompatActivity() {
 
         //編成済みパーティリスト
         val recyclerViewOfPartyList = findViewById<RecyclerView>(R.id.party_list_view)
-        val partyAdapter = PartyListAdapter(this)
+        val partyAdapter = PlayerListAdapter(this)
         val itemDecoration =  DividerItemDecoration(this, LinearLayoutManager(this).orientation)
 
         recyclerViewOfPartyList.adapter = partyAdapter
@@ -83,7 +83,7 @@ class BattleLobbyActivity : AppCompatActivity() {
         btn_battle_start.setOnClickListener {
             val intent = Intent(this, BattleMainActivity::class.java)
             intent.putExtra(BattleMainActivity.ENEMY_KEY_STATE,sendToEnemy)
-            intent.putExtra(BattleMainActivity.PARTY_KEY_STATE,states)
+            intent.putExtra(BattleMainActivity.PLAYER_KEY_STATE,states)
             startActivity(intent)
         }
 

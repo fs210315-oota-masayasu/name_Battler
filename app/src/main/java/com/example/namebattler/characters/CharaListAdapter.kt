@@ -10,6 +10,7 @@ import com.example.namebattler.R
 import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.data.database.Characters
 import com.example.namebattler.data.jobData.JobManager
+import com.example.namebattler.util.Belong
 
 //キャラクター一覧画面
 class CharaListAdapter internal constructor(
@@ -62,9 +63,9 @@ class CharaListAdapter internal constructor(
 
         sendToComplete =
             CharacterHolder(
+                Belong.PLAYER.name,
                 current.NAME,
-                JobManager().getJobList(current.JOB)
-                ,
+                JobManager().getJobList(current.JOB),
                 current.HP,
                 current.MP,
                 current.STR,

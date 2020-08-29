@@ -1,121 +1,64 @@
 package com.example.namebattler.battle.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.namebattler.R
 import com.example.namebattler.battle.BattleLogAdapter
+import com.example.namebattler.battle.BattleManager
+import com.example.namebattler.battle.activity.OperationChangeActivity
+import com.example.namebattler.data.battleData.CharacterInformationHolder
 import com.example.namebattler.data.battleData.InformationManager
-import com.example.namebattler.data.characterData.CharacterHolder
+import com.example.namebattler.data.battleData.Operation
+import com.example.namebattler.util.EndEnum
 import kotlinx.android.synthetic.main.fragment_battle_operation.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
 private const val ARG_ENEMY = "arg_enemy"
-private const val ARG_PARTY = "arg_party"
-
-/*
-private const val ARG_FIRST_ENEMY = "arg_first_enemy"
-private const val ARG_SECOND_ENEMY = "arg_second_enemy"
-private const val ARG_THIRD_ENEMY = "arg_third_enemy"
-
-private const val ARG_FIRST_PARTY = "arg_first_party"
-private const val ARG_SECOND_PARTY = "arg_second_party"
-private const val ARG_THIRD_PARTY = "arg_third_party"
-*/
+private const val ARG_Player = "arg_Player"
 
 class BattleOperationFragment : Fragment() {
 
-    private var enemyList = arrayListOf<CharacterHolder>()
-    private var partyList = arrayListOf<CharacterHolder>()
+    private var enemyList = arrayListOf<CharacterInformationHolder>()
+    private var playerList = arrayListOf<CharacterInformationHolder>()
+//    private var enemyList = arrayListOf<CharacterHolder>()
+//    private var playerList = arrayListOf<CharacterHolder>()
 
+    var informText = MutableLiveData<MutableList<String>>()
+    var endingInformation = MutableLiveData<String>()
 
-/*
-
-    private var firstEnemy : CharacterHolder? = null
-    private var secondEnemy : CharacterHolder? = null
-    private var thirdEnemy : CharacterHolder? = null
-
-    private var firstParty : CharacterHolder? = null
-    private var secondParty : CharacterHolder? = null
-    private var thirdParty : CharacterHolder? = null
-
-
-*/
-
-
-    //private var informationManager : InformationManager? = null
-
-
-
-    private var cnt : Int? = 0
-
-    var informText = MutableLiveData<String>()
-
-    var firstEnemyName = MutableLiveData <String>()
-    var secondEnemyName = MutableLiveData <String>()
-    var thirdEnemyName = MutableLiveData <String>()
+    var count = 0
 
     companion object {
         @JvmStatic
-        fun newInstance(enemyObj : ArrayList<CharacterHolder>, partyObj : ArrayList<CharacterHolder>) =
+        //fun newInstance(enemyObj : ArrayList<CharacterHolder>, playerObj : ArrayList<CharacterHolder>) =
+        fun newInstance(enemyObj: ArrayList<CharacterInformationHolder>, playerObj: ArrayList<CharacterInformationHolder>) =
             BattleOperationFragment().apply {
 
 
-/*
-
-                    firstEnemy = enemy[0]
-                    secondEnemy = enemy[1]
-                    thirdEnemy = enemy[2]
-
-                    firstParty = party[0]
-                    secondParty = party[1]
-                    thirdParty = party[2]
-
-*/
-
-                //informationManager = informationData
-
                 this.enemyList = enemyObj
-                this.partyList = partyObj
+                this.playerList = playerObj
 
 
                 arguments = Bundle().apply {
 
-//                    putSerializable(ARG_FIRST_ENEMY,firstEnemy)
-//                    putSerializable(ARG_SECOND_ENEMY, secondEnemy)
-//                    putSerializable(ARG_THIRD_ENEMY,thirdEnemy)
-//
-//                    putSerializable(ARG_FIRST_PARTY, firstParty)
-//                    putSerializable(ARG_SECOND_PARTY, secondParty)
-//                    putSerializable(ARG_THIRD_PARTY, thirdParty)
-
-                    //putSerializable(ARG_INFORMATION, informationManager)
-
                     putSerializable(ARG_ENEMY, enemyList)
-                    putSerializable(ARG_PARTY, partyList)
+                    putSerializable(ARG_Player, playerList)
 
 
                 }
 
             }
-/*
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            BattleOperationFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }*/
     }
 
 
@@ -126,24 +69,8 @@ class BattleOperationFragment : Fragment() {
 
         arguments?.let {
 
-            enemyList = it.getSerializable(ARG_ENEMY) as ArrayList<CharacterHolder>
-            partyList = it.getSerializable(ARG_PARTY) as ArrayList<CharacterHolder>
-
-
-
-/*
-            firstEnemy = it.getSerializable(ARG_FIRST_ENEMY) as CharacterHolder?
-            secondEnemy = it.getSerializable(ARG_SECOND_ENEMY) as CharacterHolder?
-            thirdEnemy = it.getSerializable(ARG_THIRD_ENEMY) as CharacterHolder?
-
-            firstParty = it.getSerializable(ARG_FIRST_PARTY) as CharacterHolder?
-            secondParty = it.getSerializable(ARG_SECOND_PARTY) as CharacterHolder?
-            thirdParty = it.getSerializable(ARG_THIRD_PARTY) as CharacterHolder?
-*/
-
-
-            //informationManager = it.getSerializable(ARG_INFORMATION) as InformationManager
-
+            enemyList = it.getSerializable(ARG_ENEMY) as ArrayList<CharacterInformationHolder>
+            playerList = it.getSerializable(ARG_Player) as ArrayList<CharacterInformationHolder>
 
         }
     }
@@ -162,25 +89,9 @@ class BattleOperationFragment : Fragment() {
 
         val args : Bundle? = arguments
 
-        var firstEnemy = enemyList[0]
-        var secondEnemy = enemyList[1]
-        var thirdEnemy = enemyList[2]
-
-        var firstParty  = partyList[0]
-        var secondParty = partyList[1]
-        var thirdParty  = partyList[2]
-
-
-
-        //val setFirstEnemy =  args?.getSerializable(ARG_FIRST_ENEMY) as CharacterHolder?
-        Log.d("tag", "first Enemy is " + firstEnemy?.name)
-
-
-        //StatusInformationFragment().firstEnemyNameTest.postValue(setFirstEnemy?.name)
-        //StatusInformationFragment().secondEnemyNameTest.postValue(secondEnemy?.name)
-        //StatusInformationFragment().thirdEnemyNameTest.postValue(thirdEnemy?.name)
-
-
+        val battleManagerInstance = BattleManager().getInstance()
+        battleManagerInstance.initCharacterList(enemyList,playerList)
+        battleManagerInstance.initInitiative()
 
         //バトルログをrecyclerViewで表示
         val recyclerViewOfBattleLog = view.findViewById<RecyclerView>(R.id.log_list_view)
@@ -190,79 +101,111 @@ class BattleOperationFragment : Fragment() {
             recyclerViewOfBattleLog.adapter = adapter
             recyclerViewOfBattleLog.layoutManager = LinearLayoutManager(getContext)
 
-
             val list = mutableListOf<String>()
             adapter.setBattleLog(list)
 
-            informText.observe(viewLifecycleOwner, Observer {
-                //Log.d("tag", "log is $it")
-                //list.add(it)
+            //バトルログをターン開始時の位置までスクロールさせる
+            informText.observe(viewLifecycleOwner, Observer { it ->
                 recyclerViewOfBattleLog.scrollToPosition(adapter.pos?:0)
-                adapter.addBattleLog(it)
-
-                //Log.d("tag", "log is $list")
-
+                it.forEach {
+                    adapter.addBattleLog(it)
+                }
             })
+            endingInformation.observe(viewLifecycleOwner , Observer{
+                val enemy = InformationManager().resetCharacterList(enemyList)
+                val player = InformationManager().resetCharacterList(playerList)
 
+                if (savedInstanceState == null){
+                    // FragmentManagerのインスタンス生成
+                    val fragmentManager: FragmentManager = parentFragmentManager
 
-
-
-
+                    if (it == EndEnum.WIN.name){
+                        //勝利
+                        // FragmentTransactionのインスタンスを取得
+                        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+                        // インスタンスに対して張り付け方を指定する
+                        fragmentTransaction.replace(R.id.battle_operation_area, WinViewFragment.newInstance(enemy, player))
+                        fragmentTransaction.commit()
+                    }else if(it == EndEnum.LOSE.name){
+                        //敗北
+                        // FragmentTransactionのインスタンスを取得
+                        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+                        // インスタンスに対して張り付け方を指定する
+                        fragmentTransaction.replace(R.id.battle_operation_area, LoseViewFragment.newInstance(enemy, player))
+                        fragmentTransaction.commit()
+                    }
+                }
+            })
         }
     }
 
     override fun onStart() {
         super.onStart()
 
-/*        val information = InformationManager.inform
-        val holder = information.getInformationHolder()*/
+        //作戦変更
+        //作戦名取得用インスタンス
+        val operationInstance = Operation().getInstance()
+        //作戦名の取得
+        val operationName = operationInstance.get()
 
-        @Suppress("UNCHECKED_CAST")
-//        val test = informationManager?.getInformationHolder(enemyList as ArrayList<CharacterHolder>,
-//            partyList as ArrayList<CharacterHolder>
-//        )
-        val temp = InformationManager().getInstance()
-        val test = temp.getOutputInformationHolder(enemyList, partyList)
+        //TextViewへ作戦名を渡す
+        val operationView : TextView = view!!.findViewById(R.id.value_current_operation)
+        operationView.text = operationName
+
+        //作戦変更画面へ遷移
+        btn_change_operation.setOnClickListener {
+            val intent = Intent(activity, OperationChangeActivity::class.java)
+            startActivity(intent)
+        }
+
+        //InformationManagerのインスタンス取得
+        val informationManager = InformationManager().getInstance()
+        //バトル開始前の各キャラクター情報
+         //player、enemyをまとめる
+        val currentInformation = arrayListOf <CharacterInformationHolder>()
+
+        currentInformation.addAll(enemyList)
+        currentInformation.addAll(playerList)
+
+        //BattleManagerを呼び出してキャラクター情報を格納
+
+        val battleManager = BattleManager().getInstance()
+
+        battleManager.setCurrentInformation(currentInformation)
 
 
-
-
+        //「次のターン」処理
         btn_next_turn.setOnClickListener {
-            cnt = cnt?.plus(1)
-            var log = "テスト$cnt"
+            count++
 
-            //Log.d("tag", "before check :" + test?.firstEnemyName)
+            battleManager.count = count
 
-            //Log.d("tag", "wo is " + firstEnemy?.name)
-            //firstEnemyName.postValue(firstEnemy?.name)
+            //出力するログ情報（addした順に出力される）
+            val setLogData = mutableListOf<String>()
 
+            //バトル処理
+            val setText = battleManager.battleProcess(operationName)
+            setLogData.addAll(setText)
 
+            val resultInformation:ArrayList<CharacterInformationHolder> = battleManager.getCurrentInformation()
 
+            resultInformation.forEach {
+                Log.d("INFO", "[ BattleOperationFragment ][207] info :[ " + it!!.id + "]  name is : " + it!!.name)
+            }
 
-            test[HolderIndexEnum.THIRD_PARTY_.id].name = "テスト太郎"
+            //キャラクター情報をLiveDataへ格納
+            informationManager.setInformationNotice(resultInformation)
+            //ログ情報をLiveDataに格納
+            informText.postValue(setLogData)
 
+            val isEnding = battleManager.isEnding()
+            Log.d("INFO","[BattleOperationFragment]  Ending Info $isEnding")
 
-            temp.setInformationNotice(test)
-
-
-
-            //Log.d("tag", "button listen :" + informationManager?.firstEnemyName)
-            Log.d("tag", "inform check :" + test[HolderIndexEnum.THIRD_PARTY_.id].name)
-
-            informText.postValue(log)
-
+            //勝敗画面
+            if (isEnding != ""){
+                endingInformation.postValue(isEnding)
+            }
         }
     }
-
-    enum class HolderIndexEnum(val id: Int) {
-        FIRST_ENEMY(0),
-        SECOND_ENEMY(1),
-        THIRD_ENEMY(2),
-        FIRST_PARTY(3),
-        SECOND_PARTY(4),
-        THIRD_PARTY_(5),
-
-    }
-
 
 }

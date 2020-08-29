@@ -61,13 +61,4 @@ class HeaderFragment : Fragment() {
         }
     }
 
-/*
-    companion object {
-        @JvmStatic
-        fun newInstance(): HeaderFragment {
-            return HeaderFragment()
-        }
-    }
-*/
-
 }

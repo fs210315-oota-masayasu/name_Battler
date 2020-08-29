@@ -22,78 +22,93 @@ public abstract class AppDatabase : RoomDatabase() {
                 scope.launch {
                     var characterDao = database.charactersDao()
 
+//                    var accessCheckCharaData =
+//                        Characters(
+//                            "しろまどうし",
+//                            1,
+//                            240,
+//                            143,
+//                            143,
+//                            114,
+//                            156,
+//                            100,
+//                            1588085823101
+//                        )
+//                    characterDao.insert(accessCheckCharaData)
+
+
                     //クリア処理
-                    characterDao.deleteAll()
+                    //characterDao.deleteAll()
 
-                    var accessCheckCharaData =
-                        Characters(
-                            "ゆうしゃ",
-                            0,
-                            10,
-                            10,
-                            10,
-                            10,
-                            10,
-                            10,
-                            1588085823101
-                        )
-                    characterDao.insert(accessCheckCharaData)
-
-                    accessCheckCharaData =
-                        Characters(
-                            "けんじゃ",
-                            1,
-                            20,
-                            20,
-                            20,
-                            20,
-                            20,
-                            20,
-                            1588085823101
-                        )
-                    characterDao.insert(accessCheckCharaData)
-
-                    accessCheckCharaData =
-                        Characters(
-                            "しさい",
-                            2,
-                            30,
-                            30,
-                            30,
-                            30,
-                            30,
-                            30,
-                            1588085823101
-                        )
-                    characterDao.insert(accessCheckCharaData)
-
-                    accessCheckCharaData =
-                        Characters(
-                            "おに",
-                            3,
-                            40,
-                            40,
-                            40,
-                            40,
-                            40,
-                            40,
-                            1588085823101
-                        )
-                    characterDao.insert(accessCheckCharaData)
-
-                    accessCheckCharaData =
-                        Characters(
-                            "せんし",
-                            0,
-                            50,
-                            50,
-                            50,
-                            50,
-                            50,
-                            50,
-                            1588085823101
-                        )
-                    characterDao.insert(accessCheckCharaData)
+//                    var accessCheckCharaData =
+//                        Characters(
+//                            "ゆうしゃ",
+//                            0,
+//                            10,
+//                            10,
+//                            10,
+//                            10,
+//                            10,
+//                            10,
+//                            1588085823101
+//                        )
+//                    characterDao.insert(accessCheckCharaData)
+//
+//                    accessCheckCharaData =
+//                        Characters(
+//                            "けんじゃ",
+//                            1,
+//                            20,
+//                            20,
+//                            20,
+//                            20,
+//                            20,
+//                            20,
+//                            1588085823101
+//                        )
+//                    characterDao.insert(accessCheckCharaData)
+//
+//                    accessCheckCharaData =
+//                        Characters(
+//                            "しさい",
+//                            2,
+//                            30,
+//                            30,
+//                            30,
+//                            30,
+//                            30,
+//                            30,
+//                            1588085823101
+//                        )
+//                    characterDao.insert(accessCheckCharaData)
+//
+//                    accessCheckCharaData =
+//                        Characters(
+//                            "おに",
+//                            3,
+//                            40,
+//                            40,
+//                            40,
+//                            40,
+//                            40,
+//                            40,
+//                            1588085823101
+//                        )
+//                    characterDao.insert(accessCheckCharaData)
+//
+//                    accessCheckCharaData =
+//                        Characters(
+//                            "せんし",
+//                            0,
+//                            50,
+//                            50,
+//                            50,
+//                            50,
+//                            50,
+//                            50,
+//                            1588085823101
+//                        )
+//                    characterDao.insert(accessCheckCharaData)
 
 
                 }

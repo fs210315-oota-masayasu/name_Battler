@@ -12,6 +12,7 @@ import com.example.namebattler.R
 import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.data.database.Characters
 import com.example.namebattler.data.jobData.JobManager
+import com.example.namebattler.util.Belong
 
 class FormationListAdapter  internal constructor(
     context: Context
@@ -66,8 +67,7 @@ class FormationListAdapter  internal constructor(
         //初期化
         checkBox.isChecked = false
 
-        // クリックするとチェックがつく
-
+        // チェックボックス以外をタップした際にチェックがついたり外れたりする処理
         holder.itemView.setOnClickListener{
 
             //チェック：ON  → チェック：OFF Listをremove
@@ -78,6 +78,7 @@ class FormationListAdapter  internal constructor(
 
                 checkedCharacter =
                     CharacterHolder(
+                        Belong.PLAYER.name,
                         current.NAME,
                         JobManager().getJobList(current.JOB),
                         current.HP,
@@ -99,9 +100,9 @@ class FormationListAdapter  internal constructor(
 
                 checkedCharacter =
                     CharacterHolder(
+                        Belong.PLAYER.name,
                         current.NAME,
-                        JobManager().getJobList(current.JOB)
-                        ,
+                        JobManager().getJobList(current.JOB),
                         current.HP,
                         current.MP,
                         current.STR,
@@ -125,9 +126,9 @@ class FormationListAdapter  internal constructor(
 
                 checkedCharacter =
                     CharacterHolder(
+                        Belong.PLAYER.name,
                         current.NAME,
-                        JobManager().getJobList(current.JOB)
-                        ,
+                        JobManager().getJobList(current.JOB),
                         current.HP,
                         current.MP,
                         current.STR,
@@ -145,9 +146,9 @@ class FormationListAdapter  internal constructor(
 
                 checkedCharacter =
                     CharacterHolder(
+                        Belong.PLAYER.name,
                         current.NAME,
-                        JobManager().getJobList(current.JOB)
-                        ,
+                        JobManager().getJobList(current.JOB),
                         current.HP,
                         current.MP,
                         current.STR,
