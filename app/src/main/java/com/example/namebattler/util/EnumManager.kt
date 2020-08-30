@@ -37,6 +37,7 @@ enum class ConditionEnum(val id: Int, val text: String) {
     SLEEP(1,"眠り"),
     PARALYSIS(2,"麻痺"),
     SCALD(3,"炎上"),
+    DEAD(4,"死亡")
 }
 
 enum class SKillEnum(val id: Int) {

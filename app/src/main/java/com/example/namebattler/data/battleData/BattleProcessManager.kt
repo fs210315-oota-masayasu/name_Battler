@@ -60,6 +60,10 @@ class BattleProcessManager {
                     targetInformation.currentHp = 0
                     deadList.add(targetInformation)
 
+                    //状態異常を「死亡」のみにする
+                    targetInformation.cond.clear()
+                    targetInformation.cond[ConditionEnum.DEAD.text] = 0
+
                     val whatHappened = "倒れた"
                     resultLog.add(whoIs + whatHappened)
                 }
@@ -204,6 +208,7 @@ class BattleProcessManager {
                 //ログ
                 whatLog = "眠っている"
                 resultLog.add(whoIs + whatLog)
+                resultLog.add("")
              }else {                //valueが0の場合はmapから削除する
                 characterInformation[doerId].cond.remove(ConditionEnum.SLEEP.text)
                 whatLog = "目が覚めた"
