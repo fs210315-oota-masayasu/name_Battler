@@ -33,9 +33,9 @@ class BattleManager {
     var count = 0
 
 
-    fun getInstance(): BattleManager {
-        return instance
-    }
+//    fun getInstance(): BattleManager {
+//        return instance
+//    }
 
     fun initCharacterList(
         enemyObj: ArrayList<CharacterInformationHolder>,
@@ -266,9 +266,9 @@ class BattleManager {
     }
 
 
-    companion object {
-        val instance = BattleManager()
-    }
+//    companion object {
+//        val instance = BattleManager()
+//    }
 
 }
 

@@ -302,13 +302,9 @@ class Skills {
             luck = luck * 2 / 3
         }
         val healStandard = getPercent(luck)
+        //回復量
+        var healPoint = (healStandard .. healStandard * 2).random()
 
-        //命中率（低目有利）
-        val healRate = (0..100).random()
-
-        var healPoint: Int
-
-        healPoint = (100 - healRate) / 100 * healStandard
         return SkillData("癒しの呪文を唱えた", healPoint, 20, false, Pair("", 0))
     }
 

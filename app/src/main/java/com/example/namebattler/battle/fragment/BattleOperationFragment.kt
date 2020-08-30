@@ -39,6 +39,8 @@ class BattleOperationFragment : Fragment() {
 
     var count = 0
 
+    private lateinit var battleManager: BattleManager
+
     companion object {
         @JvmStatic
         //fun newInstance(enemyObj : ArrayList<CharacterHolder>, playerObj : ArrayList<CharacterHolder>) =
@@ -66,7 +68,6 @@ class BattleOperationFragment : Fragment() {
     @Suppress("UNCHECKED_CAST")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         arguments?.let {
 
             enemyList = it.getSerializable(ARG_ENEMY) as ArrayList<CharacterInformationHolder>
@@ -89,9 +90,10 @@ class BattleOperationFragment : Fragment() {
 
         val args : Bundle? = arguments
 
-        val battleManagerInstance = BattleManager().getInstance()
-        battleManagerInstance.initCharacterList(enemyList,playerList)
-        battleManagerInstance.initInitiative()
+        //val battleManagerInstance = BattleManager().getInstance()
+        battleManager = BattleManager()
+        battleManager.initCharacterList(enemyList,playerList)
+        battleManager.initInitiative()
 
         //バトルログをrecyclerViewで表示
         val recyclerViewOfBattleLog = view.findViewById<RecyclerView>(R.id.log_list_view)
@@ -169,7 +171,7 @@ class BattleOperationFragment : Fragment() {
 
         //BattleManagerを呼び出してキャラクター情報を格納
 
-        val battleManager = BattleManager().getInstance()
+        //battleManager = BattleManager()
 
         battleManager.setCurrentInformation(currentInformation)
 
