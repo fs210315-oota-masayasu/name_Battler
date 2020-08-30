@@ -13,10 +13,8 @@ class Operation {
         if (operationName == ""){
             operationName = getOperationList(0)
         }
-
         return operationName
     }
-
 
     //インデックスがキャラクターテーブルのジョブの値になる
     private val operationList = mutableListOf("ガンガンいこうぜ","いのちだいじに","バッチリがんばれ")

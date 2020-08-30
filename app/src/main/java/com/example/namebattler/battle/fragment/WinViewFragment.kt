@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.namebattler.R
 import com.example.namebattler.battle.activity.BattleMainActivity
 import com.example.namebattler.data.characterData.CharacterHolder
-import com.example.namebattler.memu.MainActivity
+import com.example.namebattler.menu.MainActivity
 import com.example.namebattler.party.PartyFormationActivity
 import kotlinx.android.synthetic.main.fragment_win_view.*
 

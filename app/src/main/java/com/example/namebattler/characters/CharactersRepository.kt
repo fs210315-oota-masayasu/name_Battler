@@ -31,9 +31,4 @@ class CharactersRepository (private val charactersDao : CharactersDao){
     fun areYouThere(name :String)  : LiveData<List<Characters>>{
         return charactersDao.getCharacterAtName(name)
     }
-
-//    @WorkerThread
-//    fun getCharacterAtName(nameToSearch: String){
-//        charactersDao.getCharacterAtName(nameToSearch)
-//    }
 }

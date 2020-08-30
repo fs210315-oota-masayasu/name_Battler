@@ -26,14 +26,11 @@ class ProcessingAfterCreationFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_processing_after_creation, container, false)
     }
-
-
     companion object {
         @JvmStatic
         fun newInstance(): ProcessingAfterCreationFragment {
             return ProcessingAfterCreationFragment()
         }
-
     }
 
     override fun onStart() {

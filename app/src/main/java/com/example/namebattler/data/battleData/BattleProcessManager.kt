@@ -1,17 +1,9 @@
 package com.example.namebattler.data.battleData
 
-import android.util.Log
 import com.example.namebattler.data.skillAndMagic.SkillData
 import com.example.namebattler.data.skillAndMagic.Skills
 import com.example.namebattler.util.ConditionEnum
 import com.example.namebattler.util.DamageTypeEnum
-
-private const val LOG = " [ BATTLE_LOG ] "
-private const val OUTPUT = " [ output_log ] "
-
-
-private const val INFO = " < BattleManager >"
-
 
 class BattleProcessManager {
 
@@ -33,7 +25,6 @@ class BattleProcessManager {
         val resultLog = mutableListOf<String>()
 
         targetList.forEach { targetInformation ->
-            Log.d("LOG", "INFO [224]_Target Name is :" + targetInformation.name)
             //攻撃結果反映
             //防御判定
             val defPoint: SkillData = if (attackResult.isMagicDamage) {
@@ -78,7 +69,6 @@ class BattleProcessManager {
 
                 if (attackResult.changingCond.first != ""){
 
-                    Log.d("LOG", "[335]_bad id ${attackResult.changingCond.first}")
                     //状態異常の抵抗判定
                     val whoIs = targetInformation.name + "は"
                     val whatCond: String
@@ -96,8 +86,6 @@ class BattleProcessManager {
                         if (attackResult.changingCond.first != ConditionEnum.FRESH.text) {
                             targetInformation.cond.plusAssign(attackResult.changingCond.first to attackResult.changingCond.second)
                         }
-                        Log.d("LOG", "INFO[305]_result ${targetInformation.name} Cond is ${targetInformation.cond}")
-                        Log.d("LOG", "INFO[288]_target add cond $targetInformation")
                     }else{
                         whatCond = "抵抗した"
                     }
@@ -160,7 +148,6 @@ class BattleProcessManager {
         if (characterInformation[doerId].cond.isNotEmpty()) {
             badStatusList = characterInformation[doerId].cond
         }
-        Log.d(LOG, "${INFO}[131]_Bad Cond $badStatusList")
 
         //状態異常の処理を適用
         //ダメージ処理を先に済ませてから行動不能処理を適用
@@ -197,8 +184,6 @@ class BattleProcessManager {
                 characterInformation[doerId].effectTimeOfAgi = doerCharacter.effectTimeOfAgi - 1
                 characterInformation[doerId].effectTimeOfLuck = doerCharacter.effectTimeOfLuck - 1
 
-                // TODO 後で消す
-                checkParamOfEffect(doerId, "麻痺中")
                 whatLog = "体が痺れている！"
 
             }else{                //valueが0の場合はmapから削除する
@@ -318,36 +303,5 @@ class BattleProcessManager {
     private fun getPercent(num: Int?): Int {
         return num!! * 100 / 255
     }
-
-    private fun getPercent(num: Int?, standardValue: Int): Int {
-        return num!! * 100 / standardValue
-    }
-
-    // TODO 確認用（後で消す）
-    fun checkParamOfEffect(doerId: Int, log: String) {
-        Log.d(LOG, "")
-        Log.d(
-            LOG,
-            "$log[505]_effectTime[Str] (Actor):${characterInformation[doerId].name} + ${characterInformation[doerId].effectTimeOfStr}"
-        )
-        Log.d(
-            LOG,
-            "$log[506]_effectTime[Def](Actor):${characterInformation[doerId].name} + ${characterInformation[doerId].effectTimeOfDef}"
-        )
-        Log.d(
-            LOG,
-            "$log[507]_effectTime[Agi](Actor):${characterInformation[doerId].name} + ${characterInformation[doerId].effectTimeOfAgi}"
-        )
-        Log.d(
-            LOG,
-            "$log[508]_effectTime[Luck](Actor):${characterInformation[doerId].name} + ${characterInformation[doerId].effectTimeOfLuck}"
-        )
-        Log.d(LOG, "")
-        Log.d(
-            LOG,
-            "$log[510]_result Cond(Actor):${characterInformation[doerId].name} + ${characterInformation[doerId].cond}"
-        )
-    }
-
 
 }

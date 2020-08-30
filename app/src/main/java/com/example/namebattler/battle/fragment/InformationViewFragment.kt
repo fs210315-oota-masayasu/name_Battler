@@ -9,35 +9,25 @@ import androidx.fragment.app.Fragment
 import com.example.namebattler.R
 import com.example.namebattler.data.battleData.CharacterInformationHolder
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 
-
-
 class InformationViewFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var informationData : CharacterInformationHolder? = null
-    private var param2: String? = null
 
     companion object {
-
         @JvmStatic
         fun newInstance(informationData : CharacterInformationHolder) =
             InformationViewFragment().apply {
                 arguments = Bundle().apply {
-
                     putSerializable(ARG_PARAM1,informationData)
                 }
             }
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             informationData = it.getSerializable(ARG_PARAM1) as CharacterInformationHolder?
-            //param2 = it.getString(ARG_PARAM2)*/
         }
     }
 
@@ -45,7 +35,6 @@ class InformationViewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_information_view, container, false)
     }
 
@@ -61,7 +50,7 @@ class InformationViewFragment : Fragment() {
 
         val pairList = informationData?.cond?: mutableMapOf()
         //condListからStringのみ抽出してListへ格納
-        var condList =  pairList.flatMap { listOf(it.key) }
+        val condList =  pairList.flatMap { listOf(it.key) }
         //List内の値を連結
         val cond = condList.joinToString(separator = " ")
 
@@ -79,7 +68,5 @@ class InformationViewFragment : Fragment() {
         currentMpView.text = currentMp.toString()
         condView.text = cond
     }
-
-
 
 }

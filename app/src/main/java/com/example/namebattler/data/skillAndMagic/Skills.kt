@@ -283,8 +283,6 @@ class Skills {
         //ダメージ値
         val attackPoint = mp + hittingPoint
 
-
-
         return SkillData("火球の呪文を唱えた", attackPoint, 30, isCritical, Pair(ConditionEnum.SCALD.text, 2))
     }
 

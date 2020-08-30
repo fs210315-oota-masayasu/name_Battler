@@ -7,7 +7,7 @@ import com.example.namebattler.R
 import com.example.namebattler.characters.fragment.CommonDisplayStatusFragment
 import com.example.namebattler.characters.fragment.ProcessingAfterCreationFragment
 import com.example.namebattler.data.characterData.CharacterHolder
-import com.example.namebattler.memu.HeaderFragment
+import com.example.namebattler.menu.HeaderFragment
 import com.example.namebattler.util.ScopedAppActivity
 
 
@@ -35,8 +35,6 @@ class GeneratedCharacterCompletionActivity : ScopedAppActivity() {
             fragmentTransaction.commit()
         }
 
-
-
         // Serializableを使ってobjectをFragmentへ渡す
         if (savedInstanceState == null) {
             val sendObj = intent.getSerializableExtra(CharacterHolder.EXTRA_DATA)
@@ -60,15 +58,5 @@ class GeneratedCharacterCompletionActivity : ScopedAppActivity() {
             // 張り付けを実行
             fragmentTransaction.commit()
         }
-
-
-/*        //キャラクター一覧画面へ戻る
-        btn_end_to_character_create.setOnClickListener {
-            val finishCharacterCreate = Intent(this, CharacterListActivity::class.java)
-            finishCharacterCreate.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or  Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            startActivity(finishCharacterCreate)
-
-        }*/
-
     }
 }

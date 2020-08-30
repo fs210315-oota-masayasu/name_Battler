@@ -15,13 +15,8 @@ class PlayerListAdapter  internal constructor(
 ) : RecyclerView.Adapter<PlayerListAdapter.PartyListViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
-    //private var character = emptyList<Characters>() // Cached copy of character
-    //CharacterHolder
     private var character = mutableListOf<CharacterHolder>()
 
-
-    private var sendToComplete : CharacterHolder? = null
-    private var list  = mutableListOf <CharacterHolder?>()
 
     inner class PartyListViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val charaNameView : TextView = itemView.findViewById(R.id.value_name)
@@ -40,7 +35,6 @@ class PlayerListAdapter  internal constructor(
         return PartyListViewHolder(partyListView)
     }
 
-
     override fun onBindViewHolder(holder: PartyListViewHolder, position: Int) {
         val current = character[position]
         holder.charaNameView.text = current.name
@@ -52,28 +46,7 @@ class PlayerListAdapter  internal constructor(
         holder.charaStrView.text = current.str.toString()
         holder.charaDefView.text = current.def.toString()
         holder.charaAgiView.text = current.agi.toString()
-
-
-/*        sendToComplete =
-            CharacterHolder(
-                current.NAME,
-                JobManager().getJobList(current.JOB)
-                ,
-                current.HP,
-                current.MP,
-                current.STR,
-                current.DEF,
-                current.AGI,
-                current.LUCK,
-                current.CREATE_AT
-            )
-        list.add(sendToComplete)*/
     }
-
-/*    internal fun setCharacter(character: List<Characters>){
-        this.character = character
-        notifyDataSetChanged()
-    }*/
 
     internal fun setCharacter(character : ArrayList <CharacterHolder>){
         this.character = character

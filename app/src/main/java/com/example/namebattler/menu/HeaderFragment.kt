@@ -1,4 +1,4 @@
-package com.example.namebattler.memu
+package com.example.namebattler.menu
 
 import android.content.Intent
 import android.os.Bundle
@@ -25,8 +25,6 @@ class HeaderFragment : Fragment() {
                 }
             }
     }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -34,7 +32,6 @@ class HeaderFragment : Fragment() {
 
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,8 +47,6 @@ class HeaderFragment : Fragment() {
         val args : Bundle? = arguments
         textOfHeaderView.text = args?.getString(ARG_PARAM)
     }
-
-
     override fun onStart(){
         super.onStart()
         btn_screen_back.setOnClickListener {

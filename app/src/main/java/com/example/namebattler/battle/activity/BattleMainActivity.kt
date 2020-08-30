@@ -10,7 +10,7 @@ import com.example.namebattler.battle.fragment.BattleOperationFragment
 import com.example.namebattler.battle.fragment.StatusInformationFragment
 import com.example.namebattler.data.battleData.InformationManager
 import com.example.namebattler.data.characterData.CharacterHolder
-import com.example.namebattler.memu.HeaderOfBattleMainFragment
+import com.example.namebattler.menu.HeaderOfBattleMainFragment
 
 class BattleMainActivity  : AppCompatActivity(){
 
@@ -71,8 +71,6 @@ class BattleMainActivity  : AppCompatActivity(){
                 fragmentTransaction.commitNow()
             })
         }
-
-
         //バトル操作「battle_operation」
         if  (savedInstanceState == null){
             // FragmentManagerのインスタンス生成
@@ -84,12 +82,6 @@ class BattleMainActivity  : AppCompatActivity(){
 
             // 張り付けを実行
             fragmentTransaction.commit()
-
         }
-
-
-
-
     }
-
 }

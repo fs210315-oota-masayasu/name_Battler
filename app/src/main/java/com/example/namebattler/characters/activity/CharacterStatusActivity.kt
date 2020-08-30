@@ -7,7 +7,7 @@ import com.example.namebattler.R
 import com.example.namebattler.characters.fragment.CommonDisplayStatusFragment
 import com.example.namebattler.characters.fragment.ProcessingDataDeletionFragment
 import com.example.namebattler.data.characterData.CharacterHolder
-import com.example.namebattler.memu.HeaderFragment
+import com.example.namebattler.menu.HeaderFragment
 import com.example.namebattler.util.ScopedAppActivity
 
 //キャラクター詳細画面
@@ -32,9 +32,6 @@ class CharacterStatusActivity   : ScopedAppActivity() {
             // 張り付けを実行
             fragmentTransaction.commit()
         }
-
-
-
 
         // Serializableを使ってobjectをFragmentへ渡す
         if (savedInstanceState == null) {
@@ -63,23 +60,4 @@ class CharacterStatusActivity   : ScopedAppActivity() {
         }
     }
 
-    /*
-    fun showNoticeDialog() {
-        // Create an instance of the dialog fragment and show it
-        val dialog = AlertDataDelete()
-        dialog.show(supportFragmentManager, "NoticeDialogFragment")
-    }
-
-    override fun onDialogPositiveClick(dialog: DialogFragment) {
-        println("NoticeDialogでOKボタンが押されたよ！")
-
-    }
-
-    override fun onDialogNegativeClick(dialog: DialogFragment) {
-
-    }
-
-
-
-     */
 }

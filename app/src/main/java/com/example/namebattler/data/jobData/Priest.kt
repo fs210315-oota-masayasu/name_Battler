@@ -286,7 +286,6 @@ class Priest : JobManager.JobAbstract() {
                 actionName = SKillEnum.ONE_MELEE_ATTACK.name
             }
         }
-        //Log.d("RESCUE", actionName)
         return Pair(actionName, resultList)
     }
 
@@ -294,7 +293,6 @@ class Priest : JobManager.JobAbstract() {
         return ActionResultHolder(mutableListOf(), 0, 0, 0, 0, Pair("", 0), 0, false)
 
     }
-
 
     override fun getPercent(num: Int?, standardValue: Int): Int {
         return num!! * 100 / standardValue

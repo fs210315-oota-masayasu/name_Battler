@@ -29,20 +29,6 @@ data class CharacterInformationHolder(
     var effectTimeOfLuck :Int,
     var cond :MutableMap<String,Int>
 
-
-//    val basicStr : Int,
-//    val currentStr: Int,
-//    val effectTimeOfStr : Int,
-//    val basicDef : Int,
-//    val currentDef : Int,
-//    val effectTimeOfDef : Int,
-//    val basicAgi : Int,
-//    val currentAgi : Int,
-//    val effectTimeOfAgi : Int,
-//    val basicLuck : Int,
-//    val currentLuck : Int,
-//    val effectTimeOfLuck : Int,
-
 ): Serializable {
     companion object {
         const val EXTRA_DATA = "EXTRA_DATA"

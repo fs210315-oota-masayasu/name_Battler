@@ -53,18 +53,12 @@ class ProcessingDataDeletionFragment : Fragment(), AlertDataDelete.NoticeDialogL
                     paramCharacter.luck,
                     paramCharacter.currentDate
                 )
-
-
                 arguments = Bundle().apply {
                     putString(ARG_PARAM_NAME, paramName)
                     putString(ARG_PARAM_CURRENT_AT, paramCurrentAt)
                 }
             }
     }
-
-
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,8 +94,6 @@ class ProcessingDataDeletionFragment : Fragment(), AlertDataDelete.NoticeDialogL
             //childFragmentManagerを利用してDialogFragmentを自分の子として追加する
             dialog.show(childFragmentManager, "NoticeDialogFragment")
         }
-
-
     }
 
     override fun onDialogPositiveClick(dialog: DialogFragment) {

@@ -1,6 +1,5 @@
 package com.example.namebattler.battle
 
-import android.util.Log
 import com.example.namebattler.data.battleData.ActionResultHolder
 import com.example.namebattler.data.battleData.BattleProcessManager
 import com.example.namebattler.data.battleData.CharacterInformationHolder
@@ -11,31 +10,17 @@ import com.example.namebattler.util.EndEnum
 import com.example.namebattler.util.OperationIdEnum
 import com.example.namebattler.util.TargetIdEnum
 
-private const val LOG = " [ BATTLE_LOG ] "
-private const val OUTPUT = " [ output_log ] "
-
-
-private const val INFO = " < BattleManager >"
-
 
 class BattleManager {
 
-    var initiative: Map<Pair<String, String>, Int> = mutableMapOf()
+    private var initiative: Map<Pair<String, String>, Int> = mutableMapOf()
 
     private var enemyList = mutableListOf<CharacterInformationHolder>()
     private var playerList = mutableListOf<CharacterInformationHolder>()
 
     private var currentInformation = arrayListOf<CharacterInformationHolder>()
     private var deadList = arrayListOf<CharacterInformationHolder>()
-
-
-
     var count = 0
-
-
-//    fun getInstance(): BattleManager {
-//        return instance
-//    }
 
     fun initCharacterList(
         enemyObj: ArrayList<CharacterInformationHolder>,
@@ -67,8 +52,6 @@ class BattleManager {
 
         initiative = characterList.associate { Pair(it!!.belong, it.name) to (it.agi) }.toList()
             .sortedBy { it.second }.reversed().toMap()
-
-
     }
 
     /** 戦闘処理 **/
@@ -76,8 +59,6 @@ class BattleManager {
         val resultLog = mutableListOf<String>()
         var operation : String
 
-        Log.d(LOG, "[ ${getCurrentInformation()} ] ")
-        Log.d(LOG, "[ $count ] ターン目")
         resultLog.add("--------[$count ターン]--------")
 
         val instanceOfBattleProcess = BattleProcessManager()
@@ -100,11 +81,8 @@ class BattleManager {
                     sendToOperation
                 }
 
-                Log.d(LOG, "operation is [ $operation ] ")
-
                 //行為者のIDを取得
                 val doerId = doerCharacter.id
-                Log.d(LOG,"ID $doerId")
 
                 //行為者が戦闘可能かどうか確認
                 var isLiving = true
@@ -116,8 +94,6 @@ class BattleManager {
                 if (isLiving){
                     //resultLog.add("")
                     resultLog.add("${doerCharacter.name}の行動")
-
-                    Log.d("CHECK_INFO", "actionChara is : $doerCharacter")
 
                     val resultAndLog = instanceOfBattleProcess.conditionProcess(doerId, doerCharacter)
                     resultLog.addAll(resultAndLog.second)
@@ -157,15 +133,10 @@ class BattleManager {
 
                     //行動中のキャラの情報更新
                     instanceOfBattleProcess.updateCurrentInformation(doerId)
-                    // TODO 後で消す
-                    checkParamOfEffect(doerId, "更新後")
-                }else{
-                    //resultLog.add("${doerCharacter.name } は返事がない ただの屍のようだ")
+
                 }
             }
         }
-
-        Log.d(INFO, "[297]$OUTPUT is : $resultLog")
         return resultLog
     }
 
@@ -179,8 +150,7 @@ class BattleManager {
         //selectSkillで使用スキルと対象者を選定する
         /** selectSkill param
          * ( first : skillName , second =  target) **/
-        var selectSkill: Pair<String, MutableList<CharacterInformationHolder>> =
-            Pair("", mutableListOf())
+        val selectSkill: Pair<String, MutableList<CharacterInformationHolder>>
 
         //行動結果
         var attackResult = emptyResult()
@@ -190,11 +160,6 @@ class BattleManager {
 
         //このタイミングで戦闘不能者をターゲットからはじく
         val targetList = getCurrentInformation().filterNot { it.currentHp <= 0 } as ArrayList<CharacterInformationHolder>
-
-        val dead = getCurrentInformation().filter { it.currentHp <= 0 }
-
-        Log.d(LOG, "$INFO[421]_dead list is $dead")
-        Log.d(LOG, "$INFO[423]_targetList is $targetList")
 
         selectSkill = actorJob!!.selectSkill(operation, actionCharacter, targetList)
 
@@ -206,9 +171,6 @@ class BattleManager {
             OperationIdEnum.FLEXIBLE.text -> attackResult =
                 actorJob.flexibleAction(actionCharacter, selectSkill.first)
         }
-
-        Log.d(LOG, "$INFO[324] AttackResult is  $attackResult")
-        Log.d(LOG, "[325]selectAttackResult MP Log is ${attackResult.costToMp}")
 
         return Pair(attackResult, selectSkill)
     }
@@ -235,19 +197,6 @@ class BattleManager {
         return ending
     }
 
-
-    // TODO 確認用（後で消す）
-    fun checkParamOfEffect(doerId :Int, log :String){
-        Log.d(LOG,"")
-        Log.d(LOG,"$log[505]_effectTime[Str] (Actor):${currentInformation[doerId].name} + ${currentInformation[doerId].effectTimeOfStr}")
-        Log.d(LOG,"$log[506]_effectTime[Def](Actor):${currentInformation[doerId].name} + ${currentInformation[doerId].effectTimeOfDef}")
-        Log.d(LOG,"$log[507]_effectTime[Agi](Actor):${currentInformation[doerId].name} + ${currentInformation[doerId].effectTimeOfAgi}")
-        Log.d(LOG,"$log[508]_effectTime[Luck](Actor):${currentInformation[doerId].name} + ${currentInformation[doerId].effectTimeOfLuck}")
-        Log.d(LOG,"")
-        Log.d(LOG,"$log[510]_result Cond(Actor):${currentInformation[doerId].name} + ${currentInformation[doerId].cond}")
-    }
-
-
     private fun selectActionCharacter(initiativeKey: Pair<String, String>): CharacterInformationHolder? {
         var setList = mutableListOf<CharacterInformationHolder?>()
 
@@ -264,11 +213,5 @@ class BattleManager {
     private fun emptyResult(): ActionResultHolder {
         return ActionResultHolder(mutableListOf(), 0, 0, 0, 0, Pair("", 0), 0, false)
     }
-
-
-//    companion object {
-//        val instance = BattleManager()
-//    }
-
 }
 

@@ -7,19 +7,18 @@ import com.example.namebattler.util.TotalIndexEnum
 
 class InformationManager {
 
-    //ユニークなオブジェクトを渡す
+    //ユニークなインスタンスを渡す
     fun getInstance(): InformationManager {
         return instance
     }
 
     var informationNotice = MutableLiveData<ArrayList<CharacterInformationHolder>>()
 
-    private var characterInfomation = mutableListOf <CharacterInformationHolder>()
-
     fun setInformationNotice(characterInformationList: ArrayList<CharacterInformationHolder>) {
         informationNotice.postValue(characterInformationList)
     }
 
+    //キャラクターデータをバトル処理用のデータへ変換
     private fun Int.setOutputInformationHolder(holder: CharacterHolder, condition :MutableMap<String,Int>): CharacterInformationHolder {
         return CharacterInformationHolder(
             this,
@@ -42,6 +41,7 @@ class InformationManager {
         )
     }
 
+    //バトル処理用データのIDを割り振りなおす
     private fun Int.setOutputInformationHolder(holder: CharacterInformationHolder?): CharacterInformationHolder {
         return CharacterInformationHolder(
             this,
@@ -64,6 +64,7 @@ class InformationManager {
         )
     }
 
+    //敵味方に分割したデータを結合する
     fun getOutputInformationList(
         enemy: ArrayList<CharacterInformationHolder>,
         player: ArrayList<CharacterInformationHolder>
@@ -86,6 +87,7 @@ class InformationManager {
         )
     }
 
+    //初期値
     fun initOutputInformationList(characterHolder: ArrayList<CharacterHolder>)
             : ArrayList<CharacterInformationHolder> {
 
@@ -132,6 +134,7 @@ class InformationManager {
     }
 
 
+    //データリセット用
     fun resetCharacterList(CharacterInformationHolder: ArrayList<CharacterInformationHolder> ):ArrayList<CharacterHolder>{
 
         val firstHolder : CharacterHolder?

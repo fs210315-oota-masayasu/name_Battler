@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.namebattler.R
 import com.example.namebattler.data.battleData.Operation
-import com.example.namebattler.memu.HeaderOfOperationChangeFragment
+import com.example.namebattler.menu.HeaderOfOperationChangeFragment
 
 class OperationChangeActivity: AppCompatActivity() {
 

@@ -12,22 +12,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <!-- テスト用アクティビティ -->
-        <activity android:name=".test.NewWordActivity">
-        </activity>
-
-        <activity android:name=".test.TestNewActivity">
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
-        </activity>
-         <!-- テスト用アクティビティ -->
-
-        <activity android:name=".memu.MainActivity">
+        <activity android:name=".menu.MainActivity">
 
            <intent-filter>
                <action android:name="android.intent.action.MAIN" />

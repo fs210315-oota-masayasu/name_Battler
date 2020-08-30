@@ -25,8 +25,6 @@ class SpellCaster : JobManager.JobAbstract() {
     override var agi: Int = 0
     override var luck: Int = 0
 
-
-
     override var supplyBox: List<Int> =
         listOf(SUPPLY_HP, SUPPLY_MP, SUPPLY_STR, SUPPLY_DEF, SUPPLY_AGI, SUPPLY_LUCK)
 
@@ -306,9 +304,7 @@ class SpellCaster : JobManager.JobAbstract() {
 
     private fun emptyResult(): ActionResultHolder {
         return ActionResultHolder(mutableListOf(), 0, 0, 0, 0, Pair("", 0), 0, false)
-
     }
-
 
     override fun getPercent(num: Int?, standardValue: Int): Int {
         return num!! * 100 / standardValue

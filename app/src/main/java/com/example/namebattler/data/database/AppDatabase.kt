@@ -1,7 +1,6 @@
 package com.example.namebattler.data.database
 
 import android.content.Context
-import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -20,81 +19,11 @@ public abstract class AppDatabase : RoomDatabase() {
             super.onOpen(db)
             INSTANCE?.let { database ->
                 scope.launch {
+
+                    //初期登録例（最初にDB内のクリアしないと起動時に重複して登録される）
                     var characterDao = database.charactersDao()
-
-//                    var accessCheckCharaData =
-//                        Characters(
-//                            "しろまどうし",
-//                            1,
-//                            240,
-//                            143,
-//                            143,
-//                            114,
-//                            156,
-//                            100,
-//                            1588085823101
-//                        )
-//                    characterDao.insert(accessCheckCharaData)
-
-
                     //クリア処理
                     //characterDao.deleteAll()
-
-//                    var accessCheckCharaData =
-//                        Characters(
-//                            "ゆうしゃ",
-//                            0,
-//                            10,
-//                            10,
-//                            10,
-//                            10,
-//                            10,
-//                            10,
-//                            1588085823101
-//                        )
-//                    characterDao.insert(accessCheckCharaData)
-//
-//                    accessCheckCharaData =
-//                        Characters(
-//                            "けんじゃ",
-//                            1,
-//                            20,
-//                            20,
-//                            20,
-//                            20,
-//                            20,
-//                            20,
-//                            1588085823101
-//                        )
-//                    characterDao.insert(accessCheckCharaData)
-//
-//                    accessCheckCharaData =
-//                        Characters(
-//                            "しさい",
-//                            2,
-//                            30,
-//                            30,
-//                            30,
-//                            30,
-//                            30,
-//                            30,
-//                            1588085823101
-//                        )
-//                    characterDao.insert(accessCheckCharaData)
-//
-//                    accessCheckCharaData =
-//                        Characters(
-//                            "おに",
-//                            3,
-//                            40,
-//                            40,
-//                            40,
-//                            40,
-//                            40,
-//                            40,
-//                            1588085823101
-//                        )
-//                    characterDao.insert(accessCheckCharaData)
 //
 //                    accessCheckCharaData =
 //                        Characters(
@@ -109,8 +38,6 @@ public abstract class AppDatabase : RoomDatabase() {
 //                            1588085823101
 //                        )
 //                    characterDao.insert(accessCheckCharaData)
-
-
                 }
             }
         }
@@ -125,8 +52,6 @@ public abstract class AppDatabase : RoomDatabase() {
             context: Context,
             scope: CoroutineScope
         ): AppDatabase {
-            Log.d("tag", "databaseの動作確認")
-
             return INSTANCE
                 ?: synchronized(this) {
                 val instance = Room.databaseBuilder(

@@ -1,4 +1,4 @@
-package com.example.namebattler.memu
+package com.example.namebattler.menu
 
 import android.content.Intent
 import android.os.Bundle

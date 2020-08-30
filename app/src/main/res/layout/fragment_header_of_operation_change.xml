@@ -4,7 +4,7 @@
     android:id="@+id/header_of_operation"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    tools:context=".memu.HeaderOfOperationChangeFragment">
+    tools:context=".menu.HeaderOfOperationChangeFragment">
 
     <TextView
         android:id="@+id/txt_header"

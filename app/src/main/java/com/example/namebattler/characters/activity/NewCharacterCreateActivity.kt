@@ -20,7 +20,7 @@ import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.data.characterData.Player
 import com.example.namebattler.data.database.Characters
 import com.example.namebattler.data.jobData.JobManager
-import com.example.namebattler.memu.HeaderFragment
+import com.example.namebattler.menu.HeaderFragment
 import com.example.namebattler.util.Belong
 import com.example.namebattler.util.ScopedAppActivity
 import kotlinx.android.synthetic.main.character_new_create.*
@@ -80,9 +80,7 @@ class NewCharacterCreateActivity : ScopedAppActivity(), TextWatcher {
                 }
                 checked != -1  -> {
                     Log.d("tag", inputName.text.toString())
-
                     Log.d("tag", "ラジオボタン名：" + radioButton?.text.toString())
-
 
                     val jobName = radioButton?.text.toString()
                     val job = JobManager()
@@ -113,8 +111,6 @@ class NewCharacterCreateActivity : ScopedAppActivity(), TextWatcher {
                                     mainViewModel.update(character)
                                 }
                                 else -> {
-                                    println("《出力テスト:null》")
-                                    Log.d("tag", it.toString())
                                     println("《出力テスト:null》")
                                 }
                             }

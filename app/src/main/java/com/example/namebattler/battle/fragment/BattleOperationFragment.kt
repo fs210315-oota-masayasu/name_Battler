@@ -2,7 +2,6 @@ package com.example.namebattler.battle.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,8 +30,6 @@ class BattleOperationFragment : Fragment() {
 
     private var enemyList = arrayListOf<CharacterInformationHolder>()
     private var playerList = arrayListOf<CharacterInformationHolder>()
-//    private var enemyList = arrayListOf<CharacterHolder>()
-//    private var playerList = arrayListOf<CharacterHolder>()
 
     var informText = MutableLiveData<MutableList<String>>()
     var endingInformation = MutableLiveData<String>()
@@ -43,36 +40,24 @@ class BattleOperationFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        //fun newInstance(enemyObj : ArrayList<CharacterHolder>, playerObj : ArrayList<CharacterHolder>) =
         fun newInstance(enemyObj: ArrayList<CharacterInformationHolder>, playerObj: ArrayList<CharacterInformationHolder>) =
             BattleOperationFragment().apply {
-
-
                 this.enemyList = enemyObj
                 this.playerList = playerObj
 
-
                 arguments = Bundle().apply {
-
                     putSerializable(ARG_ENEMY, enemyList)
                     putSerializable(ARG_Player, playerList)
-
-
                 }
-
             }
     }
-
-
 
     @Suppress("UNCHECKED_CAST")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
             enemyList = it.getSerializable(ARG_ENEMY) as ArrayList<CharacterInformationHolder>
             playerList = it.getSerializable(ARG_Player) as ArrayList<CharacterInformationHolder>
-
         }
     }
 
@@ -80,17 +65,12 @@ class BattleOperationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_battle_operation, container, false)
     }
-
 
     override fun onViewCreated(view :View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val args : Bundle? = arguments
-
-        //val battleManagerInstance = BattleManager().getInstance()
         battleManager = BattleManager()
         battleManager.initCharacterList(enemyList,playerList)
         battleManager.initInitiative()
@@ -168,11 +148,6 @@ class BattleOperationFragment : Fragment() {
 
         currentInformation.addAll(enemyList)
         currentInformation.addAll(playerList)
-
-        //BattleManagerを呼び出してキャラクター情報を格納
-
-        //battleManager = BattleManager()
-
         battleManager.setCurrentInformation(currentInformation)
 
 
@@ -191,17 +166,12 @@ class BattleOperationFragment : Fragment() {
 
             val resultInformation:ArrayList<CharacterInformationHolder> = battleManager.getCurrentInformation()
 
-            resultInformation.forEach {
-                Log.d("INFO", "[ BattleOperationFragment ][207] info :[ " + it!!.id + "]  name is : " + it!!.name)
-            }
-
             //キャラクター情報をLiveDataへ格納
             informationManager.setInformationNotice(resultInformation)
             //ログ情報をLiveDataに格納
             informText.postValue(setLogData)
 
             val isEnding = battleManager.isEnding()
-            Log.d("INFO","[BattleOperationFragment]  Ending Info $isEnding")
 
             //勝敗画面
             if (isEnding != ""){
@@ -209,5 +179,4 @@ class BattleOperationFragment : Fragment() {
             }
         }
     }
-
 }

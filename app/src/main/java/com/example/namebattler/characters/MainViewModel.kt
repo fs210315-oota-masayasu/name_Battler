@@ -15,17 +15,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application)  {
 
     private val repository: CharactersRepository
     val allCharacters: LiveData<List<Characters>>
-    //private lateinit var areYouThere: LiveData<List<Characters>>
-    var characterList : LiveData<String>? = null
-
     val countOverlap = MutableLiveData<Int>()
     val numOfRegistrations = MutableLiveData<Int>()
 
     init {
+        //Daoのインスタンスを取得してRepositoryへ格納
         val charactersDao = AppDatabase.getInstance(application, viewModelScope).charactersDao()
         repository = CharactersRepository(charactersDao)
         allCharacters = repository.allCharacters
-
     }
 
     fun update(characters: Characters) = viewModelScope.launch{

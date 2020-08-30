@@ -18,8 +18,6 @@ class FormationListAdapter  internal constructor(
     context: Context
 ) : RecyclerView.Adapter<FormationListAdapter.FormationListViewHolder>() {
 
-    private lateinit var listener: OnItemClickListener
-
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var character = emptyList<Characters>() // Cached copy of character
 
@@ -40,9 +38,6 @@ class FormationListAdapter  internal constructor(
         val charaDefView : TextView = itemView.findViewById(R.id.value_status_def)
         val charaAgiView : TextView = itemView.findViewById(R.id.value_status_agi)
 
-    }
-    interface OnItemClickListener{
-        fun onItemClickListener(view: View, position: Int, sendToData: CharacterHolder?)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : FormationListViewHolder {

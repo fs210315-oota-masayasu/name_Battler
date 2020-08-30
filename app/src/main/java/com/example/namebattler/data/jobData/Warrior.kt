@@ -1,6 +1,5 @@
 package com.example.namebattler.data.jobData
 
-import android.util.Log
 import com.example.namebattler.data.battleData.ActionResultHolder
 import com.example.namebattler.data.battleData.CharacterInformationHolder
 import com.example.namebattler.data.skillAndMagic.SkillData
@@ -111,10 +110,7 @@ class Warrior : JobManager.JobAbstract() {
             result.changingCond = skillData.giveCond
             result.targetId = TargetIdEnum.ONE_ATTACK.id
 
-            Log.d("LOG_CHECK", "Spell Def Log is $setText")
         }
-
-
         return result
     }
 
@@ -140,8 +136,6 @@ class Warrior : JobManager.JobAbstract() {
             result.changingCond = skillData.giveCond
             result.targetId = TargetIdEnum.MYSELF.id
 
-            Log.d("LOG_CHECK", "Worr Fle Log is $setText")
-
         } else {
             skillData = Skills().swordAttack(character)
 
@@ -154,9 +148,6 @@ class Warrior : JobManager.JobAbstract() {
             result.costToMp = skillData.costMp
             result.changingCond = skillData.giveCond
             result.targetId = TargetIdEnum.ONE_ATTACK.id
-
-            Log.d("LOG_CHECK", "Worr Fle Log is $setText")
-
         }
         return result
     }
@@ -166,8 +157,6 @@ class Warrior : JobManager.JobAbstract() {
         characterHolder: CharacterInformationHolder,
         currentInformation: MutableList<CharacterInformationHolder>
     ): Pair<String, MutableList<CharacterInformationHolder>> {
-
-        Log.d("LOG", "JOB selectSkill is : ${characterHolder.name}")
 
         val belong = characterHolder.belong
         //ステータス情報を敵味方ごとに分割
@@ -211,12 +200,12 @@ class Warrior : JobManager.JobAbstract() {
                 val selectActionId = (0..1).random()
                 //HPの残り％を算出
                 val stateOfHp = getPercent(characterHolder.currentHp, characterHolder.maxHp)
-                if (stateOfHp <= 30 && selectActionId == 0) {
+                actionName = if (stateOfHp <= 30 && selectActionId == 0) {
                     targetCharacter.add(characterHolder)
-                    actionName = SKillEnum.GUARD.name
+                    SKillEnum.GUARD.name
                 } else {
                     targetCharacter.add(enemyList.random())
-                    actionName = SKillEnum.ONE_MELEE_ATTACK.name
+                    SKillEnum.ONE_MELEE_ATTACK.name
                 }
             }
         }

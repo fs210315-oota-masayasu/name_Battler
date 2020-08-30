@@ -14,7 +14,7 @@ import com.example.namebattler.R
 import com.example.namebattler.characters.CharaListAdapter
 import com.example.namebattler.characters.MainViewModel
 import com.example.namebattler.data.characterData.CharacterHolder
-import com.example.namebattler.memu.HeaderFragment
+import com.example.namebattler.menu.HeaderFragment
 import kotlinx.android.synthetic.main.activity_character_list.*
 
 //キャラクター一覧画面

@@ -5,7 +5,6 @@ import com.example.namebattler.data.database.DateConverter
 import com.example.namebattler.data.jobData.JobManager
 import java.math.BigInteger
 import java.security.MessageDigest
-import kotlin.math.ceil
 
 class Player(private val name: String, private val job: Int){
 
@@ -75,11 +74,5 @@ class Player(private val name: String, private val job: Int){
         }
         return 0
     }
-
-    fun getPercent(num:Int?):Int{
-        val numOfFloat : Double = (num?:0 / 255)*100.toDouble()
-        return ceil(numOfFloat).toInt()
-    }
-
 
 }

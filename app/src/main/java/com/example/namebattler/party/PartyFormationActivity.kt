@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.namebattler.R
 import com.example.namebattler.characters.MainViewModel
 import com.example.namebattler.data.characterData.CharacterHolder
-import com.example.namebattler.memu.HeaderFragment
+import com.example.namebattler.menu.HeaderFragment
 import kotlinx.android.synthetic.main.party_formation.*
 
 class PartyFormationActivity: AppCompatActivity() {
@@ -21,8 +20,6 @@ class PartyFormationActivity: AppCompatActivity() {
     private lateinit var mainViewModel: MainViewModel
 
     var sendToFormation = arrayListOf<CharacterHolder?>()
-    private val isCheckedBox = MutableLiveData<Int>()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
