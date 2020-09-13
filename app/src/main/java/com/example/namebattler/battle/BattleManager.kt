@@ -102,6 +102,9 @@ class BattleManager {
                         val selectAttackResult = selectAttackResult(operation, doerCharacter)
                         //行動結果を取得
                         var attackResult = selectAttackResult.first
+                        //ターン数格納
+                        attackResult.turnCorrection = count - 1
+
                         val selectSkill = selectAttackResult.second
 
                         //ログ情報設定[行動内容]
@@ -194,6 +197,7 @@ class BattleManager {
         }else if (deadPlayerNum == 3){
             ending = EndEnum.LOSE.name
         }
+
         return ending
     }
 
@@ -211,7 +215,7 @@ class BattleManager {
     }
 
     private fun emptyResult(): ActionResultHolder {
-        return ActionResultHolder(mutableListOf(), 0, 0, 0, 0, Pair("", 0), 0, false)
+        return ActionResultHolder(0,mutableListOf(), 0, 0, 0, 0, Pair("", 0), 0, false)
     }
 }
 

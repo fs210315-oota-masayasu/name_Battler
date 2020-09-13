@@ -1,6 +1,7 @@
 package com.example.namebattler.data.battleData
 
 data class ActionResultHolder(
+    var turnCorrection :Int,
     var flavorText: MutableList<String>,
     var damageToHp: Int,
     var cureToHp: Int,

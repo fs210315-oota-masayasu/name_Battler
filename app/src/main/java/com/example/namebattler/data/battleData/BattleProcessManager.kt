@@ -1,7 +1,7 @@
 package com.example.namebattler.data.battleData
 
-import com.example.namebattler.data.skillAndMagic.SkillData
-import com.example.namebattler.data.skillAndMagic.Skills
+import com.example.namebattler.data.actionData.SkillData
+import com.example.namebattler.data.actionData.Skills
 import com.example.namebattler.util.ConditionEnum
 import com.example.namebattler.util.DamageTypeEnum
 
@@ -37,7 +37,7 @@ class BattleProcessManager {
 
             val isDamage = checkDamageType(attackResult, defPoint)
             if (isDamage == DamageTypeEnum.NORMAL_DAMAGE.name) {
-                damage = attackResult.damageToHp - defPoint.resultPoint
+                damage = attackResult.damageToHp + (attackResult.damageToHp / 10 * attackResult.turnCorrection)
 
                 //ログ設定
                 val whatDamage = damage.toString() + "のダメージをおった"

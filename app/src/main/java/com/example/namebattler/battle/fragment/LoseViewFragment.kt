@@ -11,7 +11,7 @@ import com.example.namebattler.battle.activity.BattleMainActivity
 import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.menu.MainActivity
 import com.example.namebattler.party.PartyFormationActivity
-import kotlinx.android.synthetic.main.fragment_win_view.*
+import kotlinx.android.synthetic.main.fragment_lose_view.*
 
 class LoseViewFragment : Fragment() {
 
@@ -61,7 +61,7 @@ class LoseViewFragment : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance(enemyList :ArrayList<CharacterHolder>, playerList :ArrayList<CharacterHolder>) =
-            WinViewFragment().apply {
+            LoseViewFragment().apply {
                 enemyObj = enemyList
                 playerObj = playerList
             }

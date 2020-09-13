@@ -2,8 +2,8 @@ package com.example.namebattler.data.jobData
 
 import com.example.namebattler.data.battleData.ActionResultHolder
 import com.example.namebattler.data.battleData.CharacterInformationHolder
-import com.example.namebattler.data.skillAndMagic.SkillData
-import com.example.namebattler.data.skillAndMagic.Skills
+import com.example.namebattler.data.actionData.SkillData
+import com.example.namebattler.data.actionData.Skills
 import com.example.namebattler.util.Belong
 import com.example.namebattler.util.OperationIdEnum
 import com.example.namebattler.util.SKillEnum
@@ -290,7 +290,7 @@ class Priest : JobManager.JobAbstract() {
     }
 
     private fun emptyResult(): ActionResultHolder {
-        return ActionResultHolder(mutableListOf(), 0, 0, 0, 0, Pair("", 0), 0, false)
+        return ActionResultHolder(0,mutableListOf(), 0, 0, 0, 0, Pair("", 0), 0, false)
 
     }
 
