@@ -1,9 +1,11 @@
 package com.example.namebattler.data.jobData
 
+import com.example.namebattler.data.actionData.SkillData
+import com.example.namebattler.data.actionData.meleeAttack.MaceAttack
+import com.example.namebattler.data.actionData.supportMagic.CureWounds
+import com.example.namebattler.data.actionData.supportMagic.Refresh
 import com.example.namebattler.data.battleData.ActionResultHolder
 import com.example.namebattler.data.battleData.CharacterInformationHolder
-import com.example.namebattler.data.actionData.SkillData
-import com.example.namebattler.data.actionData.Skills
 import com.example.namebattler.util.Belong
 import com.example.namebattler.util.OperationIdEnum
 import com.example.namebattler.util.SKillEnum
@@ -54,7 +56,8 @@ class Priest : JobManager.JobAbstract() {
         character: CharacterInformationHolder,
         skillName: String
     ): ActionResultHolder {
-        val skillData = Skills().maceAttack(character)
+        //val skillData = Skills().maceAttack(character)
+        val skillData = MaceAttack().activeAction(character)
 
         //ログテキスト
         var setText = mutableListOf<String>()
@@ -84,7 +87,7 @@ class Priest : JobManager.JobAbstract() {
         //setText.add(character.name + "は")
 
         if (skillName == SKillEnum.CURE_WOUNDS.name) {
-            skillData = Skills().cureWounds(character)
+            skillData = CureWounds().activeAction(character)
             setText.add(character.name + "は" + skillData.flavorText)
 
             result.flavorText = setText
@@ -96,7 +99,7 @@ class Priest : JobManager.JobAbstract() {
             result.targetId = TargetIdEnum.ONE_SUPPORT.id
 
         } else if (skillName == SKillEnum.REFRESH.name) {
-            skillData = Skills().refresh(character)
+            skillData = Refresh().getSkillData(character)
             setText.add(character.name + "は" + skillData.flavorText)
 
             result.flavorText = setText
@@ -108,7 +111,7 @@ class Priest : JobManager.JobAbstract() {
             result.targetId = TargetIdEnum.ONE_SUPPORT.id
 
         } else {
-            skillData = Skills().maceAttack(character)
+            skillData = MaceAttack().getSkillData(character)
             setText.add(character.name + "は" + skillData.flavorText)
             if (skillData.isCritical) {
                 setText.add("会心の一撃！")
@@ -141,7 +144,7 @@ class Priest : JobManager.JobAbstract() {
         //setText.add(character.name + "は")
 
         if (skillName == SKillEnum.CURE_WOUNDS.name) {
-            skillData = Skills().cureWounds(character)
+            skillData = CureWounds().getSkillData(character)
             setText.add(character.name + "は" + skillData.flavorText)
 
             result.flavorText = setText
@@ -153,7 +156,7 @@ class Priest : JobManager.JobAbstract() {
             result.targetId = TargetIdEnum.ONE_SUPPORT.id
 
         } else if (skillName == SKillEnum.REFRESH.name) {
-            skillData = Skills().refresh(character)
+            skillData = Refresh().getSkillData(character)
             setText.add(character.name + "は" + skillData.flavorText)
 
             result.flavorText = setText
@@ -164,7 +167,7 @@ class Priest : JobManager.JobAbstract() {
             result.changingCond = skillData.giveCond
             result.targetId = TargetIdEnum.ONE_SUPPORT.id
         } else {
-            skillData = Skills().maceAttack(character)
+            skillData = MaceAttack().getSkillData(character)
             setText.add(character.name + "は" + skillData.flavorText)
             if (skillData.isCritical) {
                 setText.add("会心の一撃！")

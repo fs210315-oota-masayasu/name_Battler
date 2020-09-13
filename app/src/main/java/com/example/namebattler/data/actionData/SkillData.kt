@@ -1,4 +1,4 @@
-package com.example.namebattler.data.skillAndMagic
+package com.example.namebattler.data.actionData
 
 data class SkillData (
     val flavorText: String,
@@ -7,4 +7,5 @@ data class SkillData (
     val isCritical: Boolean,
     val giveCond: Pair<String, Int>
 ){
+    constructor():this("",0,0,false,Pair("",0))
 }

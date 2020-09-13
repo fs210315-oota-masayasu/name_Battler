@@ -1,10 +1,10 @@
 package com.example.namebattler.data.jobData
 
+import com.example.namebattler.data.actionData.SkillData
+import com.example.namebattler.data.actionData.defenceAction.MeleeGuard
+import com.example.namebattler.data.actionData.meleeAttack.AxeAttack
 import com.example.namebattler.data.battleData.ActionResultHolder
 import com.example.namebattler.data.battleData.CharacterInformationHolder
-import com.example.namebattler.data.actionData.SkillData
-import com.example.namebattler.data.actionData.Skills
-import com.example.namebattler.data.actionData.meleeAttack.AxeAttack
 import com.example.namebattler.util.Belong
 import com.example.namebattler.util.OperationIdEnum
 import com.example.namebattler.util.SKillEnum
@@ -55,7 +55,7 @@ class Berserk : JobManager.JobAbstract() {
         skillName: String
     ): ActionResultHolder {
         //val skillData = Skills().axeAttack(character)
-        val skillData = AxeAttack().activeAction(character)
+        val skillData = AxeAttack().getSkillData(character)
 
         //ログテキスト
         var setText = mutableListOf<String>()
@@ -88,7 +88,7 @@ class Berserk : JobManager.JobAbstract() {
 
         //HP残量が最大値の80%以下の場合、50%の確率で「ぼうぎょ」
         if (skillName == SKillEnum.GUARD.name) {
-            skillData = Skills().meleeGuard(character)
+            skillData = MeleeGuard().getSkillData(character)
 
             setText.add(character.name + "は" + skillData.flavorText)
 
@@ -99,7 +99,8 @@ class Berserk : JobManager.JobAbstract() {
             result.targetId = TargetIdEnum.MYSELF.id
         } else {
 
-            skillData = Skills().axeAttack(character)
+            //skillData = Skills().axeAttack(character)
+            skillData = AxeAttack().getSkillData(character)
 
             setText.add(character.name + "は" + skillData.flavorText)
             if (skillData.isCritical) {
@@ -126,7 +127,7 @@ class Berserk : JobManager.JobAbstract() {
 
         //HP残量が最大値の30%以下の場合、50%の確率で「ぼうぎょ」
         if (skillName == SKillEnum.GUARD.name) {
-            skillData = Skills().meleeGuard(character)
+            skillData =  MeleeGuard().getSkillData(character)
 
             setText.add(character.name + "は" + skillData.flavorText)
 
@@ -136,7 +137,7 @@ class Berserk : JobManager.JobAbstract() {
             result.changingCond = skillData.giveCond
             result.targetId = TargetIdEnum.MYSELF.id
         } else {
-            skillData = Skills().axeAttack(character)
+            skillData = AxeAttack().getSkillData(character)
 
             setText.add(character.name + "は")
             setText.add(skillData.flavorText)

@@ -1,9 +1,13 @@
 package com.example.namebattler.data.jobData
 
+import com.example.namebattler.data.actionData.SkillData
+import com.example.namebattler.data.actionData.attackMagic.FireBall
+import com.example.namebattler.data.actionData.attackMagic.SleepCloud
+import com.example.namebattler.data.actionData.attackMagic.Thunderbolt
+import com.example.namebattler.data.actionData.meleeAttack.RodAttack
+import com.example.namebattler.data.actionData.supportMagic.Refresh
 import com.example.namebattler.data.battleData.ActionResultHolder
 import com.example.namebattler.data.battleData.CharacterInformationHolder
-import com.example.namebattler.data.actionData.SkillData
-import com.example.namebattler.data.actionData.Skills
 import com.example.namebattler.util.Belong
 import com.example.namebattler.util.OperationIdEnum
 import com.example.namebattler.util.SKillEnum
@@ -66,19 +70,19 @@ class SpellCaster : JobManager.JobAbstract() {
 
         when (skillName) {
             SKillEnum.THUNDERBOLT.name -> {
-                skillData = Skills().thunderbolt(character)
+                skillData = Thunderbolt().getSkillData(character)
                 targetId = TargetIdEnum.ONE_ATTACK.id
                 setText.add(character.name + "は" + skillData.flavorText)
                 isMagicDamage = true
             }
             SKillEnum.FIREBALL.name -> {
-                skillData = Skills().fireBall(character)
+                skillData = FireBall().getSkillData(character)
                 targetId = TargetIdEnum.ALL_ATTACK.id
                 setText.add(character.name + "は" + skillData.flavorText)
                 isMagicDamage = true
             }
             else -> {
-                skillData = Skills().rodAttack(character)
+                skillData = RodAttack().getSkillData(character)
                 targetId = TargetIdEnum.ONE_ATTACK.id
                 setText.add(character.name + "は" + skillData.flavorText)
                 isMagicDamage = false
@@ -107,11 +111,11 @@ class SpellCaster : JobManager.JobAbstract() {
         val setText = mutableListOf<String>()
 
         if (skillName == SKillEnum.REFRESH.name) {
-            skillData = Skills().refresh(character)
+            skillData = Refresh().getSkillData(character)
             targetId = TargetIdEnum.ONE_SUPPORT.id
             setText.add(character.name + "は" + skillData.flavorText)
         } else {
-            skillData = Skills().sleepCloud(character)
+            skillData = SleepCloud().getSkillData(character)
             targetId = TargetIdEnum.ALL_ATTACK.id
             setText.add(character.name + "は" + skillData.flavorText)
         }
@@ -139,17 +143,17 @@ class SpellCaster : JobManager.JobAbstract() {
 
         val selectSpell = (0..2).random()
         if (selectSpell == 0) {
-            skillData = Skills().thunderbolt(character)
+            skillData = Thunderbolt().getSkillData(character)
             targetId = TargetIdEnum.ONE_ATTACK.id
             setText.add(character.name + "は" + skillData.flavorText)
             isMagicDamage = true
         } else if (selectSpell == 1) {
-            skillData = Skills().fireBall(character)
+            skillData = FireBall().getSkillData(character)
             targetId = TargetIdEnum.ALL_ATTACK.id
             setText.add(character.name + "は" + skillData.flavorText)
             isMagicDamage = true
         } else {
-            skillData = Skills().sleepCloud(character)
+            skillData = SleepCloud().getSkillData(character)
             targetId = TargetIdEnum.ALL_ATTACK.id
             setText.add(character.name + "は" + skillData.flavorText)
             isMagicDamage = false

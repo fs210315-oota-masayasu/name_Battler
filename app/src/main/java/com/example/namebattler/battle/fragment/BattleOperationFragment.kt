@@ -32,6 +32,7 @@ class BattleOperationFragment : Fragment() {
     private var playerList = arrayListOf<CharacterInformationHolder>()
 
     var informText = MutableLiveData<MutableList<String>>()
+
     var endingInformation = MutableLiveData<String>()
 
     var count = 0
@@ -96,11 +97,10 @@ class BattleOperationFragment : Fragment() {
             endingInformation.observe(viewLifecycleOwner , Observer{
                 val enemy = InformationManager().resetCharacterList(enemyList)
                 val player = InformationManager().resetCharacterList(playerList)
+                val fragmentManager: FragmentManager = parentFragmentManager
 
                 if (savedInstanceState == null){
                     // FragmentManagerのインスタンス生成
-                    val fragmentManager: FragmentManager = parentFragmentManager
-
                     if (it == EndEnum.WIN.name){
                         //勝利
                         // FragmentTransactionのインスタンスを取得
@@ -172,7 +172,6 @@ class BattleOperationFragment : Fragment() {
             informText.postValue(setLogData)
 
             val isEnding = battleManager.isEnding()
-
             //勝敗画面
             if (isEnding != ""){
                 endingInformation.postValue(isEnding)

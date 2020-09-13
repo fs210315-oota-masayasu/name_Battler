@@ -1,12 +1,9 @@
-package com.example.namebattler.data.skillAndMagic
-
-import com.example.namebattler.data.battleData.CharacterInformationHolder
-import com.example.namebattler.util.ConditionEnum
+package com.example.namebattler.data.actionData
 
 /** 各種Skill・魔法 **/
 class Skills {
 
-    /** 近接攻撃 **/
+/*    *//** 近接攻撃 **//*
 
     //剣で攻撃
     fun swordAttack(character: CharacterInformationHolder): SkillData {
@@ -195,7 +192,7 @@ class Skills {
     }
 
 
-    /** 魔法攻撃 **/
+    *//** 魔法攻撃 **//*
 
     //スリープクラウド（ねむり　MP小）
     fun sleepCloud(character: CharacterInformationHolder): SkillData {
@@ -286,7 +283,7 @@ class Skills {
         return SkillData("火球の呪文を唱えた", attackPoint, 30, isCritical, Pair(ConditionEnum.SCALD.text, 2))
     }
 
-    /** 回復・サポート **/
+    *//** 回復・サポート **//*
 
     //回復呪文
     fun cureWounds(character: CharacterInformationHolder): SkillData {
@@ -385,7 +382,7 @@ class Skills {
 
     private fun getPercent(num: Int?, standardValue: Int): Int {
         return num!! * 100 / standardValue
-    }
+    }*/
 }
 
 

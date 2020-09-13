@@ -1,7 +1,8 @@
 package com.example.namebattler.data.battleData
 
 import com.example.namebattler.data.actionData.SkillData
-import com.example.namebattler.data.actionData.Skills
+import com.example.namebattler.data.actionData.defenceAction.MagicDefense
+import com.example.namebattler.data.actionData.defenceAction.MeleeDefense
 import com.example.namebattler.util.ConditionEnum
 import com.example.namebattler.util.DamageTypeEnum
 
@@ -28,9 +29,11 @@ class BattleProcessManager {
             //攻撃結果反映
             //防御判定
             val defPoint: SkillData = if (attackResult.isMagicDamage) {
-                Skills().magicDefense(targetInformation)
+                MagicDefense().getSkillData(targetInformation)
+                //Skills().magicDefense(targetInformation)
             } else {
-                Skills().meleeDefense(targetInformation)
+                MeleeDefense().getSkillData(targetInformation)
+                //Skills().meleeDefense(targetInformation)
             }
             var damage = 0
             var whoIs = targetInformation.name + "は"
