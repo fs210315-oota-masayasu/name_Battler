@@ -11,7 +11,7 @@ import com.example.namebattler.menu.HeaderFragment
 import com.example.namebattler.util.ScopedAppActivity
 
 //キャラクター詳細画面
-class CharacterStatusActivity   : ScopedAppActivity() {
+class ConfirmCharacterStatusActivity   : ScopedAppActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.output_screen_)

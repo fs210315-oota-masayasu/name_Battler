@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.namebattler.MainActivity
 import com.example.namebattler.R
 import kotlinx.android.synthetic.main.fragment_header.*
 

@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".menu.MainActivity">
+        <activity android:name=".MainActivity">
 
            <intent-filter>
                <action android:name="android.intent.action.MAIN" />
@@ -30,13 +30,13 @@
         <activity android:name=".party.BattleLobbyActivity">
         </activity>
 
-        <activity android:name=".characters.activity.NewCharacterCreateActivity">
+        <activity android:name=".characters.activity.NewCharacterGenerateActivity">
         </activity>
 
-        <activity android:name=".characters.activity.GeneratedCharacterCompletionActivity">
+        <activity android:name=".characters.activity.ConfirmGenerationCharacterActivity">
         </activity>
 
-        <activity android:name=".characters.activity.CharacterStatusActivity">
+        <activity android:name=".characters.activity.ConfirmCharacterStatusActivity">
         </activity>
 
         <activity android:name=".battle.activity.BattleMainActivity">

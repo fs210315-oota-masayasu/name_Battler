@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.namebattler.MainActivity
 import com.example.namebattler.R
 import com.example.namebattler.battle.activity.BattleMainActivity
 import com.example.namebattler.data.characterData.CharacterHolder
-import com.example.namebattler.menu.MainActivity
 import com.example.namebattler.party.PartyFormationActivity
 import kotlinx.android.synthetic.main.fragment_lose_view.*
 

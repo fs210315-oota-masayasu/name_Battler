@@ -82,7 +82,7 @@ class CharacterListActivity : AppCompatActivity() {
         adapter.setOnItemClickListener(object :
             CharaListAdapter.OnItemClickListener {
             override fun onItemClickListener(view: View, position: Int, sendToData: CharacterHolder?) {
-                val intent = Intent(view.context, CharacterStatusActivity::class.java)
+                val intent = Intent(view.context, ConfirmCharacterStatusActivity::class.java)
                 intent.putExtra(CharacterHolder.EXTRA_DATA, sendToData)
                 startActivity(intent)
 
@@ -91,7 +91,7 @@ class CharacterListActivity : AppCompatActivity() {
         })
         //キャラクター作成画面へ遷移
         btn_character_new_create.setOnClickListener {
-            val setCharacterNewCreate = Intent(this, NewCharacterCreateActivity::class.java)
+            val setCharacterNewCreate = Intent(this, NewCharacterGenerateActivity::class.java)
             //startActivity(setCharacterNewCreate)
             startActivityForResult(setCharacterNewCreate, newCharacterCreateActivityRequestCode)
         }

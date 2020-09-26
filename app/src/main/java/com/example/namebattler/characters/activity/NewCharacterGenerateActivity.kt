@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.Gravity
 import android.widget.EditText
 import android.widget.RadioButton
@@ -27,7 +26,7 @@ import kotlinx.android.synthetic.main.character_new_create.*
 import kotlin.concurrent.thread
 
 //キャラクター作成画面
-class NewCharacterCreateActivity : ScopedAppActivity(), TextWatcher {
+class NewCharacterGenerateActivity : ScopedAppActivity(), TextWatcher {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,8 +78,6 @@ class NewCharacterCreateActivity : ScopedAppActivity(), TextWatcher {
                     inputName.error = "名前を入力してください"
                 }
                 checked != -1  -> {
-                    Log.d("tag", inputName.text.toString())
-                    Log.d("tag", "ラジオボタン名：" + radioButton?.text.toString())
 
                     val jobName = radioButton?.text.toString()
                     val job = JobManager()
@@ -102,7 +99,7 @@ class NewCharacterCreateActivity : ScopedAppActivity(), TextWatcher {
 
                     //名前の重複チェック（重複=update、not=insert）
                     mainViewModel.apply {
-                        countOverlap.observe(this@NewCharacterCreateActivity, Observer {
+                        countOverlap.observe(this@NewCharacterGenerateActivity, Observer {
                             when (it) {
                                 0 -> {
                                     mainViewModel.insert(character)
@@ -122,7 +119,7 @@ class NewCharacterCreateActivity : ScopedAppActivity(), TextWatcher {
 
 
                     val setGeneratedCharacterCompletion =
-                        Intent(this, GeneratedCharacterCompletionActivity::class.java)
+                        Intent(this, ConfirmGenerationCharacterActivity::class.java)
                     setGeneratedCharacterCompletion.putExtra(CharacterHolder.EXTRA_DATA, setCharacterHolder(character))
                     startActivity(setGeneratedCharacterCompletion)
 

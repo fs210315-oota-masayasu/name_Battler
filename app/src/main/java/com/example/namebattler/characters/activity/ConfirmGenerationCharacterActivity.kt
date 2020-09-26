@@ -5,14 +5,14 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.namebattler.R
 import com.example.namebattler.characters.fragment.CommonDisplayStatusFragment
-import com.example.namebattler.characters.fragment.ProcessingAfterCreationFragment
+import com.example.namebattler.characters.fragment.AfterGenerationMenuFragment
 import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.menu.HeaderFragment
 import com.example.namebattler.util.ScopedAppActivity
 
 
 //キャラクター作成完了画面
-class GeneratedCharacterCompletionActivity : ScopedAppActivity() {
+class ConfirmGenerationCharacterActivity : ScopedAppActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +53,7 @@ class GeneratedCharacterCompletionActivity : ScopedAppActivity() {
 
             fragmentTransaction.replace(
                 R.id.button_area,
-                ProcessingAfterCreationFragment.newInstance()
+                AfterGenerationMenuFragment.newInstance()
             )
             // 張り付けを実行
             fragmentTransaction.commit()
