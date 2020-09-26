@@ -22,13 +22,13 @@ private const val ARG_THIRD_PARTY = "arg_third_party"
 
 //バトルメイン画面：ステータス情報
 class StatusInformationFragment : Fragment() {
-    private var firstEnemyHolder : CharacterInformationHolder? = null
-    private var secondEnemyHolder : CharacterInformationHolder? = null
-    private var thirdEnemyHolder : CharacterInformationHolder? = null
+    private var firstEnemyHolder= CharacterInformationHolder()
+    private var secondEnemyHolder = CharacterInformationHolder()
+    private var thirdEnemyHolder = CharacterInformationHolder()
 
-    private var firstPartyHolder : CharacterInformationHolder? = null
-    private var secondPartyHolder : CharacterInformationHolder? = null
-    private var thirdPartyHolder : CharacterInformationHolder? = null
+    private var firstPartyHolder = CharacterInformationHolder()
+    private var secondPartyHolder = CharacterInformationHolder()
+    private var thirdPartyHolder = CharacterInformationHolder()
 
     companion object {
 
@@ -79,13 +79,13 @@ class StatusInformationFragment : Fragment() {
 
     override fun onViewCreated(view :View, savedInstanceState: Bundle?){
 
-        val firstEnemy = firstEnemyHolder!!
-        val secondEnemy = secondEnemyHolder!!
-        val thirdEnemy = thirdEnemyHolder!!
+        val firstEnemy = firstEnemyHolder
+        val secondEnemy = secondEnemyHolder
+        val thirdEnemy = thirdEnemyHolder
 
-        val firstPlayer = firstPartyHolder!!
-        val secondPlayer = secondPartyHolder!!
-        val thirdPlayer = thirdPartyHolder!!
+        val firstPlayer = firstPartyHolder
+        val secondPlayer = secondPartyHolder
+        val thirdPlayer = thirdPartyHolder
 
         if (savedInstanceState == null) {
             // FragmentManagerのインスタンス生成

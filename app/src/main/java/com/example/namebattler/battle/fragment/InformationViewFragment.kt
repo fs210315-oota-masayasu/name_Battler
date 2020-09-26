@@ -12,7 +12,7 @@ import com.example.namebattler.data.battleData.CharacterInformationHolder
 private const val ARG_PARAM1 = "param1"
 
 class InformationViewFragment : Fragment() {
-    private var informationData : CharacterInformationHolder? = null
+    private var informationData = CharacterInformationHolder()
 
     companion object {
         @JvmStatic
@@ -27,7 +27,7 @@ class InformationViewFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            informationData = it.getSerializable(ARG_PARAM1) as CharacterInformationHolder?
+            informationData = it.getSerializable(ARG_PARAM1) as CharacterInformationHolder
         }
     }
 

@@ -93,9 +93,9 @@ class InformationManager {
 
         val belong = characterHolder[0].belong
 
-        var firstHolder : CharacterInformationHolder? = null
-        var secondHolder : CharacterInformationHolder? = null
-        var thirdHolder : CharacterInformationHolder? = null
+        var firstHolder = CharacterInformationHolder()
+        var secondHolder = CharacterInformationHolder()
+        var thirdHolder = CharacterInformationHolder()
 
         if (belong == Belong.ENEMY.name){
             firstHolder = TotalIndexEnum.FIRST_ENEMY.id.setOutputInformationHolder(characterHolder[0],
@@ -114,7 +114,7 @@ class InformationManager {
                 mutableMapOf())
 
     }
-        return arrayListOf(firstHolder!!, secondHolder!!, thirdHolder!!)
+        return arrayListOf(firstHolder, secondHolder, thirdHolder)
 
     }
 
