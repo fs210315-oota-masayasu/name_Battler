@@ -1,15 +1,14 @@
 package com.example.namebattler.data.actionData.meleeAttack
 
-import com.example.namebattler.data.actionData.ActionInterface
-import com.example.namebattler.data.actionData.SkillData
+import com.example.namebattler.data.actionData.ActionHolder
 import com.example.namebattler.data.battleData.CharacterInformationHolder
 
-class AxeAttack : ActionInterface {
-    override fun getSkillData(character: CharacterInformationHolder): SkillData {
+class AxeAttack : AttackActionInterface {
+    override fun getSkillData(character: CharacterInformationHolder): ActionHolder {
         return activeAction(character)
     }
 
-    override fun activeAction(character: CharacterInformationHolder): SkillData {
+    override fun activeAction(character: CharacterInformationHolder): ActionHolder {
         //攻撃基準値
         //buff,deBuffの適用
         val correctionStrValue = character.effectTimeOfStr
@@ -55,21 +54,13 @@ class AxeAttack : ActionInterface {
         val attackPoint = str + hittingPoint
 
 
-        return SkillData(
+        return ActionHolder(
             "斧で攻撃した",
             attackPoint,
             0,
             isCritical,
             Pair("", 0)
         )
-    }
-
-    override fun passiveDefense(character: CharacterInformationHolder): SkillData {
-        return SkillData()
-    }
-
-    override fun guardAction(): SkillData {
-        return SkillData()
     }
 
 

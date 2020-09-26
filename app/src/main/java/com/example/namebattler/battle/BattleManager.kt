@@ -156,7 +156,7 @@ class BattleManager {
         val selectSkill: Pair<String, MutableList<CharacterInformationHolder>>
 
         //行動結果
-        var attackResult = emptyResult()
+        var attackResult = ActionResultHolder()
 
         val actorJob = actionCharacter.job.let { JobManager().getJobInstance(it) }
 
@@ -214,8 +214,5 @@ class BattleManager {
         return setList.find { it!!.name == name }
     }
 
-    private fun emptyResult(): ActionResultHolder {
-        return ActionResultHolder(0,mutableListOf(), 0, 0, 0, 0, Pair("", 0), 0, false)
-    }
 }
 

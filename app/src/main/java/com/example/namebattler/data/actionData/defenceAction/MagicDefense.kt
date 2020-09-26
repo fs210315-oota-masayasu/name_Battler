@@ -1,19 +1,14 @@
 package com.example.namebattler.data.actionData.defenceAction
 
-import com.example.namebattler.data.actionData.ActionInterface
-import com.example.namebattler.data.actionData.SkillData
+import com.example.namebattler.data.actionData.ActionHolder
 import com.example.namebattler.data.battleData.CharacterInformationHolder
 
-class MagicDefense :ActionInterface {
-    override fun getSkillData(character: CharacterInformationHolder): SkillData {
+class MagicDefense :DefenceActionInterface {
+    override fun getSkillData(character: CharacterInformationHolder): ActionHolder {
         return passiveDefense(character)
     }
 
-    override fun activeAction(character: CharacterInformationHolder): SkillData {
-        return SkillData()
-    }
-
-    override fun passiveDefense(character: CharacterInformationHolder): SkillData {
+    override fun passiveDefense(character: CharacterInformationHolder): ActionHolder {
         //防御力
         //buff,deBuffの適用
         val correctionDefVale = character.effectTimeOfDef
@@ -37,11 +32,11 @@ class MagicDefense :ActionInterface {
         //防護点
         var magicDefence = (def * 2 / 3) + (mp / 3)
 
-        return SkillData("攻撃を防いだ", magicDefence, 0, false, Pair("", 0))
+        return ActionHolder("攻撃を防いだ", magicDefence, 0, false, Pair("", 0))
     }
 
-    override fun guardAction(): SkillData {
-        return SkillData()
+    override fun guardAction(): ActionHolder {
+        return ActionHolder()
     }
 
     override fun getPercent(num: Int?): Int {

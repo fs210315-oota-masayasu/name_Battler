@@ -1,11 +1,11 @@
 package com.example.namebattler.data.jobData
 
-import com.example.namebattler.data.actionData.SkillData
+import com.example.namebattler.data.actionData.ActionHolder
 import com.example.namebattler.data.actionData.attackMagic.FireBall
 import com.example.namebattler.data.actionData.attackMagic.SleepCloud
 import com.example.namebattler.data.actionData.attackMagic.Thunderbolt
 import com.example.namebattler.data.actionData.meleeAttack.RodAttack
-import com.example.namebattler.data.actionData.supportMagic.Refresh
+import com.example.namebattler.data.actionData.supportAction.Refresh
 import com.example.namebattler.data.battleData.ActionResultHolder
 import com.example.namebattler.data.battleData.CharacterInformationHolder
 import com.example.namebattler.util.Belong
@@ -59,41 +59,40 @@ class SpellCaster : JobManager.JobAbstract() {
         character: CharacterInformationHolder,
         skillName: String
     ): ActionResultHolder {
-        val skillData: SkillData
+        val actionHolder: ActionHolder
         val targetId: Int
         val isMagicDamage: Boolean
 
 
         //ログテキスト
         var setText = mutableListOf<String>()
-        //setText.add(character.name + "は")
 
         when (skillName) {
             SKillEnum.THUNDERBOLT.name -> {
-                skillData = Thunderbolt().getSkillData(character)
+                actionHolder = Thunderbolt().getSkillData(character)
                 targetId = TargetIdEnum.ONE_ATTACK.id
-                setText.add(character.name + "は" + skillData.flavorText)
+                setText.add(character.name + "は" + actionHolder.flavorText)
                 isMagicDamage = true
             }
             SKillEnum.FIREBALL.name -> {
-                skillData = FireBall().getSkillData(character)
+                actionHolder = FireBall().getSkillData(character)
                 targetId = TargetIdEnum.ALL_ATTACK.id
-                setText.add(character.name + "は" + skillData.flavorText)
+                setText.add(character.name + "は" + actionHolder.flavorText)
                 isMagicDamage = true
             }
             else -> {
-                skillData = RodAttack().getSkillData(character)
+                actionHolder = RodAttack().getSkillData(character)
                 targetId = TargetIdEnum.ONE_ATTACK.id
-                setText.add(character.name + "は" + skillData.flavorText)
+                setText.add(character.name + "は" + actionHolder.flavorText)
                 isMagicDamage = false
             }
         }
 
-        val result = emptyResult()
+        val result = ActionResultHolder()
         result.flavorText = setText
-        result.damageToHp = skillData.resultPoint
-        result.costToMp = skillData.costMp
-        result.changingCond = skillData.giveCond
+        result.damageToHp = actionHolder.resultPoint
+        result.costToMp = actionHolder.costMp
+        result.changingCond = actionHolder.giveCond
         result.targetId = targetId
         result.isMagicDamage = isMagicDamage
 
@@ -104,27 +103,27 @@ class SpellCaster : JobManager.JobAbstract() {
         character: CharacterInformationHolder,
         skillName: String
     ): ActionResultHolder {
-        val skillData: SkillData
+        val actionHolder: ActionHolder
         val targetId: Int
 
         //ログテキスト
         val setText = mutableListOf<String>()
 
         if (skillName == SKillEnum.REFRESH.name) {
-            skillData = Refresh().getSkillData(character)
+            actionHolder = Refresh().getSkillData(character)
             targetId = TargetIdEnum.ONE_SUPPORT.id
-            setText.add(character.name + "は" + skillData.flavorText)
+            setText.add(character.name + "は" + actionHolder.flavorText)
         } else {
-            skillData = SleepCloud().getSkillData(character)
+            actionHolder = SleepCloud().getSkillData(character)
             targetId = TargetIdEnum.ALL_ATTACK.id
-            setText.add(character.name + "は" + skillData.flavorText)
+            setText.add(character.name + "は" + actionHolder.flavorText)
         }
 
-        val result = emptyResult()
+        val result = ActionResultHolder()
         result.flavorText = setText
-        result.damageToHp = skillData.resultPoint
-        result.costToMp = skillData.costMp
-        result.changingCond = skillData.giveCond
+        result.damageToHp = actionHolder.resultPoint
+        result.costToMp = actionHolder.costMp
+        result.changingCond = actionHolder.giveCond
         result.targetId = targetId
 
         return result
@@ -134,7 +133,7 @@ class SpellCaster : JobManager.JobAbstract() {
         character: CharacterInformationHolder,
         skillName: String
     ): ActionResultHolder {
-        val skillData: SkillData
+        val actionHolder: ActionHolder
         val targetId: Int
         val isMagicDamage: Boolean
 
@@ -143,27 +142,27 @@ class SpellCaster : JobManager.JobAbstract() {
 
         val selectSpell = (0..2).random()
         if (selectSpell == 0) {
-            skillData = Thunderbolt().getSkillData(character)
+            actionHolder = Thunderbolt().getSkillData(character)
             targetId = TargetIdEnum.ONE_ATTACK.id
-            setText.add(character.name + "は" + skillData.flavorText)
+            setText.add(character.name + "は" + actionHolder.flavorText)
             isMagicDamage = true
         } else if (selectSpell == 1) {
-            skillData = FireBall().getSkillData(character)
+            actionHolder = FireBall().getSkillData(character)
             targetId = TargetIdEnum.ALL_ATTACK.id
-            setText.add(character.name + "は" + skillData.flavorText)
+            setText.add(character.name + "は" + actionHolder.flavorText)
             isMagicDamage = true
         } else {
-            skillData = SleepCloud().getSkillData(character)
+            actionHolder = SleepCloud().getSkillData(character)
             targetId = TargetIdEnum.ALL_ATTACK.id
-            setText.add(character.name + "は" + skillData.flavorText)
+            setText.add(character.name + "は" + actionHolder.flavorText)
             isMagicDamage = false
         }
 
-        val result = emptyResult()
+        val result = ActionResultHolder()
         result.flavorText = setText
-        result.damageToHp = skillData.resultPoint
-        result.costToMp = skillData.costMp
-        result.changingCond = skillData.giveCond
+        result.damageToHp = actionHolder.resultPoint
+        result.costToMp = actionHolder.costMp
+        result.changingCond = actionHolder.giveCond
         result.targetId = targetId
         result.isMagicDamage = isMagicDamage
 
@@ -302,12 +301,7 @@ class SpellCaster : JobManager.JobAbstract() {
 
             }
         }
-        //Log.d("RESCUE", actionName)
         return Pair(actionName, resultList)
-    }
-
-    private fun emptyResult(): ActionResultHolder {
-        return ActionResultHolder(0,mutableListOf(), 0, 0, 0, 0, Pair("", 0), 0, false)
     }
 
     override fun getPercent(num: Int?, standardValue: Int): Int {

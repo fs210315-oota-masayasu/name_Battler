@@ -1,6 +1,6 @@
 package com.example.namebattler.data.jobData
 
-import com.example.namebattler.data.actionData.SkillData
+import com.example.namebattler.data.actionData.ActionHolder
 import com.example.namebattler.data.actionData.defenceAction.MeleeGuard
 import com.example.namebattler.data.actionData.meleeAttack.SwordAttack
 import com.example.namebattler.data.battleData.ActionResultHolder
@@ -63,7 +63,7 @@ class Warrior : JobManager.JobAbstract() {
         if (skillData.isCritical) {
             setText.add("会心の一撃！")
         }
-        val result = emptyResult()
+        val result = ActionResultHolder()
 
         result.flavorText = setText
         result.damageToHp = skillData.resultPoint
@@ -78,9 +78,9 @@ class Warrior : JobManager.JobAbstract() {
         character: CharacterInformationHolder,
         skillName: String
     ): ActionResultHolder {
-        var skillData: SkillData
+        var actionHolder: ActionHolder
         //val coefficient = (100- getPercent(character.currentHp, character.maxHp) % 10) / 3
-        val result = emptyResult()
+        val result = ActionResultHolder()
 
         //ログテキスト
         var setText = mutableListOf<String>()
@@ -88,27 +88,27 @@ class Warrior : JobManager.JobAbstract() {
 
         //HP残量が最大値の80%以下の場合、50%の確率で「ぼうぎょ」
         if (skillName == SKillEnum.GUARD.name) {
-            skillData = MeleeGuard().guardAction()
+            actionHolder = MeleeGuard().guardAction()
 
-            setText.add(character.name + "は" + skillData.flavorText)
+            setText.add(character.name + "は" + actionHolder.flavorText)
 
             result.flavorText = setText
-            result.costToMp = skillData.costMp
-            result.buffToDef = skillData.resultPoint
-            result.changingCond = skillData.giveCond
+            result.costToMp = actionHolder.costMp
+            result.buffToDef = actionHolder.resultPoint
+            result.changingCond = actionHolder.giveCond
             result.targetId = TargetIdEnum.MYSELF.id
 
         } else {
-            skillData = SwordAttack().activeAction(character)
+            actionHolder = SwordAttack().activeAction(character)
 
-            setText.add(character.name + "は" + skillData.flavorText)
-            if (skillData.isCritical) {
+            setText.add(character.name + "は" + actionHolder.flavorText)
+            if (actionHolder.isCritical) {
                 setText.add("会心の一撃！")
             }
             result.flavorText = setText
-            result.damageToHp = skillData.resultPoint
-            result.costToMp = skillData.costMp
-            result.changingCond = skillData.giveCond
+            result.damageToHp = actionHolder.resultPoint
+            result.costToMp = actionHolder.costMp
+            result.changingCond = actionHolder.giveCond
             result.targetId = TargetIdEnum.ONE_ATTACK.id
 
         }
@@ -119,35 +119,35 @@ class Warrior : JobManager.JobAbstract() {
         character: CharacterInformationHolder,
         skillName: String
     ): ActionResultHolder {
-        var skillData: SkillData
-        val result = emptyResult()
+        var actionHolder: ActionHolder
+        val result = ActionResultHolder()
 
         //ログテキスト
         var setText = mutableListOf<String>()
 
         //HP残量が最大値の30%以下の場合、50%の確率で「ぼうぎょ」
         if (skillName == SKillEnum.GUARD.name) {
-            skillData = MeleeGuard().guardAction()
+            actionHolder = MeleeGuard().guardAction()
 
-            setText.add(character.name + "は" + skillData.flavorText)
+            setText.add(character.name + "は" + actionHolder.flavorText)
 
             result.flavorText = setText
-            result.costToMp = skillData.costMp
-            result.buffToDef = skillData.resultPoint
-            result.changingCond = skillData.giveCond
+            result.costToMp = actionHolder.costMp
+            result.buffToDef = actionHolder.resultPoint
+            result.changingCond = actionHolder.giveCond
             result.targetId = TargetIdEnum.MYSELF.id
 
         } else {
-            skillData = SwordAttack().activeAction(character)
+            actionHolder = SwordAttack().activeAction(character)
 
-            setText.add(character.name + "は" + skillData.flavorText)
-            if (skillData.isCritical) {
+            setText.add(character.name + "は" + actionHolder.flavorText)
+            if (actionHolder.isCritical) {
                 setText.add("会心の一撃！")
             }
             result.flavorText = setText
-            result.damageToHp = skillData.resultPoint
-            result.costToMp = skillData.costMp
-            result.changingCond = skillData.giveCond
+            result.damageToHp = actionHolder.resultPoint
+            result.costToMp = actionHolder.costMp
+            result.changingCond = actionHolder.giveCond
             result.targetId = TargetIdEnum.ONE_ATTACK.id
         }
         return result
@@ -212,12 +212,6 @@ class Warrior : JobManager.JobAbstract() {
         }
         return Pair(actionName ?: "", targetCharacter)
     }
-
-    private fun emptyResult(): ActionResultHolder {
-        return ActionResultHolder(0,mutableListOf(), 0, 0, 0, 0, Pair("", 0), 0, false)
-
-    }
-
 
     override fun getPercent(num: Int?, standardValue: Int): Int {
         return num!! * 100 / standardValue

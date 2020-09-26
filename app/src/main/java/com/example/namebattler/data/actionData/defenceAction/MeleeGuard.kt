@@ -1,24 +1,19 @@
 package com.example.namebattler.data.actionData.defenceAction
 
-import com.example.namebattler.data.actionData.ActionInterface
-import com.example.namebattler.data.actionData.SkillData
+import com.example.namebattler.data.actionData.ActionHolder
 import com.example.namebattler.data.battleData.CharacterInformationHolder
 
-class MeleeGuard : ActionInterface {
-    override fun getSkillData(character: CharacterInformationHolder): SkillData {
+class MeleeGuard : DefenceActionInterface {
+    override fun getSkillData(character: CharacterInformationHolder): ActionHolder {
         return guardAction()
     }
 
-    override fun activeAction(character: CharacterInformationHolder): SkillData {
-        return SkillData()
+    override fun passiveDefense(character: CharacterInformationHolder): ActionHolder {
+        return ActionHolder()
     }
 
-    override fun passiveDefense(character: CharacterInformationHolder): SkillData {
-        return SkillData()
-    }
-
-    override fun guardAction(): SkillData {
-        return SkillData("防御の構えをとった", 2, 0, false, Pair("", 0))
+    override fun guardAction(): ActionHolder {
+        return ActionHolder("防御の構えをとった", 2, 0, false, Pair("", 0))
     }
 
     override fun getPercent(num: Int?): Int {

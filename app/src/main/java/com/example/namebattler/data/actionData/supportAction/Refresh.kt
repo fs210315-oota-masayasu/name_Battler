@@ -1,21 +1,21 @@
-package com.example.namebattler.data.actionData.attackMagic
+package com.example.namebattler.data.actionData.supportAction
 
 import com.example.namebattler.data.actionData.ActionHolder
 import com.example.namebattler.data.battleData.CharacterInformationHolder
 import com.example.namebattler.util.ConditionEnum
 
-class SleepCloud : AttackMagicActionInterface {
+class Refresh : SupportActionInterface {
     override fun getSkillData(character: CharacterInformationHolder): ActionHolder {
         return activeAction(character)
     }
 
     override fun activeAction(character: CharacterInformationHolder): ActionHolder {
         return ActionHolder(
-            "眠りの呪文を唱えた",
+            "リフレッシュの呪文を唱えた",
             0,
             10,
             false,
-            Pair(ConditionEnum.SLEEP.text, 2)
+            Pair(ConditionEnum.FRESH.text, 0)
         )
     }
 

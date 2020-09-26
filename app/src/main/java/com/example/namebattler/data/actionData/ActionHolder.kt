@@ -1,6 +1,6 @@
 package com.example.namebattler.data.actionData
 
-data class SkillData (
+data class ActionHolder (
     val flavorText: String,
     val resultPoint: Int,
     val costMp: Int,

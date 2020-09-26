@@ -21,7 +21,7 @@ class FormationListAdapter  internal constructor(
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var character = emptyList<Characters>() // Cached copy of character
 
-    private var checkedCharacter : CharacterHolder? = null
+    private var checkedCharacter : CharacterHolder = CharacterHolder()
     var list  = arrayListOf <CharacterHolder?>()
 
     //チェックカウント

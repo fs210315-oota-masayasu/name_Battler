@@ -1,6 +1,6 @@
 package com.example.namebattler.data.battleData
 
-import com.example.namebattler.data.actionData.SkillData
+import com.example.namebattler.data.actionData.ActionHolder
 import com.example.namebattler.data.actionData.defenceAction.MagicDefense
 import com.example.namebattler.data.actionData.defenceAction.MeleeDefense
 import com.example.namebattler.util.ConditionEnum
@@ -28,7 +28,7 @@ class BattleProcessManager {
         targetList.forEach { targetInformation ->
             //攻撃結果反映
             //防御判定
-            val defPoint: SkillData = if (attackResult.isMagicDamage) {
+            val defPoint: ActionHolder = if (attackResult.isMagicDamage) {
                 MagicDefense().getSkillData(targetInformation)
                 //Skills().magicDefense(targetInformation)
             } else {
@@ -256,7 +256,7 @@ class BattleProcessManager {
     }
 
     //ダメージタイプの確認
-    private fun checkDamageType(attackResult: ActionResultHolder, defPoint: SkillData): String{
+    private fun checkDamageType(attackResult: ActionResultHolder, defPoint: ActionHolder): String{
         return when {
             attackResult.damageToHp > defPoint.resultPoint -> {
                 DamageTypeEnum.NORMAL_DAMAGE.name

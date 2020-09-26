@@ -1,16 +1,15 @@
 package com.example.namebattler.data.actionData.attackMagic
 
-import com.example.namebattler.data.actionData.ActionInterface
-import com.example.namebattler.data.actionData.SkillData
+import com.example.namebattler.data.actionData.ActionHolder
 import com.example.namebattler.data.battleData.CharacterInformationHolder
 import com.example.namebattler.util.ConditionEnum
 
-class Thunderbolt : ActionInterface {
-    override fun getSkillData(character: CharacterInformationHolder): SkillData {
+class Thunderbolt : AttackMagicActionInterface {
+    override fun getSkillData(character: CharacterInformationHolder): ActionHolder {
         return activeAction(character)
     }
 
-    override fun activeAction(character: CharacterInformationHolder): SkillData {
+    override fun activeAction(character: CharacterInformationHolder): ActionHolder {
         //魔力
         //buff,deBuffの適用
         val correctionLuckVale = character.effectTimeOfLuck
@@ -43,21 +42,13 @@ class Thunderbolt : ActionInterface {
         //ダメージ値
         val attackPoint = mp + hittingPoint
 
-        return SkillData(
+        return ActionHolder(
             "雷撃の呪文を唱えた",
             attackPoint,
             20,
             isCritical,
             Pair(ConditionEnum.PARALYSIS.text, 2)
         )
-    }
-
-    override fun passiveDefense(character: CharacterInformationHolder): SkillData {
-        return SkillData()
-    }
-
-    override fun guardAction(): SkillData {
-        return SkillData()
     }
 
     override fun getPercent(num: Int?): Int {

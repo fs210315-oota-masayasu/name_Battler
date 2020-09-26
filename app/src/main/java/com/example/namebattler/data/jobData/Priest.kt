@@ -1,9 +1,9 @@
 package com.example.namebattler.data.jobData
 
-import com.example.namebattler.data.actionData.SkillData
+import com.example.namebattler.data.actionData.ActionHolder
 import com.example.namebattler.data.actionData.meleeAttack.MaceAttack
-import com.example.namebattler.data.actionData.supportMagic.CureWounds
-import com.example.namebattler.data.actionData.supportMagic.Refresh
+import com.example.namebattler.data.actionData.supportAction.CureWounds
+import com.example.namebattler.data.actionData.supportAction.Refresh
 import com.example.namebattler.data.battleData.ActionResultHolder
 import com.example.namebattler.data.battleData.CharacterInformationHolder
 import com.example.namebattler.util.Belong
@@ -66,7 +66,7 @@ class Priest : JobManager.JobAbstract() {
             setText.add("会心の一撃！")
         }
 
-        val result = emptyResult()
+        val result = ActionResultHolder()
         result.flavorText = setText
         result.damageToHp = skillData.resultPoint
         result.costToMp = skillData.costMp
@@ -80,46 +80,46 @@ class Priest : JobManager.JobAbstract() {
         character: CharacterInformationHolder,
         skillName: String
     ): ActionResultHolder {
-        var skillData: SkillData
-        val result = emptyResult()
+        var actionHolder: ActionHolder
+        val result = ActionResultHolder()
         //ログテキスト
         var setText = mutableListOf<String>()
         //setText.add(character.name + "は")
 
         if (skillName == SKillEnum.CURE_WOUNDS.name) {
-            skillData = CureWounds().activeAction(character)
-            setText.add(character.name + "は" + skillData.flavorText)
+            actionHolder = CureWounds().activeAction(character)
+            setText.add(character.name + "は" + actionHolder.flavorText)
 
             result.flavorText = setText
             result.damageToHp = 0
-            result.cureToHp = skillData.resultPoint
-            result.costToMp = skillData.costMp
+            result.cureToHp = actionHolder.resultPoint
+            result.costToMp = actionHolder.costMp
             result.buffToDef = 0
-            result.changingCond = skillData.giveCond
+            result.changingCond = actionHolder.giveCond
             result.targetId = TargetIdEnum.ONE_SUPPORT.id
 
         } else if (skillName == SKillEnum.REFRESH.name) {
-            skillData = Refresh().getSkillData(character)
-            setText.add(character.name + "は" + skillData.flavorText)
+            actionHolder = Refresh().getSkillData(character)
+            setText.add(character.name + "は" + actionHolder.flavorText)
 
             result.flavorText = setText
             result.damageToHp = 0
-            result.cureToHp = skillData.resultPoint
-            result.costToMp = skillData.costMp
+            result.cureToHp = actionHolder.resultPoint
+            result.costToMp = actionHolder.costMp
             result.buffToDef = 0
-            result.changingCond = skillData.giveCond
+            result.changingCond = actionHolder.giveCond
             result.targetId = TargetIdEnum.ONE_SUPPORT.id
 
         } else {
-            skillData = MaceAttack().getSkillData(character)
-            setText.add(character.name + "は" + skillData.flavorText)
-            if (skillData.isCritical) {
+            actionHolder = MaceAttack().getSkillData(character)
+            setText.add(character.name + "は" + actionHolder.flavorText)
+            if (actionHolder.isCritical) {
                 setText.add("会心の一撃！")
             }
             result.flavorText = setText
-            result.damageToHp = skillData.resultPoint
-            result.costToMp = skillData.costMp
-            result.changingCond = skillData.giveCond
+            result.damageToHp = actionHolder.resultPoint
+            result.costToMp = actionHolder.costMp
+            result.changingCond = actionHolder.giveCond
             result.targetId = TargetIdEnum.ONE_ATTACK.id
         }
         return result
@@ -137,45 +137,45 @@ class Priest : JobManager.JobAbstract() {
         character: CharacterInformationHolder,
         skillName: String
     ): ActionResultHolder {
-        var skillData: SkillData
-        val result = emptyResult()
+        var actionHolder: ActionHolder
+        val result = ActionResultHolder()
         //ログテキスト
         var setText = mutableListOf<String>()
         //setText.add(character.name + "は")
 
         if (skillName == SKillEnum.CURE_WOUNDS.name) {
-            skillData = CureWounds().getSkillData(character)
-            setText.add(character.name + "は" + skillData.flavorText)
+            actionHolder = CureWounds().getSkillData(character)
+            setText.add(character.name + "は" + actionHolder.flavorText)
 
             result.flavorText = setText
             result.damageToHp = 0
-            result.cureToHp = skillData.resultPoint
-            result.costToMp = skillData.costMp
+            result.cureToHp = actionHolder.resultPoint
+            result.costToMp = actionHolder.costMp
             result.buffToDef = 0
-            result.changingCond = skillData.giveCond
+            result.changingCond = actionHolder.giveCond
             result.targetId = TargetIdEnum.ONE_SUPPORT.id
 
         } else if (skillName == SKillEnum.REFRESH.name) {
-            skillData = Refresh().getSkillData(character)
-            setText.add(character.name + "は" + skillData.flavorText)
+            actionHolder = Refresh().getSkillData(character)
+            setText.add(character.name + "は" + actionHolder.flavorText)
 
             result.flavorText = setText
             result.damageToHp = 0
-            result.cureToHp = skillData.resultPoint
-            result.costToMp = skillData.costMp
+            result.cureToHp = actionHolder.resultPoint
+            result.costToMp = actionHolder.costMp
             result.buffToDef = 0
-            result.changingCond = skillData.giveCond
+            result.changingCond = actionHolder.giveCond
             result.targetId = TargetIdEnum.ONE_SUPPORT.id
         } else {
-            skillData = MaceAttack().getSkillData(character)
-            setText.add(character.name + "は" + skillData.flavorText)
-            if (skillData.isCritical) {
+            actionHolder = MaceAttack().getSkillData(character)
+            setText.add(character.name + "は" + actionHolder.flavorText)
+            if (actionHolder.isCritical) {
                 setText.add("会心の一撃！")
             }
             result.flavorText = setText
-            result.damageToHp = skillData.resultPoint
-            result.costToMp = skillData.costMp
-            result.changingCond = skillData.giveCond
+            result.damageToHp = actionHolder.resultPoint
+            result.costToMp = actionHolder.costMp
+            result.changingCond = actionHolder.giveCond
             result.targetId = TargetIdEnum.ONE_ATTACK.id
         }
         return result
@@ -290,11 +290,6 @@ class Priest : JobManager.JobAbstract() {
             }
         }
         return Pair(actionName, resultList)
-    }
-
-    private fun emptyResult(): ActionResultHolder {
-        return ActionResultHolder(0,mutableListOf(), 0, 0, 0, 0, Pair("", 0), 0, false)
-
     }
 
     override fun getPercent(num: Int?, standardValue: Int): Int {

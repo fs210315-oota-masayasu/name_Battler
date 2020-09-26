@@ -22,7 +22,7 @@ class CharaListAdapter internal constructor(
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var character = emptyList<Characters>() // Cached copy of character
 
-    private var sendToComplete : CharacterHolder? = null
+    private var sendToComplete : CharacterHolder = CharacterHolder()
     private var list  = mutableListOf <CharacterHolder?>()
 
     inner class CharaListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){

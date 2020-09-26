@@ -15,6 +15,7 @@ data class CharacterHolder(
     val currentDate : Long
 
 ): Serializable{
+    constructor():this("","","",0,0,0,0,0,0,0)
     companion object {
         const val EXTRA_DATA = "EXTRA_DATA"
     }
