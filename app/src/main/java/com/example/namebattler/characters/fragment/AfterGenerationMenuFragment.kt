@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.namebattler.R
 import com.example.namebattler.characters.activity.CharacterListActivity
-import com.example.namebattler.characters.activity.NewCharacterCreateActivity
+import com.example.namebattler.characters.activity.NewCharacterGenerateActivity
 import kotlinx.android.synthetic.main.fragment_processing_after_creation.*
 
-class ProcessingAfterCreationFragment : Fragment() {
+class AfterGenerationMenuFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,8 +28,8 @@ class ProcessingAfterCreationFragment : Fragment() {
     }
     companion object {
         @JvmStatic
-        fun newInstance(): ProcessingAfterCreationFragment {
-            return ProcessingAfterCreationFragment()
+        fun newInstance(): AfterGenerationMenuFragment {
+            return AfterGenerationMenuFragment()
         }
     }
 
@@ -39,7 +39,7 @@ class ProcessingAfterCreationFragment : Fragment() {
         //続けて作成する
         btn_continue_character_create.setOnClickListener {
             val intentOfContinue = Intent(activity,
-                NewCharacterCreateActivity::class.java)
+                NewCharacterGenerateActivity::class.java)
             intentOfContinue.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or  Intent.FLAG_ACTIVITY_SINGLE_TOP)
             startActivity(intentOfContinue)
         }

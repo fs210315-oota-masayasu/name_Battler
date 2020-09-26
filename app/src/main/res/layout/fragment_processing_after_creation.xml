@@ -5,7 +5,7 @@
     android:id="@+id/button_area"
     android:layout_width="match_parent"
     android:layout_height="175dp"
-    tools:context=".characters.fragment.ProcessingAfterCreationFragment">
+    tools:context=".characters.fragment.AfterGenerationMenuFragment">
 
     <Button
         android:id="@+id/btn_continue_character_create"
