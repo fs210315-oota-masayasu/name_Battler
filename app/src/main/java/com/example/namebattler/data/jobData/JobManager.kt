@@ -74,30 +74,28 @@ open class JobManager {
         this.luck = param.luck
     }
 
-    //インデックスがキャラクターテーブルのジョブの値になる
-    val jobList = mutableListOf(JobEnum.WARRIOR.jobName, JobEnum.SPELL_CASTER.jobName, JobEnum.PRIEST.jobName, JobEnum.BERSERK.jobName)
-    //職業を追加する場合はaddで
+    //インデックスがキャラクターテーブルのジョブに対応したEnumになる
+    val jobEnumList = listOf(JobEnum.WARRIOR, JobEnum.SPELL_CASTER, JobEnum.PRIEST, JobEnum.BERSERK)
 
     //名前からインデックスを取得
     fun getJobList(name: String): Int {
-        return jobList.indexOf(name)
+        //jobEnumListから名前を抽出して格納
+        val jobNameList = mutableListOf<String>()
+        jobEnumList.forEach {
+            jobNameList.add(it.jobName)
+        }
+          return jobNameList.indexOf(name)
     }
 
     //インデックスから名前を取得
     fun getJobList(index: Int): String {
-        return jobList[index]
+        return jobEnumList[index].jobName
     }
 
+    //ジョブ名に対応したオブジェクトを返す
     fun getJobInstance (jobName :String): JobAbstract? {
+        return jobEnumList[getJobList(jobName)].obj
 
-        return when (getJobList(jobName)) {
-            0 -> warriorObj
-            1 -> spellCasterObj
-            2 -> priestObj
-            3 -> berserkObj
-            else -> null
-
-        }
     }
 
     //addParam実行時に対象のジョブのパラメータを格納

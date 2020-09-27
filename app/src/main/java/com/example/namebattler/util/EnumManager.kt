@@ -1,10 +1,12 @@
 package com.example.namebattler.util
 
-enum class JobEnum (val jobName :String){
-    WARRIOR("戦士"),
-    SPELL_CASTER("魔法使い"),
-    PRIEST("僧侶"),
-    BERSERK("バーサーカー"),
+import com.example.namebattler.data.jobData.*
+
+enum class JobEnum (val jobName :String, val obj: JobManager.JobAbstract){
+    WARRIOR("戦士" , Warrior()),
+    SPELL_CASTER("魔法使い", SpellCaster()),
+    PRIEST("僧侶", Priest()),
+    BERSERK("バーサーカー", Berserk()),
 }
 
 enum class EndEnum{

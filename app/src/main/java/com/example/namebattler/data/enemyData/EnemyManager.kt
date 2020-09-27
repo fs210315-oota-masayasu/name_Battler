@@ -7,20 +7,27 @@ import com.example.namebattler.util.OperationIdEnum
 import kotlin.random.Random
 
 class EnemyManager {
+
+    companion object {
+        //Enumを取得
+        val operationEnum = OperationIdEnum.values()
+    }
+
+    init {
+        //初期化時にoperationListへ作戦名を格納
+        operationEnum.forEach {
+            operationList.add(it.text)
+        }
+    }
+
     private val enemyNameList = EnemyList()
+    //作戦リスト
+    private val operationList= mutableListOf<String>()
 
     fun selectEnemyOperation() :String{
-        return when {
-            (0..2).random() == 0 -> {
-                OperationIdEnum.OFFENSIVE.text
-            }
-            (0..2).random() == 1 -> {
-                OperationIdEnum.DEFENSIVE.text
-            }
-            else -> {
-                OperationIdEnum.FLEXIBLE.text
-            }
-        }
+        //取得する要素をランダムで決定する
+        val index = Random.nextInt(operationList.size)
+        return operationList[index]
     }
 
     fun getEnemyData() : List<Characters>{
@@ -29,7 +36,7 @@ class EnemyManager {
         val randomSelectEnemyList =  enemyNameList.nameList.takeAtRandom(3)
 
         //JobManager().jobListから重複なくジョブを3点取得
-        val randomSelectJob = JobManager().jobList.takeAtRandom(3)
+        val randomSelectJob = JobManager().jobEnumList.takeAtRandom(3)
 
         //戻り値用変数
         val enemyDataList = mutableListOf<Characters>()
@@ -37,11 +44,12 @@ class EnemyManager {
         randomSelectEnemyList.forEach {
 
             //randomSelectEnemyListのインデックスでrandomSelectJobの中からジョブ名を取り出す
-            val extractJobName = randomSelectJob[randomSelectEnemyList.indexOf(it)]
+            val extractJobEnum = randomSelectJob[randomSelectEnemyList.indexOf(it)]
 
             //キャラクター名、ジョブでパラメータを自動生成
             //obManager().getJobListでジョブに割り振られているインデックスを取得
-            val enemyData = Player(it,JobManager().getJobList(extractJobName)).getParam()?:
+            //val enemyData = Player(it,JobManager().getJobList(extractJobName)).getParam()?:
+            val enemyData = Player(it,JobManager().getJobList(extractJobEnum.jobName)).getParam()?:
             Characters(
                 "Error:パラメータ取得失敗",
                 0,

@@ -1,5 +1,7 @@
 package com.example.namebattler.data.battleData
 
+import com.example.namebattler.util.OperationIdEnum
+
 class Operation {
 
     fun getInstance():Operation{
@@ -17,7 +19,7 @@ class Operation {
     }
 
     //インデックスがキャラクターテーブルのジョブの値になる
-    private val operationList = mutableListOf("ガンガンいこうぜ","いのちだいじに","バッチリがんばれ")
+    private val operationList = mutableListOf<String>()
     //職業を追加する場合はaddで
 
     //名前からインデックスを取得
@@ -31,7 +33,17 @@ class Operation {
     }
 
     companion object {
+        //Enumを取得
+        val operationEnum = OperationIdEnum.values()
+        //シングルトン用にオブジェクトを生成させる
         val instance = Operation()
+    }
+
+    //取得したEnumのtextをリストへ格納
+    init {
+        operationEnum.forEach {
+            operationList.add(it.text)
+        }
     }
 
 }
