@@ -46,6 +46,11 @@ android {
     }
 }
 
+
+androidExtensions {
+    defaultCacheImplementation = "SPARSE_ARRAY" // HASH_MAP (default), SPARSE_ARRAY, or NONE
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

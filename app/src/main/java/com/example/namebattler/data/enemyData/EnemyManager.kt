@@ -8,6 +8,10 @@ import kotlin.random.Random
 
 class EnemyManager {
 
+    private val enemyNameList = EnemyList()
+    //作戦リスト
+    private var operationList= mutableListOf<String>()
+
     companion object {
         //Enumを取得
         val operationEnum = OperationIdEnum.values()
@@ -20,9 +24,7 @@ class EnemyManager {
         }
     }
 
-    private val enemyNameList = EnemyList()
-    //作戦リスト
-    private val operationList= mutableListOf<String>()
+
 
     fun selectEnemyOperation() :String{
         //取得する要素をランダムで決定する

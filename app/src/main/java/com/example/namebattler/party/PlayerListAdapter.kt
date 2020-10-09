@@ -4,10 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.namebattler.R
 import com.example.namebattler.data.characterData.CharacterHolder
+import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.list_view.view.*
 
 ////BattleLobbyActivity：編成済パーティリスト
 class PlayerListAdapter  internal constructor(
@@ -17,16 +18,16 @@ class PlayerListAdapter  internal constructor(
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var character = mutableListOf<CharacterHolder>()
 
-
-    inner class PartyListViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
-        val charaNameView : TextView = itemView.findViewById(R.id.value_name)
-        val charaJobView : TextView = itemView.findViewById(R.id.value_job)
-        val charaHpView : TextView = itemView.findViewById(R.id.value_status_hp)
-        val charaMpView : TextView = itemView.findViewById(R.id.value_status_mp)
-        val charaStrView : TextView = itemView.findViewById(R.id.value_status_str)
-        val charaDefView : TextView = itemView.findViewById(R.id.value_status_def)
-        val charaAgiView : TextView = itemView.findViewById(R.id.value_status_agi)
-    }
+    inner class PartyListViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer
+//    inner class PartyListViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+//        val charaNameView : TextView = itemView.findViewById(R.id.value_name)
+//        val charaJobView : TextView = itemView.findViewById(R.id.value_job)
+//        val charaHpView : TextView = itemView.findViewById(R.id.value_status_hp)
+//        val charaMpView : TextView = itemView.findViewById(R.id.value_status_mp)
+//        val charaStrView : TextView = itemView.findViewById(R.id.value_status_str)
+//        val charaDefView : TextView = itemView.findViewById(R.id.value_status_def)
+//        val charaAgiView : TextView = itemView.findViewById(R.id.value_status_agi)
+//    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PartyListViewHolder {
@@ -37,15 +38,26 @@ class PlayerListAdapter  internal constructor(
 
     override fun onBindViewHolder(holder: PartyListViewHolder, position: Int) {
         val current = character[position]
-        holder.charaNameView.text = current.name
+
+        holder.itemView.value_name.text = current.name
+        holder.itemView.value_job.text = current.job
+        holder.itemView.value_status_hp.text = current.hp.toString()
+        holder.itemView.value_status_mp.text = current.mp.toString()
+        holder.itemView.value_status_str.text = current.str.toString()
+        holder.itemView.value_status_def.text = current.def.toString()
+        holder.itemView.value_status_agi.text = current.agi.toString()
 
 
-        holder.charaJobView.text = current.job
-        holder.charaHpView.text = current.hp.toString()
-        holder.charaMpView.text = current.mp.toString()
-        holder.charaStrView.text = current.str.toString()
-        holder.charaDefView.text = current.def.toString()
-        holder.charaAgiView.text = current.agi.toString()
+
+
+//        holder.charaNameView.text = current.name
+//
+//        holder.charaJobView.text = current.job
+//        holder.charaHpView.text = current.hp.toString()
+//        holder.charaMpView.text = current.mp.toString()
+//        holder.charaStrView.text = current.str.toString()
+//        holder.charaDefView.text = current.def.toString()
+//        holder.charaAgiView.text = current.agi.toString()
     }
 
     internal fun setCharacter(character : ArrayList <CharacterHolder>){
