@@ -10,7 +10,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.namebattler.R
-import com.example.namebattler.characters.MainViewModel
+import com.example.namebattler.viewModel.OperationDatabaseViewModel
 import com.example.namebattler.characters.activity.CharacterListActivity
 import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.data.database.Characters
@@ -112,7 +112,7 @@ class ProcessingDataDeletionFragment : Fragment(), AlertDataDelete.NoticeDialogL
 
     //キャラクター削除
     private fun delete(){
-        val mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        val mainViewModel = ViewModelProvider(this).get(OperationDatabaseViewModel::class.java)
         mainViewModel.delete(characters)
     }
 

@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.namebattler.MainActivity
+import com.example.namebattler.HomeActivity
 import com.example.namebattler.R
 import com.example.namebattler.battle.activity.BattleMainActivity
 import com.example.namebattler.data.characterData.CharacterHolder
@@ -51,7 +51,7 @@ class WinViewFragment : Fragment() {
 
         //対戦を終了する
         end_battle.setOnClickListener {
-            val setIntentEndBattle = Intent(activity, MainActivity::class.java)
+            val setIntentEndBattle = Intent(activity, HomeActivity::class.java)
             setIntentEndBattle.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(setIntentEndBattle)
         }

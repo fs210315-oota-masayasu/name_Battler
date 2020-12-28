@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.namebattler.R
-import com.example.namebattler.characters.MainViewModel
+import com.example.namebattler.viewModel.OperationDatabaseViewModel
 import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.data.characterData.Player
 import com.example.namebattler.data.database.Characters
@@ -49,7 +49,7 @@ class NewCharacterGenerateActivity : ScopedAppActivity(), TextWatcher {
             fragmentTransaction.commit()
         }
 
-        val mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        val mainViewModel = ViewModelProvider(this).get(OperationDatabaseViewModel::class.java)
 
         //名前
         val inputName = findViewById<EditText>(R.id.set_input_name)

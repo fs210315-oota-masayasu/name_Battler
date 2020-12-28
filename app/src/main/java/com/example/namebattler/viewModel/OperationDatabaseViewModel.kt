@@ -1,20 +1,26 @@
-package com.example.namebattler.characters
+package com.example.namebattler.viewModel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.namebattler.characters.CharactersRepository
+import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.data.database.AppDatabase
 import com.example.namebattler.data.database.Characters
+import com.example.namebattler.data.jobData.JobManager
+import com.example.namebattler.util.Belong
 import kotlinx.coroutines.launch
 import kotlin.concurrent.thread
 
 
-class MainViewModel(application: Application) : AndroidViewModel(application)  {
+class OperationDatabaseViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: CharactersRepository
     val allCharacters: LiveData<List<Characters>>
+
     val countOverlap = MutableLiveData<Int>()
     val numOfRegistrations = MutableLiveData<Int>()
 
@@ -25,7 +31,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application)  {
         allCharacters = repository.allCharacters
     }
 
-    fun update(characters: Characters) = viewModelScope.launch{
+    fun update(characters: Characters) = viewModelScope.launch {
         repository.update(characters)
     }
 
@@ -37,22 +43,22 @@ class MainViewModel(application: Application) : AndroidViewModel(application)  {
         repository.delete(characters)
     }
 
-    private fun countOverlap(searchName: String):Int?{
+    private fun countOverlap(searchName: String): Int? {
         return repository.countOverlap(searchName)
     }
 
-    private fun numOfRegistrations():Int{
+    private fun numOfRegistrations(): Int {
         return repository.numOfRegistrations()
     }
 
-    fun confirmNumOfRegistrations(){
+    fun confirmNumOfRegistrations() {
         //非同期処理でMutableLiveDataに登録件数を格納
         thread {
             numOfRegistrations.postValue(numOfRegistrations())
         }
     }
 
-    fun confirm(searchName: String){
+    fun confirm(searchName: String) {
         countOverlap.postValue(countOverlap(searchName))
     }
 

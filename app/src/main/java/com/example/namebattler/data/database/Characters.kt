@@ -33,4 +33,15 @@ class Characters (
 
     @ColumnInfo(name = "CREATE_AT")
     val CREATE_AT: Long
-)
+){
+    constructor(): this(
+        "データがありません",
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0)
+}

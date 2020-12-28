@@ -4,12 +4,18 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt' // Kotlinでアノテーション処理をできるようになる
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+
+    //DataBinding
+    buildFeatures {
+        dataBinding true
+    }
+
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
     defaultConfig {
         applicationId "com.example.namebattler"
-        minSdkVersion 20
-        targetSdkVersion 29
+        minSdkVersion 21
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -44,14 +50,25 @@ android {
                     ]
         }
     }
+
+
 }
+
+
 
 
 androidExtensions {
     defaultCacheImplementation = "SPARSE_ARRAY" // HASH_MAP (default), SPARSE_ARRAY, or NONE
 }
 
+// fragment-ktx用
+def ktx_version = "1.1.0"
+
 dependencies {
+
+    // fragment-ktx
+    implementation "androidx.fragment:fragment-ktx:$ktx_version"
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'

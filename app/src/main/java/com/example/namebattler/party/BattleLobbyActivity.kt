@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.namebattler.R
 import com.example.namebattler.battle.activity.BattleMainActivity
-import com.example.namebattler.characters.MainViewModel
+import com.example.namebattler.viewModel.OperationDatabaseViewModel
 import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.data.enemyData.EnemyManager
 import com.example.namebattler.menu.HeaderFragment
@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.battle_lobby.*
 
 class BattleLobbyActivity : AppCompatActivity() {
 
-    private lateinit var mainViewModel: MainViewModel
+    private lateinit var operationDatabaseViewModel: OperationDatabaseViewModel
     private var nameList = mutableListOf <String?>()
     private var secondaryList = mutableListOf <String?>()
 

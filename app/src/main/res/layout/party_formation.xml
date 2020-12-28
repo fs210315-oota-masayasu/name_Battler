@@ -1,50 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
-        android:id="@+id/header_area"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.namebattler.viewModel.CharacterViewModel" />
 
-    </FrameLayout>
+        <variable
+            name="position"
+            type="Integer" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/formation_list_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/list_outer_frame"
-        app:layout_constraintBottom_toTopOf="@+id/btn_decide_party"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    </data>
 
-    <Button
-        android:id="@+id/btn_decide_party"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="496dp"
-        android:background="#3F51B5"
-        android:text="@string/start_at_this_party"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <FrameLayout
+            android:id="@+id/header_area"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="#E91E63"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+        </FrameLayout>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/formation_list_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/list_outer_frame"
+            app:layout_constraintBottom_toTopOf="@+id/btn_decide_party"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_decide_party"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="496dp"
+            android:text="@{viewModel.btnTextDecideParty}"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            app:inactive_color = "@{@color/inactiveColor}"
+            app:active_color = "@{@color/buttonColor}"
+            app:excess_color = "@{@color/excessColor}"
+            app:button_counter = "@{viewModel.buttonCounter}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            android:onClick="@{() -> viewModel.onClickDecideParty()}"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
+<!--
+            app:btn_background_test="@{viewModel.buttonColorOF ? @color/buttonColor:  @color/inactiveColor}"
+-->
 
 

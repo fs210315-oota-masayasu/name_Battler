@@ -1,179 +1,373 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="88dp"
-    android:background="@drawable/default_list_frame">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.namebattler.viewModel.OperationDatabaseViewModel" />
 
-    <LinearLayout
+        <variable
+            name="characterViewModel"
+            type="com.example.namebattler.viewModel.CharacterViewModel" />
+
+        <variable
+            name="position"
+            type="Integer" />
+    </data>
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:orientation="horizontal">
+        android:layout_height="88dp"
+        android:background="@drawable/default_list_frame">
 
-        <TextView
-            android:id="@+id/value_name"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="44dp"
-            android:layout_weight="0.7"
-            android:gravity="center_vertical"
-            android:paddingLeft="20sp"
-            android:paddingRight="20sp"
-            android:text="@string/name"
-            android:textSize="24sp" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/value_job"
-            android:layout_width="0dp"
+            <TextView
+                android:id="@+id/value_name"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="0.7"
+                android:gravity="center_vertical"
+                android:paddingLeft="20sp"
+                android:paddingRight="20sp"
+                android:text="@{viewModel.allCharacters[position].NAME}"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/value_job"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_gravity="end"
+                android:layout_weight="0.3"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@{characterViewModel.getJobName(viewModel.allCharacters[position].JOB)}"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="44dp"
-            android:layout_gravity="end"
-            android:layout_weight="0.3"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="@string/display_name_job"
-            android:textSize="24sp" />
-    </LinearLayout>
+            android:layout_gravity="bottom|center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_status_hp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/display_name_hp"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txt_colon_hp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="@string/colon"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/value_status_hp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:text="@{String.valueOf(viewModel.allCharacters[position].HP)}"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txt_status_mp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:text="@string/display_name_mp"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txt_colon_mp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="@string/colon"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/value_status_mp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:text="@{String.valueOf(viewModel.allCharacters[position].MP)}"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txt_status_str"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:text="@string/display_name_str"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txt_colon_str"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="@string/colon"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/value_status_str"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom|start"
+                android:gravity="center"
+                android:text="@{String.valueOf(viewModel.allCharacters[position].STR)}"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txt_status_def"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:text="@string/display_name_def"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txt_colon_def"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="@string/colon"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/value_status_def"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom|start"
+                android:gravity="center"
+                android:text="@{String.valueOf(viewModel.allCharacters[position].DEF)}"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txt_status_agi"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:text="@string/display_name_agi"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txt_colon_agi"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="@string/colon"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/value_status_agi"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom|start"
+                android:gravity="center"
+                android:text="@{String.valueOf(viewModel.allCharacters[position].AGI)}"
+                android:textSize="18sp" />
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="44dp"
-        android:layout_gravity="bottom|center_horizontal"
-        android:orientation="horizontal">
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/txt_status_hp"
+
+    </FrameLayout>
+</layout>
+    <!--
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:background="@drawable/default_list_frame">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/value_name"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="0.7"
+                android:gravity="center_vertical"
+                android:paddingLeft="20sp"
+                android:paddingRight="20sp"
+                android:text="@string/name"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/value_job"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_gravity="end"
+                android:layout_weight="0.3"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/display_name_job"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/display_name_hp"
-            android:textSize="18sp" />
+            android:layout_height="44dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/txt_colon_hp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:padding="3dp"
-            android:text="@string/colon"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/txt_status_hp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/display_name_hp"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/value_status_hp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom"
-            android:gravity="center"
-            android:text="@string/display_name_hp"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/txt_colon_hp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="@string/colon"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/txt_status_mp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:gravity="center"
-            android:text="@string/display_name_mp"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/value_status_hp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:text="@string/display_name_hp"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/txt_colon_mp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:padding="3dp"
-            android:text="@string/colon"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/txt_status_mp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:text="@string/display_name_mp"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/value_status_mp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom"
-            android:gravity="center"
-            android:text="@string/display_name_mp"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/txt_colon_mp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="@string/colon"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/txt_status_str"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:gravity="center"
-            android:text="@string/display_name_str"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/value_status_mp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:text="@string/display_name_mp"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/txt_colon_str"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:padding="3dp"
-            android:text="@string/colon"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/txt_status_str"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:text="@string/display_name_str"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/value_status_str"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom|start"
-            android:gravity="center"
-            android:text="@string/display_name_str"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/txt_colon_str"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="@string/colon"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/txt_status_def"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:gravity="center"
-            android:text="@string/display_name_def"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/value_status_str"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom|start"
+                android:gravity="center"
+                android:text="@string/display_name_str"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/txt_colon_def"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:padding="3dp"
-            android:text="@string/colon"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/txt_status_def"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:text="@string/display_name_def"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/value_status_def"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom|start"
-            android:gravity="center"
-            android:text="@string/display_name_def"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/txt_colon_def"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="@string/colon"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/txt_status_agi"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:gravity="center"
-            android:text="@string/display_name_agi"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/value_status_def"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom|start"
+                android:gravity="center"
+                android:text="@string/display_name_def"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/txt_colon_agi"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:padding="3dp"
-            android:text="@string/colon"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/txt_status_agi"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:text="@string/display_name_agi"
+                android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/value_status_agi"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom|start"
-            android:gravity="center"
-            android:text="@string/display_name_agi"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/txt_colon_agi"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="@string/colon"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/value_status_agi"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom|start"
+                android:gravity="center"
+                android:text="@string/display_name_agi"
+                android:textSize="18sp" />
 
 
-    </LinearLayout>
+        </LinearLayout>
 
 
-</FrameLayout>
+    </FrameLayout>
+    -->

@@ -65,3 +65,7 @@ enum class TargetIdEnum(val id: Int){
     ONE_SUPPORT(3),
     ALL_SUPPORT(4),
 }
+
+enum class EntryRule(val num: Int){
+    MEMBER(3)
+}

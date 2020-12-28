@@ -1,17 +1,19 @@
 package com.example.namebattler.menu
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.namebattler.HomeActivity
 import com.example.namebattler.R
 import kotlinx.android.synthetic.main.fragment_header.*
 
 private const val ARG_PARAM = "text_of_header"
 
-class HeaderFragment : Fragment() {
+class ReturnMainFragment  : Fragment(){
 
     private var setText : String? = null
 
@@ -51,12 +53,9 @@ class HeaderFragment : Fragment() {
     override fun onStart(){
         super.onStart()
         btn_screen_back.setOnClickListener {
-
-            activity?.finish()
-//            val intent = Intent(activity, MainActivity::class.java)
-//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-//            startActivity(intent)
+            val intent = Intent(activity, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
         }
     }
-
 }
