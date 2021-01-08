@@ -4,8 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.namebattler.R
-import com.example.namebattler.characters.fragment.CommonDisplayStatusFragment
-import com.example.namebattler.characters.fragment.ProcessingDataDeletionFragment
+import com.example.namebattler.characters.fragment.CharacterStatusDetailFragment
 import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.menu.HeaderFragment
 import com.example.namebattler.util.ScopedAppActivity
@@ -14,7 +13,7 @@ import com.example.namebattler.util.ScopedAppActivity
 class ConfirmCharacterStatusActivity   : ScopedAppActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.output_screen_)
+        setContentView(R.layout.output_screen)
 
         //ヘッダー
         if (savedInstanceState == null){
@@ -44,17 +43,18 @@ class ConfirmCharacterStatusActivity   : ScopedAppActivity() {
             // インスタンスに対して張り付け方を指定する
             fragmentTransaction.replace(
                 R.id.container_area,
-                CommonDisplayStatusFragment.newInstance(
-                    sendObj as CharacterHolder
-                )
+                CharacterStatusDetailFragment()
+//                CommonDisplayStatusFragment.newInstance(
+//                    sendObj as CharacterHolder
+//                )
             )
 
-            fragmentTransaction.replace(
-                R.id.button_area,
-                ProcessingDataDeletionFragment.newInstance(
-                    sendObj
-                )
-            )
+//            fragmentTransaction.replace(
+//                R.id.button_area,
+//                ProcessingDataDeletionFragment.newInstance(
+//                    sendObj
+//                )
+//            )
             // 張り付けを実行
             fragmentTransaction.commit()
         }

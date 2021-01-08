@@ -27,7 +27,8 @@ class HomeActivity : ScopedAppActivity() {
 
         binding.btnEditCharacter.setOnClickListener{
             Log.d("*** tag ***", "click!!")
-            val setIntentCharacterList = Intent(this, CharacterEditActivity::class.java)
+            val setIntentCharacterList = Intent(this, TestActivity::class.java)
+//            val setIntentCharacterList = Intent(this, CharacterEditActivity::class.java)
             startActivity(setIntentCharacterList)
         }
 

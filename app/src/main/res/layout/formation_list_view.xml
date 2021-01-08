@@ -5,7 +5,12 @@
     <data>
         <variable
             name="viewModel"
+            type="com.example.namebattler.viewModel.OperationDatabaseViewModel" />
+
+        <variable
+            name="characterViewModel"
             type="com.example.namebattler.viewModel.CharacterViewModel" />
+
 
         <variable
             name="position"
@@ -17,7 +22,6 @@
         android:layout_width="match_parent"
         android:layout_height="88dp"
         android:background="@drawable/default_list_frame"
-        android:onClick="@{() -> viewModel.onClickedCheckbox(position)}"
         >
 
         <LinearLayout
@@ -31,8 +35,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.09"
-                android:checked="@{viewModel.isCheckedPartyFormation[position]}"
-                android:onClick="@{() -> viewModel.onClickedCheckbox(position)}"
+                android:checked="@{characterViewModel.isCheckedPartyFormation[position]}"
+
                 android:textColor="#000000" />
 
             <TextView
@@ -205,3 +209,5 @@
 
     </FrameLayout>
 </layout>
+
+<!--                android:onClick="@{() -> characterViewModel.onClickedCheckbox(position)}"-->

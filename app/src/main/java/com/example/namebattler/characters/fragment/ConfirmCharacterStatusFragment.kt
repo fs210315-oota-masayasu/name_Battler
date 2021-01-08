@@ -1,62 +1,78 @@
-package com.example.namebattler.characters.activity
+package com.example.namebattler.characters.fragment
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModelProvider
 import com.example.namebattler.R
-import com.example.namebattler.characters.fragment.CharacterStatusDetailFragment
-import com.example.namebattler.characters.fragment.AfterGenerationMenuFragment
-import com.example.namebattler.data.characterData.CharacterHolder
+import com.example.namebattler.databinding.OutputScreenBinding
 import com.example.namebattler.menu.HeaderFragment
-import com.example.namebattler.util.ScopedAppActivity
+import com.example.namebattler.viewModel.CharacterViewModel
 
+//キャラクター詳細画面
+class ConfirmCharacterStatusFragment: Fragment() {
+    private lateinit var characterViewModel: CharacterViewModel
 
-//キャラクター作成完了画面
-class ConfirmGenerationCharacterActivity : ScopedAppActivity() {
+    private lateinit var binding: OutputScreenBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.output_screen, container, false)
+        return binding.root
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.output_screen)
+
+        characterViewModel = ViewModelProvider(this).get(CharacterViewModel::class.java)
 
         //ヘッダー
         if (savedInstanceState == null){
             // FragmentManagerのインスタンス生成
-            val fragmentManager: FragmentManager = supportFragmentManager
+            val fragmentManager: FragmentManager = parentFragmentManager
             // FragmentTransactionのインスタンスを取得
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
             // インスタンスに対して張り付け方を指定する
             fragmentTransaction.replace(
                 R.id.header_area,
                 HeaderFragment.newInstance(
-                    "キャラ作成"
+                    "キャラ詳細"
                 )
             )
             // 張り付けを実行
             fragmentTransaction.commit()
         }
 
-        // Serializableを使ってobjectをFragmentへ渡す
         if (savedInstanceState == null) {
-            val sendObj = intent.getSerializableExtra(CharacterHolder.EXTRA_DATA)
-
             // FragmentManagerのインスタンス生成
-            val fragmentManager: FragmentManager = supportFragmentManager
+            val fragmentManager: FragmentManager = parentFragmentManager
             // FragmentTransactionのインスタンスを取得
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
             // インスタンスに対して張り付け方を指定する
-//            fragmentTransaction.replace(
-//                R.id.container_area,
-//                CommonDisplayStatusFragment.newInstance(
-//                    sendObj as CharacterHolder
-//                )
-//            )
 
+            //ステータス情報
+            fragmentTransaction.replace(
+                R.id.container_area,
+                CharacterStatusDetailFragment()
+            )
+
+            //削除ボタン
             fragmentTransaction.replace(
                 R.id.button_area,
-                AfterGenerationMenuFragment.newInstance()
+                CharacterDataDeleteMenuFragment()
             )
             // 張り付けを実行
             fragmentTransaction.commit()
         }
+
+
     }
 }

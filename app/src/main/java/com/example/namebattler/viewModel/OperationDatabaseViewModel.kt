@@ -62,4 +62,10 @@ class OperationDatabaseViewModel(application: Application) : AndroidViewModel(ap
         countOverlap.postValue(countOverlap(searchName))
     }
 
+    //DBに格納されている値から名前へと変換
+    fun getJobName(index: Int): String {
+        return JobManager().getJobList(index)
+    }
+
+
 }

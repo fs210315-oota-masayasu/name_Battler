@@ -6,9 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
+import com.example.namebattler.CharacterEditActivity
 import com.example.namebattler.R
 import com.example.namebattler.viewModel.OperationDatabaseViewModel
 import com.example.namebattler.characters.activity.CharacterListActivity
@@ -16,10 +20,65 @@ import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.data.database.Characters
 import com.example.namebattler.data.database.DateConverter
 import com.example.namebattler.data.jobData.JobManager
+import com.example.namebattler.databinding.FragmentCharacterDataDeleteMenuBinding
 import com.example.namebattler.message.AlertDataDelete
-import kotlinx.android.synthetic.main.fragment_processing_data_deletion.*
+import com.example.namebattler.viewModel.CharacterViewModel
+import kotlinx.android.synthetic.main.fragment_character_data_delete_menu.*
+import java.nio.file.Files.delete
+
+class CharacterDataDeleteMenuFragment: Fragment(), AlertDataDelete.NoticeDialogListener{
+
+    private lateinit var binding: FragmentCharacterDataDeleteMenuBinding
+
+    private lateinit var characterViewModel: CharacterViewModel
+    private lateinit var operationDatabaseViewModel: OperationDatabaseViewModel
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_character_data_delete_menu, container, false)
+        return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        characterViewModel =
+            ViewModelProvider(this).get(CharacterViewModel::class.java)
+
+        operationDatabaseViewModel =
+            ViewModelProvider(this).get(OperationDatabaseViewModel::class.java)
 
 
+
+        binding.characterViewModel = characterViewModel
+        binding.operationDatabaseViewModel = operationDatabaseViewModel
+    }
+
+
+    //削除確認ダイアログボックスの処理（AlertDataDelete）
+    override fun onDialogPositiveClick(dialog: DialogFragment) {
+        delete()
+        val intentOfDel = Intent(activity,
+            CharacterEditActivity::class.java)
+        startActivity(intentOfDel)
+    }
+
+    override fun onDialogNegativeClick(dialog: DialogFragment) {
+        println("NoticeDialogでCancelボタンが押されたよ！")
+    }
+
+    //キャラクター削除
+    private fun delete(){
+        operationDatabaseViewModel.delete(characterViewModel.characterStatus.value?: Characters())
+    }
+
+
+}
+
+/*
 private const val ARG_PARAM_NAME = "param_Name"
 private const val ARG_PARAM_CURRENT_AT = "param_current_at"
 
@@ -118,3 +177,4 @@ class ProcessingDataDeletionFragment : Fragment(), AlertDataDelete.NoticeDialogL
 
 
 }
+*/

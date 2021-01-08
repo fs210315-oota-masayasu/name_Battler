@@ -2,6 +2,7 @@ package com.example.namebattler.characters.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,11 +24,12 @@ import kotlinx.android.synthetic.main.activity_character_list.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
-class CharacterListFragment: Fragment() {
+//キャラクター一覧画面
+class CharacterListFragment(private var operationDatabaseViewModel: OperationDatabaseViewModel,
+                            private var characterViewModel: CharacterViewModel): Fragment() {
 
     private val newCharacterCreateActivityRequestCode = 1
-    private lateinit var operationDatabaseViewModel: OperationDatabaseViewModel
-    private lateinit var characterViewModel: CharacterViewModel
+
 
     private lateinit var binding: ActivityCharacterListBinding
 
@@ -43,13 +45,11 @@ class CharacterListFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        operationDatabaseViewModel =
-            ViewModelProvider(this).get(OperationDatabaseViewModel::class.java)
-
-        characterViewModel =
-            ViewModelProvider(this).get(CharacterViewModel::class.java)
-
-
+//        operationDatabaseViewModel =
+//            ViewModelProvider(this).get(OperationDatabaseViewModel::class.java)
+//
+//        characterViewModel =
+//            ViewModelProvider(this).get(CharacterViewModel::class.java)
 
         //Liveデータからの通知をうけてFragmentやViewを設定
         operationDatabaseViewModel.allCharacters.observe(this, Observer {
@@ -86,8 +86,6 @@ class CharacterListFragment: Fragment() {
 
             /** RecyclerView **/
 
-            /** RecyclerView **/
-
             val adapter = CharaListAdapter(operationDatabaseViewModel, characterViewModel, this)
 
 
@@ -104,19 +102,34 @@ class CharacterListFragment: Fragment() {
             recyclerViewOfCharacters.adapter = adapter
 
             // RecyclerViewのクリックイベント（Adapter内のインターフェース実装）
-            adapter.setOnItemClickListener(object :
-                CharaListAdapter.OnItemClickListener {
-                override fun onItemClickListener(
-                    view: View,
-                    position: Int,
-                    sendToData: CharacterHolder?
-                ) {
-                    val intent = Intent(view.context, ConfirmCharacterStatusActivity::class.java)
-                    intent.putExtra(CharacterHolder.EXTRA_DATA, sendToData)
-                    startActivity(intent)
-                }
-            })
+//            adapter.setOnItemClickListener(object :
+//                CharaListAdapter.OnItemClickListener {
+//                override fun onItemClickListener(
+//                    view: View,
+//                    position: Int,
+//                    sendToData: CharacterHolder?
+//                ) {
+//                    Log.d("***tag***", """CCCClick!!!""")
+//                    characterViewModel.characterStatus.observe(viewLifecycleOwner, Observer {
+//                        Log.d("***tag***", """this : ${it.NAME}""")
+//                    })
 
+//                    val fragmentManager: FragmentManager = parentFragmentManager
+//                    val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+//                    fragmentTransaction.replace(
+//                        R.id.attach_screen,
+//                        ConfirmCharacterStatusFragment()
+//                    )
+//                    fragmentTransaction.commit()
+
+
+
+//                    val intent = Intent(view.context, ConfirmCharacterStatusActivity::class.java)
+//                    intent.putExtra(CharacterHolder.EXTRA_DATA, sendToData)
+//                    startActivity(intent)
+
+//                }
+//            })
 
             //キャラクター作成画面へ遷移
             btn_character_new_create.setOnClickListener {

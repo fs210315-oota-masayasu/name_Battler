@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.namebattler.HomeActivity
 import com.example.namebattler.R
 import com.example.namebattler.characters.activity.CharacterListActivity
 import com.example.namebattler.characters.activity.NewCharacterGenerateActivity
@@ -47,7 +48,7 @@ class AfterGenerationMenuFragment : Fragment() {
 
         //作成を終了する
         btn_end_to_character_create.setOnClickListener {
-            val intentOfEnd = Intent(activity, CharacterListActivity::class.java)
+            val intentOfEnd = Intent(activity, HomeActivity::class.java)
             intentOfEnd.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or  Intent.FLAG_ACTIVITY_SINGLE_TOP)
             startActivity(intentOfEnd)
         }

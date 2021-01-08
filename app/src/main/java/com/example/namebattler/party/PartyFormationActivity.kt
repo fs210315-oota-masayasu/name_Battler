@@ -15,11 +15,12 @@ import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.databinding.PartyFormationBinding
 import com.example.namebattler.menu.HeaderFragment
 import com.example.namebattler.viewModel.CharacterViewModel
+import com.example.namebattler.viewModel.OperationDatabaseViewModel
 
 class PartyFormationActivity: AppCompatActivity() {
 
     private lateinit var characterViewModel: CharacterViewModel
-//    private lateinit var operationDatabaseViewModel: OperationDatabaseViewModel
+    private lateinit var operationDatabaseViewModel: OperationDatabaseViewModel
 
     var sendToFormation = arrayListOf<CharacterHolder?>()
 
@@ -27,17 +28,17 @@ class PartyFormationActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.party_formation)
 
-//        operationDatabaseViewModel = ViewModelProvider(this).get(OperationDatabaseViewModel::class.java)
+        operationDatabaseViewModel = ViewModelProvider(this).get(OperationDatabaseViewModel::class.java)
         characterViewModel = ViewModelProvider(this).get(CharacterViewModel::class.java)
 
         //キャラクター登録件数を取得（numOfRegistrationsに格納される）
-        characterViewModel.confirmNumOfRegistrations()
+        operationDatabaseViewModel.confirmNumOfRegistrations()
         characterViewModel.numOfRegistrations.observe(this, Observer {
             //numOfRegistrationsに格納したキャラクター登録件数をセット
             characterViewModel.initCheckList()
         })
 
-        characterViewModel.allCharacters.observe(this, Observer {
+        operationDatabaseViewModel.allCharacters.observe(this, Observer {
 
             /** ヘッダー **/
             if (savedInstanceState == null){
@@ -78,7 +79,7 @@ class PartyFormationActivity: AppCompatActivity() {
 
             /** RecyclerView **/
 
-            val adapter = FormationListAdapter(characterViewModel, this)
+            val adapter = FormationListAdapter(characterViewModel,operationDatabaseViewModel, this)
             //Liveデータからの通知を受けてRecyclerViewが走る
 //        characterViewModel.allCharacters.observe(this, Observer {
 

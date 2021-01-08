@@ -23,7 +23,7 @@ import com.example.namebattler.viewModel.OperationDatabaseViewModel
 
 class FormationListAdapter(
     private val viewModel: CharacterViewModel,
-//    private val viewModel: OperationDatabaseViewModel,
+    private val operationDatabaseViewModel: OperationDatabaseViewModel,
     private val parentLifecycleOwner: LifecycleOwner
 ) : RecyclerView.Adapter<FormationListAdapter.FormationListViewHolder>() {
 
@@ -44,13 +44,13 @@ class FormationListAdapter(
 
 
     override fun getItemCount(): Int {
-        return viewModel.allCharacters.value?.size ?: 0
+        return operationDatabaseViewModel.allCharacters.value?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: FormationListViewHolder, position: Int) {
 
-        val list = viewModel.allCharacters.value ?: listOf()
-        holder.binding.viewModel = viewModel
+        val list = operationDatabaseViewModel.allCharacters.value ?: listOf()
+        holder.binding.viewModel = operationDatabaseViewModel
 
         holder.binding.position = position
 

@@ -5,60 +5,67 @@
 
     <data>
         <variable
+            name="testInt"
+            type="Integer" />
+
+        <variable
+            name="characterViewModel"
+            type="com.example.namebattler.viewModel.CharacterViewModel" />
+
+
+<!--        <variable
             name="viewModel"
             type="com.example.namebattler.viewModel.OperationDatabaseViewModel" />
 
         <variable
             name="characterViewModel"
-            type="com.example.namebattler.viewModel.CharacterViewModel" />
+            type="com.example.namebattler.viewModel.CharacterViewModel" />-->
     </data>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/wrap_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:text="2つ目の画面_表示成功"
-            android:textAlignment="center"
+            android:text="最初の画面"
             android:textSize="24sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button_second"
+            android:id="@+id/button_first"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="画面遷移"
-           app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <Button
-            android:id="@+id/button_2_view"
+            android:id="@+id/button_1_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Viewを変える"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_second" />
+            app:layout_constraintTop_toBottomOf="@+id/button_first" />
 
         <TextView
-            android:id="@+id/textView_2_view"
+            android:id="@+id/textView_1_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{characterViewModel.headerText}"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_2_view" />
+            app:layout_constraintTop_toBottomOf="@+id/button_1_view" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
-
-<!--            android:onClick="@{() -> characterViewModel.onClickDecideParty()}"
- -->
+<!--            android:onClick="@{() -> characterViewModel.onClickDecideParty()}"-->
