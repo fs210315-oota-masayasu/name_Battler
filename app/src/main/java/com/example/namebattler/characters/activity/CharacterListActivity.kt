@@ -84,7 +84,7 @@ class CharacterListActivity : AppCompatActivity() {
                 DataBindingUtil.setContentView(this, R.layout.activity_character_list)
 
             binding.lifecycleOwner = this
-            binding.viewModel = operationDatabaseViewModel
+            binding.operationDatabaseViewModel = operationDatabaseViewModel
             binding.characterViewModel = characterViewModel
 
             //adapterにlifecycleOwnerを渡す

@@ -11,26 +11,27 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.namebattler.characters.fragment.CharacterListFragment
 import com.example.namebattler.databinding.ActivityCharacterListBinding
+import com.example.namebattler.databinding.ActivityFoundationBinding
 import com.example.namebattler.party.PartyFormationFragment
 import com.example.namebattler.viewModel.CharacterViewModel
 import com.example.namebattler.viewModel.OperationDatabaseViewModel
 
 class CharacterEditActivity  : AppCompatActivity() {
 
-    private lateinit var characterViewModel: CharacterViewModel
-    private lateinit var operationDatabaseViewModel: OperationDatabaseViewModel
+//    private lateinit var characterViewModel: CharacterViewModel
+//    private lateinit var operationDatabaseViewModel: OperationDatabaseViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        DataBindingUtil.setContentView<ActivityCharacterListBinding>(this,R.layout.activity_foundation)
+        var binding: ActivityFoundationBinding = DataBindingUtil.setContentView(this,R.layout.activity_foundation)
 
-        characterViewModel =
-            ViewModelProvider(this).get(CharacterViewModel::class.java)
-
-        operationDatabaseViewModel =
-            ViewModelProvider(this).get(OperationDatabaseViewModel::class.java)
+//        characterViewModel =
+//            ViewModelProvider(this).get(CharacterViewModel::class.java)
+//
+//        operationDatabaseViewModel =
+//            ViewModelProvider(this).get(OperationDatabaseViewModel::class.java)
 
 
         //ヘッダー
@@ -42,17 +43,19 @@ class CharacterEditActivity  : AppCompatActivity() {
             // インスタンスに対して張り付け方を指定する
             fragmentTransaction.replace(
                 R.id.attach_screen,
-                CharacterListFragment(operationDatabaseViewModel,characterViewModel)
+                CharacterListFragment()
             )
+
+
+//            fragmentTransaction.replace(
+//                R.id.attach_screen,
+//                CharacterListFragment(operationDatabaseViewModel,characterViewModel)
+//            )
 
             // 張り付けを実行
             fragmentTransaction.commit()
         }
 
-        //                    Log.d("***tag***", """CCCClick!!!""")
-                    characterViewModel.characterStatus.observe(this, Observer {
-                        Log.d("***tag***", """this : ${it.NAME}""")
-                    })
 
     }
 

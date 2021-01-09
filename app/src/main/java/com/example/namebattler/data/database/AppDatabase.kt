@@ -23,21 +23,21 @@ public abstract class AppDatabase : RoomDatabase() {
                     //初期登録例（最初にDB内のクリアしないと起動時に重複して登録される）
                     var characterDao = database.charactersDao()
                     //クリア処理
-                    //characterDao.deleteAll()
-//
-//                    accessCheckCharaData =
-//                        Characters(
-//                            "せんし",
-//                            0,
-//                            50,
-//                            50,
-//                            50,
-//                            50,
-//                            50,
-//                            50,
-//                            1588085823101
-//                        )
-//                    characterDao.insert(accessCheckCharaData)
+                    characterDao.deleteAll()
+
+                    var accessCheckCharaData =
+                        Characters(
+                            "せんし",
+                            0,
+                            50,
+                            50,
+                            50,
+                            50,
+                            50,
+                            50,
+                            1588085823101
+                        )
+                    characterDao.insert(accessCheckCharaData)
                 }
             }
         }

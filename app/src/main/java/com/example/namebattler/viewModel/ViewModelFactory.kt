@@ -1,10 +1,10 @@
 package com.example.namebattler.viewModel
 
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-class ViewModelFactory: ViewModelProvider.NewInstanceFactory(){
+
+class ViewModelFactory(): ViewModelProvider.NewInstanceFactory(){
     companion object{
         var characterViewModel = CharacterViewModel()
     }
@@ -20,6 +20,6 @@ class ViewModelFactory: ViewModelProvider.NewInstanceFactory(){
         }as T
     }
 
-fun Fragment.getViewModelFactory(): ViewModelFactory{
+fun getViewModelFactory(): ViewModelFactory{
     return ViewModelFactory()
 }
