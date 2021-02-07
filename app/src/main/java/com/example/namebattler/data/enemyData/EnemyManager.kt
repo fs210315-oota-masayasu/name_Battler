@@ -24,11 +24,8 @@ class EnemyManager {
             if (it != OperationIdEnum.ERROR){
                 operationList.add(it.text)
             }
-
         }
     }
-
-
 
     fun selectEnemyOperation() :String{
         //取得する要素をランダムで決定する

@@ -8,12 +8,9 @@
             name="viewModel"
             type="com.example.namebattler.viewModel.OperationDatabaseViewModel" />
 
-
-
         <variable
             name="partyFormationViewModel"
             type="com.example.namebattler.viewModel.PartyFormationViewModel" />
-
 
         <variable
             name="position"

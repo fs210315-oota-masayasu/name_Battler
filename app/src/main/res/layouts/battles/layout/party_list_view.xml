@@ -183,10 +183,6 @@
                 android:gravity="center"
                 android:text="@{String.valueOf(partyFormationViewModel.selectionCharacterList[position].AGI)}"
                 android:textSize="18sp" />
-
-
         </LinearLayout>
-
-
     </FrameLayout>
 </layout>

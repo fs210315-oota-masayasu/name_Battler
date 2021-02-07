@@ -5,10 +5,6 @@
 
     <data>
         <variable
-            name="operationDatabaseViewModel"
-            type="com.example.namebattler.viewModel.OperationDatabaseViewModel" />
-
-        <variable
             name="characterViewModel"
             type="com.example.namebattler.viewModel.CharacterViewModel" />
 

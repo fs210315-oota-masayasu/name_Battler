@@ -1,8 +1,6 @@
 package com.example.namebattler.party.fragment
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +14,6 @@ import com.example.namebattler.R
 import com.example.namebattler.databinding.PartyFormationBinding
 import com.example.namebattler.menu.HeaderFragment
 import com.example.namebattler.party.FormationListAdapter
-import com.example.namebattler.party.activity.BattleLobbyActivity
 import com.example.namebattler.util.BackStack
 import com.example.namebattler.util.HeaderFlag
 import com.example.namebattler.viewModel.*
@@ -24,7 +21,6 @@ import com.example.namebattler.viewModel.*
 class PartyFormationFragment: Fragment() {
 
     private lateinit var binding: PartyFormationBinding
-
 
     /** ViewModel **/
     private val partyFormationViewModel: PartyFormationViewModel by viewModels{ getViewModelFactory() }
@@ -35,10 +31,7 @@ class PartyFormationFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
-
-
+    ): View {
         //キャラクター登録件数を取得（numOfRegistrationsに格納される）
         operationDatabaseViewModel.confirmNumOfRegistrations()
         operationDatabaseViewModel.numOfRegistrations.observe(viewLifecycleOwner,{
@@ -48,16 +41,11 @@ class PartyFormationFragment: Fragment() {
                 headerText.postValue(getString(R.string.party_formation))
                 outputFlag = HeaderFlag.RETURN_HOME
             }
-
-
             //numOfRegistrationsに格納したキャラクター登録件数をセット
             operationDatabaseViewModel.initCheckList()
             //PartyFormationViewModelにもせっと
             partyFormationViewModel.isCheckedPartyFormation  = operationDatabaseViewModel.isCheckedPartyFormation
-
         })
-
-
 
         //bindingで画面を生成 スコープ関数でbindingの指定を省略
         binding = PartyFormationBinding.inflate(inflater,container,false).apply {
@@ -80,14 +68,8 @@ class PartyFormationFragment: Fragment() {
                 // 張り付けを実行
                 fragmentTransaction.commit()
 
-
-
-
-
-
                 /** RecyclerView **/
                 val adapter = FormationListAdapter(operationDatabaseViewModel,partyFormationViewModel,viewLifecycleOwner)
-
                 lifecycleOwner = viewLifecycleOwner
                 viewModel = partyFormationViewModel
 
@@ -96,10 +78,8 @@ class PartyFormationFragment: Fragment() {
                 recyclerViewOfCharacters.layoutManager = LinearLayoutManager(this@PartyFormationFragment.context)
                 recyclerViewOfCharacters.adapter = adapter
 
-
                 btnDecideParty.setOnClickListener {
                     partyFormationViewModel.onClickDecideParty()
-
                     partyFormationViewModel.isClickDecideParty.observe(viewLifecycleOwner, {
 
                         //ヘッダー情報をセット
@@ -111,44 +91,24 @@ class PartyFormationFragment: Fragment() {
                         //初期化処理
                         partyFormationViewModel.initPartyFormationData()
 
-
                         val sentToBattleLobbyManager: FragmentManager = parentFragmentManager
                         val sentToBattleLobbyTransaction: FragmentTransaction = sentToBattleLobbyManager.beginTransaction()
-
+                        //BackStackを設定
                         sentToBattleLobbyTransaction.addToBackStack(BackStack.PARTY_FORMATION.name)
-
-
-
                         sentToBattleLobbyTransaction.replace(
                             R.id.attach_screen,
                             BattleLobbyFragment()
                         )
-
                         sentToBattleLobbyTransaction.commit()
-
                     })
-
                 }
-
-
-
-
-
             })
         }
-
-
         return binding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         operationDatabaseViewModel = ViewModelProvider(this).get(OperationDatabaseViewModel::class.java)
-
-
-
-
-
     }
 }

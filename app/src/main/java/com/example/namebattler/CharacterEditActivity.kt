@@ -29,10 +29,5 @@ class CharacterEditActivity  : AppCompatActivity() {
             // 張り付けを実行
             fragmentTransaction.commit()
         }
-
-
     }
-
-
-
 }

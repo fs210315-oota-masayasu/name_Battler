@@ -30,13 +30,11 @@ class BattleProcessManager {
             //防御判定
             val defPoint: ActionHolder = if (attackResult.isMagicDamage) {
                 MagicDefense().getSkillData(targetInformation)
-                //Skills().magicDefense(targetInformation)
             } else {
                 MeleeDefense().getSkillData(targetInformation)
-                //Skills().meleeDefense(targetInformation)
             }
             var damage = 0
-            var whoIs = targetInformation.name + "は"
+            val whoIs = targetInformation.name + "は"
 
             val isDamage = checkDamageType(attackResult, defPoint)
             if (isDamage == DamageTypeEnum.NORMAL_DAMAGE.name) {
@@ -47,8 +45,7 @@ class BattleProcessManager {
                 resultLog.add(whoIs + whatDamage)
 
             } else if(isDamage == DamageTypeEnum.NO_DAMAGE.name) {    //非殺傷（眠り）の攻撃を除く
-                var whatDo = ""
-                whatDo = if (targetInformation.cond.containsKey(ConditionEnum.SLEEP.text)){
+                val whatDo: String = if (targetInformation.cond.containsKey(ConditionEnum.SLEEP.text)){
                     "ダメージを受けなかった"
                 }else{
                     defPoint.flavorText
@@ -77,7 +74,7 @@ class BattleProcessManager {
                 if (attackResult.changingCond.first != ""){
 
                     //状態異常の抵抗判定
-                    val whoIs = targetInformation.name + "は"
+                    val whoAreYouCond = targetInformation.name + "は"
                     val whatCond: String
 
                     val isResist: Boolean = if (damage > 0 || attackResult.changingCond.first == ConditionEnum.SLEEP.text){
@@ -97,14 +94,13 @@ class BattleProcessManager {
                         whatCond = "抵抗した"
                     }
                     //ログ設定
-                    resultLog.add(whoIs + whatCond)
+                    resultLog.add(whoAreYouCond + whatCond)
                 }
             }
             //標的ごとに情報を更新
             val targetId = targetInformation.id
             characterInformation[targetId] = targetInformation
         }
-//        resultLog.add("")
         return resultLog
     }
 
@@ -138,7 +134,7 @@ class BattleProcessManager {
                 resultLog.add("${targetInformation.name}のHPが回復した")
             }
             //標的（支援相手）の情報を更新
-            var targetId = targetInformation.id
+            val targetId = targetInformation.id
             characterInformation[targetId] = targetInformation
         }
         return resultLog

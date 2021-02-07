@@ -6,7 +6,6 @@
         <variable
             name="headerViewModel"
             type="com.example.namebattler.viewModel.HeaderViewModel" />
-
     </data>
 
     <FrameLayout

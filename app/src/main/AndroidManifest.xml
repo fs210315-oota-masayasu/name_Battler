@@ -21,41 +21,10 @@
 
         </activity>
 
-        <activity android:name=".characters.activity.CharacterListActivity">
-        </activity>
-
-        <activity android:name=".party.activity.PartyFormationActivity">
-        </activity>
-
-        <activity android:name=".party.activity.BattleLobbyActivity">
-        </activity>
-
-        <activity android:name=".characters.activity.NewCharacterGenerateActivity">
-        </activity>
-
-        <activity android:name=".characters.activity.ConfirmGenerationCharacterActivity">
-        </activity>
-
-        <activity android:name=".characters.activity.ConfirmCharacterStatusActivity">
-        </activity>
-
-        <activity android:name=".battle.activity.BattleMainActivity">
-        </activity>
-
-        <activity android:name=".battle.activity.OperationChangeActivity">
-        </activity>
-
-
         <activity android:name=".CharacterEditActivity">
         </activity>
         <activity android:name=".BattleActivity">
         </activity>
-
-        <activity android:name=".TestActivity">
-        </activity>
-
-
-
 
 
     </application>

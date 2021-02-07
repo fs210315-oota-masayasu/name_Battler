@@ -177,7 +177,7 @@ class Warrior : JobManager.JobAbstract() {
             }
         }
 
-        var targetCharacter = mutableListOf<CharacterInformationHolder>()
+        val targetCharacter = mutableListOf<CharacterInformationHolder>()
         var actionName: String? = null
 
         when (operationName) {

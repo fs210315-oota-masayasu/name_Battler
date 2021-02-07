@@ -2,12 +2,6 @@ package com.example.namebattler.util
 
 import com.example.namebattler.data.jobData.*
 
-enum class RadioType{
-    TYPE_A,
-    TYPE_B,
-    TYPE_C
-}
-
 enum class HeaderFlag{
     DEFAULT,
     BATTLE_MAIN,

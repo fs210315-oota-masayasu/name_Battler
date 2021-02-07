@@ -11,8 +11,6 @@ class ViewModelFactory(): ViewModelProvider.NewInstanceFactory(){
         var enemyViewModel = EnemyViewModel()
         var battleViewModel = BattleViewModel()
         var headerViewModel = HeaderViewModel()
-
-
     }
     override fun<T: ViewModel>create(modelClass: Class<T>) =
         with(modelClass){

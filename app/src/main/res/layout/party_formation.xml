@@ -7,11 +7,9 @@
         <variable
             name="viewModel"
             type="com.example.namebattler.viewModel.PartyFormationViewModel" />
-
         <variable
             name="position"
             type="Integer" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,13 +56,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-
-            />
+            app:layout_constraintVertical_bias="1.0"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
-
-<!--            android:onClick="@{() -> viewModel.onClickDecideParty()}"-->
-
 

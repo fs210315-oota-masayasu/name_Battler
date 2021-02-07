@@ -27,9 +27,4 @@ class CharactersRepository (private val charactersDao : CharactersDao){
      fun countOverlap(searchName: String) : Int?{
         return charactersDao.countOverlap(searchName)
     }
-
-    fun areYouThere(name :String)  : LiveData<List<Characters>>{
-        return charactersDao.getCharacterAtName(name)
-    }
-
 }

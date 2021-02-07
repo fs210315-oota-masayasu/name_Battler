@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
     </data>
 
     <LinearLayout
@@ -22,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="-1dp"
-            android:text="TextView"
+            android:text="@string/empty"
             app:autoSizeMaxTextSize="16sp"
             app:autoSizeMinTextSize="14sp"
             app:autoSizeTextType="uniform" />
@@ -54,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="100"
+                android:text="@string/empty"
                 app:autoSizeMaxTextSize="16sp"
                 app:autoSizeMinTextSize="14dp"
                 app:autoSizeTextType="uniform" />
@@ -78,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:gravity="center"
-                android:text="999"
+                android:text="@string/empty"
                 app:autoSizeMaxTextSize="16sp"
                 app:autoSizeMinTextSize="14sp"
                 app:autoSizeTextType="uniform" />
@@ -110,7 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="100"
+                android:text="@string/empty"
                 app:autoSizeMaxTextSize="16sp"
                 app:autoSizeMinTextSize="14sp"
                 app:autoSizeTextType="uniform" />
@@ -133,7 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
-                android:text="999"
+                android:text="@string/empty"
                 app:autoSizeMaxTextSize="16sp"
                 app:autoSizeMinTextSize="14dp"
                 app:autoSizeTextType="uniform" />
@@ -144,7 +143,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="-1dp"
-            android:text="TextView"
+            android:text="@string/empty"
             app:autoSizeMaxTextSize="16sp"
             app:autoSizeMinTextSize="14sp"
             app:autoSizeTextType="uniform" />

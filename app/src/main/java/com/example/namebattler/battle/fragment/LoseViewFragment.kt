@@ -11,7 +11,6 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import com.example.namebattler.HomeActivity
 import com.example.namebattler.R
-import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.databinding.FragmentLoseViewBinding
 import com.example.namebattler.party.fragment.PartyFormationFragment
 import com.example.namebattler.util.HeaderFlag
@@ -19,12 +18,7 @@ import com.example.namebattler.viewModel.BattleViewModel
 import com.example.namebattler.viewModel.HeaderViewModel
 import com.example.namebattler.viewModel.getViewModelFactory
 
-/*import kotlinx.android.synthetic.main.fragment_lose_view.**/
-
 class LoseViewFragment : Fragment() {
-
-    var enemyObj = arrayListOf<CharacterHolder>()
-    var playerObj = arrayListOf<CharacterHolder>()
 
     private lateinit var binding: FragmentLoseViewBinding
     private val battleViewModel: BattleViewModel by viewModels{ getViewModelFactory() }
@@ -36,8 +30,6 @@ class LoseViewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentLoseViewBinding.inflate(inflater, container, false).apply {
-
-
 
             //再挑戦
             challengeAgain.setOnClickListener {
@@ -96,19 +88,7 @@ class LoseViewFragment : Fragment() {
                 startActivity(setIntentEndBattle)
             }
         }
-
-
-        // Inflate the layout for this fragment
         return binding.root
     }
 
-
-/*    companion object {
-        @JvmStatic
-        fun newInstance(enemyList :ArrayList<CharacterHolder>, playerList :ArrayList<CharacterHolder>) =
-            LoseViewFragment().apply {
-                enemyObj = enemyList
-                playerObj = playerList
-            }
-    }*/
 }

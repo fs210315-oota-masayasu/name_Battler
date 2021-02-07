@@ -6,11 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.viewModels
 import com.example.namebattler.databinding.ActivityFoundationBinding
 import com.example.namebattler.party.fragment.PartyFormationFragment
-import com.example.namebattler.util.HeaderFlag
-import com.example.namebattler.viewModel.HeaderViewModel
 import com.example.namebattler.viewModel.PartyFormationViewModel
 import com.example.namebattler.viewModel.getViewModelFactory
 
@@ -25,8 +22,6 @@ class BattleActivity  : AppCompatActivity() {
 
         //初期化処理
         partyFormationViewModel.initPartyFormationData()
-
-
 
         if (savedInstanceState == null){
             // FragmentManagerのインスタンス生成

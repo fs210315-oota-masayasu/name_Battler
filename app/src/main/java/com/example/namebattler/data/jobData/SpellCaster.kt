@@ -65,7 +65,7 @@ class SpellCaster : JobManager.JobAbstract() {
 
 
         //ログテキスト
-        var setText = mutableListOf<String>()
+        val setText = mutableListOf<String>()
 
         when (skillName) {
             SKillEnum.THUNDERBOLT.name -> {
@@ -138,24 +138,28 @@ class SpellCaster : JobManager.JobAbstract() {
         val isMagicDamage: Boolean
 
         //ログテキスト
-        var setText = mutableListOf<String>()
+        val setText = mutableListOf<String>()
 
         val selectSpell = (0..2).random()
-        if (selectSpell == 0) {
-            actionHolder = Thunderbolt().getSkillData(character)
-            targetId = TargetIdEnum.ONE_ATTACK.id
-            setText.add(character.name + "は" + actionHolder.flavorText)
-            isMagicDamage = true
-        } else if (selectSpell == 1) {
-            actionHolder = FireBall().getSkillData(character)
-            targetId = TargetIdEnum.ALL_ATTACK.id
-            setText.add(character.name + "は" + actionHolder.flavorText)
-            isMagicDamage = true
-        } else {
-            actionHolder = SleepCloud().getSkillData(character)
-            targetId = TargetIdEnum.ALL_ATTACK.id
-            setText.add(character.name + "は" + actionHolder.flavorText)
-            isMagicDamage = false
+        when (selectSpell) {
+            0 -> {
+                actionHolder = Thunderbolt().getSkillData(character)
+                targetId = TargetIdEnum.ONE_ATTACK.id
+                setText.add(character.name + "は" + actionHolder.flavorText)
+                isMagicDamage = true
+            }
+            1 -> {
+                actionHolder = FireBall().getSkillData(character)
+                targetId = TargetIdEnum.ALL_ATTACK.id
+                setText.add(character.name + "は" + actionHolder.flavorText)
+                isMagicDamage = true
+            }
+            else -> {
+                actionHolder = SleepCloud().getSkillData(character)
+                targetId = TargetIdEnum.ALL_ATTACK.id
+                setText.add(character.name + "は" + actionHolder.flavorText)
+                isMagicDamage = false
+            }
         }
 
         val result = ActionResultHolder()
@@ -213,11 +217,11 @@ class SpellCaster : JobManager.JobAbstract() {
                     actionName = SKillEnum.FIREBALL.name
 
                 } else if (selectSpell == 1 || characterHolder.currentMp >= 20) {
-                    targetCharacter!!.add(enemyList.random())
+                    targetCharacter.add(enemyList.random())
                     actionName = SKillEnum.THUNDERBOLT.name
 
                 } else {
-                    targetCharacter!!.add(enemyList.random())
+                    targetCharacter.add(enemyList.random())
                     actionName = SKillEnum.ONE_MELEE_ATTACK.name
                 }
             }
@@ -249,12 +253,12 @@ class SpellCaster : JobManager.JobAbstract() {
 
 
                 } else {
-                    targetCharacter!!.add(enemyList.random())
+                    targetCharacter.add(enemyList.random())
                     actionName = SKillEnum.ONE_MELEE_ATTACK.name
                 }
             }
         }
-        return Pair(actionName ?: "", targetCharacter!!)
+        return Pair(actionName ?: "", targetCharacter)
     }
 
 
@@ -265,9 +269,9 @@ class SpellCaster : JobManager.JobAbstract() {
     ):
             Pair<String, MutableList<CharacterInformationHolder>> {
         var resultList = mutableListOf<CharacterInformationHolder>()
-        var actionName: String
+        val actionName: String
         var listOfWounded = mutableListOf<CharacterInformationHolder>()
-        var listOfBadCond = mutableListOf<CharacterInformationHolder>()
+        val listOfBadCond = mutableListOf<CharacterInformationHolder>()
 
         currentBuddyList.forEach {
             when (operationName) {

@@ -19,27 +19,17 @@ import com.example.namebattler.viewModel.BattleViewModel
 import com.example.namebattler.viewModel.HeaderViewModel
 import com.example.namebattler.viewModel.getViewModelFactory
 
-/*import kotlinx.android.synthetic.main.fragment_win_view.**/
-
 class WinViewFragment : Fragment() {
-
-    var enemyObj = arrayListOf<CharacterHolder>()
-    var playerObj = arrayListOf<CharacterHolder>()
 
     private lateinit var binding: FragmentWinViewBinding
     private val battleViewModel: BattleViewModel by viewModels{ getViewModelFactory() }
     private val headerViewModel: HeaderViewModel by viewModels{ getViewModelFactory() }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentWinViewBinding.inflate(inflater, container, false).apply {
-
-
-
-
             //再挑戦
             challengeAgain.setOnClickListener {
                 //ヘッダー情報をセット
@@ -50,7 +40,6 @@ class WinViewFragment : Fragment() {
 
                 /** ステータスの初期情報の取得とLiveData（informationNotice）への格納 **/
                 battleViewModel.setInformationNotice()
-
                 // FragmentManagerのインスタンス生成
                 val fragmentManager: FragmentManager = parentFragmentManager
                 // FragmentTransactionのインスタンスを取得
@@ -62,10 +51,8 @@ class WinViewFragment : Fragment() {
                 )
                 fragmentTransaction.commit()
             }
-
             //次の対戦へ
             nextBattle.setOnClickListener {
-
                 //ヘッダー情報をセット
                 headerViewModel.apply {
                     headerText.postValue(getString(R.string.party_formation))
@@ -85,9 +72,7 @@ class WinViewFragment : Fragment() {
                     // 張り付けを実行
                     fragmentTransaction.commit()
                 }
-
             }
-
             //対戦を終了する
             endBattle.setOnClickListener {
                 val setIntentEndBattle = Intent(activity, HomeActivity::class.java)
@@ -95,25 +80,6 @@ class WinViewFragment : Fragment() {
                 startActivity(setIntentEndBattle)
             }
         }
-
-
-        // Inflate the layout for this fragment
         return binding.root
     }
-
-    override fun onStart() {
-        super.onStart()
-
-    }
-
-
-/*    companion object {
-        @JvmStatic
-        fun newInstance(enemyList :ArrayList<CharacterHolder>, playerList :ArrayList<CharacterHolder>) =
-            WinViewFragment().apply{
-                enemyObj = enemyList
-                playerObj = playerList
-        }
-
-    }*/
 }

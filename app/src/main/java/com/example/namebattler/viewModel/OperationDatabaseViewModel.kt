@@ -7,11 +7,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.namebattler.characters.CharactersRepository
-import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.data.database.AppDatabase
 import com.example.namebattler.data.database.Characters
 import com.example.namebattler.data.jobData.JobManager
-import com.example.namebattler.util.Belong
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.concurrent.thread

@@ -13,26 +13,12 @@ open class JobManager {
     var agi: Int = 0
     var luck: Int = 0
 
-//    //各ジョブのインスタンス
-//    private var warriorObj = Warrior()          //  "戦士"
-//    private var spellCasterObj = SpellCaster()  //  "魔法使い"
-//    private var priestObj = Priest()            //  ,"僧侶"
-//    private var berserkObj = Berserk()          //  "バーサーカー"
-
-
     /*
     指定したジョブからパラメータを取得するしてメンバ変数へ格納する
     */
     fun addParam(job: Int) {
         var param = Parameter(0, 0, 0, 0, 0, 0)
         when (job) {
-            /*
-            ジョブのインデックスを条件にして処理を分ける
-                0 -> param = Warrior()
-                1 -> param = SpellCaster()
-                2 -> param = Priest()
-                3 -> param = Berserk()
-            */
             0 -> {
                 warriorObj.addParam()
                 param = Parameter(
@@ -40,7 +26,6 @@ open class JobManager {
                     warriorObj.def, warriorObj.agi, warriorObj.luck
                 )
             }
-
             1 -> {
                 spellCasterObj.addParam()
                 param = Parameter(
@@ -48,8 +33,6 @@ open class JobManager {
                     spellCasterObj.def, spellCasterObj.agi, spellCasterObj.luck
                 )
             }
-
-
             2 -> {
                 priestObj.addParam()
                 param = Parameter(

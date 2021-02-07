@@ -1,6 +1,5 @@
 package com.example.namebattler.battle
 
-import android.util.Log
 import com.example.namebattler.data.battleData.ActionResultHolder
 import com.example.namebattler.data.battleData.BattleProcessManager
 import com.example.namebattler.data.battleData.CharacterInformationHolder
@@ -23,8 +22,6 @@ class BattleManager {
     private var deadList = arrayListOf<CharacterInformationHolder>()
     var count = 0
 
-
-
     fun initCharacterList(
         enemyObj: ArrayList<CharacterInformationHolder>,
         partyObj: ArrayList<CharacterInformationHolder>
@@ -38,10 +35,6 @@ class BattleManager {
         this.playerList = partyObj
     }
 
-
-
-
-
     fun setCurrentInformation(characterInformation: ArrayList<CharacterInformationHolder>) {
         this.currentInformation = characterInformation
     }
@@ -50,6 +43,7 @@ class BattleManager {
         return currentInformation
     }
 
+    /** 行動順決め **/
     fun initInitiative() {
 
         //player、enemyをまとめる
@@ -57,6 +51,8 @@ class BattleManager {
         characterList.addAll(enemyList)
         characterList.addAll(playerList)
 
+
+        //AGIの高い順に所属、名前、AGIをinitiativeに格納していく
         initiative = characterList.associate { Pair(it!!.belong, it.name) to (it.agi) }.toList()
             .sortedBy { it.second }.reversed().toMap()
     }
@@ -65,8 +61,6 @@ class BattleManager {
     fun battleProcess(sendToOperation: String): MutableList<String> {
         val resultLog = mutableListOf<String>()
         var operation : String
-
-
 
         resultLog.add("--------[$count ターン]--------")
 
@@ -155,14 +149,11 @@ class BattleManager {
         return resultLog
     }
 
-
+    /** 行動処理決め **/
     private fun selectAttackResult(
         operation: String,
         actionCharacter: CharacterInformationHolder
     ): Pair<ActionResultHolder, Pair<String, MutableList<CharacterInformationHolder>>> {
-        //ジョブインスタンス取得
-
-
 
         //selectSkillで使用スキルと対象者を選定する
         /** selectSkill param
@@ -173,9 +164,6 @@ class BattleManager {
         var attackResult = ActionResultHolder()
 
         val actorJob = actionCharacter.job.let { JobManager().getJobInstance(it) }
-
-
-
 
         //このタイミングで戦闘不能者をターゲットからはじく
         val targetList = getCurrentInformation().filterNot { it.currentHp <= 0 } as ArrayList<CharacterInformationHolder>
@@ -195,6 +183,7 @@ class BattleManager {
         return Pair(attackResult, selectSkill)
     }
 
+    /** 勝敗確認 **/
     fun isEnding(): String{
 
         var ending = ""
@@ -202,6 +191,8 @@ class BattleManager {
         var deadEnemyNum = 0
         var deadPlayerNum = 0
 
+        //戦闘不能者をカウント
+        // 戦闘不能者が規定数に足していたら勝敗を返す
         deadList.forEach {
             if (it.belong == Belong.ENEMY.name){
                 deadEnemyNum ++
@@ -218,6 +209,7 @@ class BattleManager {
         return ending
     }
 
+    /** initiativeの情報から行為者の情報を抽出する **/
     private fun selectActionCharacter(initiativeKey: Pair<String, String>): CharacterInformationHolder? {
         var setList = mutableListOf<CharacterInformationHolder?>()
 

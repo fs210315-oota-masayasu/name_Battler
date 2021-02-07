@@ -1,38 +1,31 @@
 package com.example.namebattler.characters.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import com.example.namebattler.R
-import com.example.namebattler.databinding.CharacterNewCreateBinding
 import com.example.namebattler.databinding.OutputScreenBinding
 import com.example.namebattler.menu.HeaderFragment
-import com.example.namebattler.util.HeaderFlag
 import com.example.namebattler.viewModel.CharacterViewModel
-import com.example.namebattler.viewModel.HeaderViewModel
 import com.example.namebattler.viewModel.getViewModelFactory
 
-//キャラクター作成完了画面
+/** キャラクター作成完了画面 **/
 class ConfirmGenerationCharacterFragment: Fragment() {
 
     private lateinit var binding: OutputScreenBinding
     private val setCharacterViewModel : CharacterViewModel by viewModels{ getViewModelFactory() }
-    private val headerViewModel: HeaderViewModel by viewModels{ getViewModelFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
-        Log.d("test", "name ${setCharacterViewModel.characterStatus.value!!.NAME}")
         binding = OutputScreenBinding.inflate(inflater, container, false).apply {
             //ヘッダー
             if (savedInstanceState == null){
@@ -41,10 +34,7 @@ class ConfirmGenerationCharacterFragment: Fragment() {
                 // FragmentTransactionのインスタンスを取得
                 val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
                 // インスタンスに対して張り付け方を指定する
-
-
                 setCharacterViewModel.bindEditText.postValue(setCharacterViewModel.characterStatus.value!!.NAME)
-
                 fragmentTransaction.replace(
                     R.id.header_area,
                     HeaderFragment()

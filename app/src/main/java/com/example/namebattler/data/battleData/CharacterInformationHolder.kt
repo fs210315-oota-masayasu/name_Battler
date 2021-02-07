@@ -30,9 +30,5 @@ data class CharacterInformationHolder(
     var cond :MutableMap<String,Int>
 
 ): Serializable {
-
     constructor():this(0,"","","",0,0,0,0,0,0,0,0,0,0,0,0, mutableMapOf())
-    companion object {
-        const val EXTRA_DATA = "EXTRA_DATA"
-    }
 }

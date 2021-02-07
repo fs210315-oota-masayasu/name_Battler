@@ -1,28 +1,18 @@
 package com.example.namebattler.characters.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.*
 import androidx.lifecycle.ViewModelProvider
-import com.example.namebattler.CharacterEditActivity
-import com.example.namebattler.R
 import com.example.namebattler.viewModel.OperationDatabaseViewModel
-import com.example.namebattler.characters.activity.CharacterListActivity
-import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.data.database.Characters
-import com.example.namebattler.data.database.DateConverter
-import com.example.namebattler.data.jobData.JobManager
 import com.example.namebattler.databinding.FragmentCharacterDataDeleteMenuBinding
 import com.example.namebattler.message.AlertDataDelete
 import com.example.namebattler.util.BackStack
 import com.example.namebattler.viewModel.CharacterViewModel
 import com.example.namebattler.viewModel.getViewModelFactory
-import java.nio.file.Files.delete
 
 /** キャラクター詳細画面 削除ボタンFragment **/
 class CharacterDataDeleteMenuFragment: Fragment(), AlertDataDelete.NoticeDialogListener{

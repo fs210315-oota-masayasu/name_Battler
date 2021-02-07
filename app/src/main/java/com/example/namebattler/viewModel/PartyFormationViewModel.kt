@@ -1,24 +1,13 @@
 package com.example.namebattler.viewModel
 
-import android.app.Application
-import android.content.Context
-import android.util.Log
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.*
-import com.example.namebattler.R
-import com.example.namebattler.characters.CharactersRepository
-import com.example.namebattler.data.database.AppDatabase
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.namebattler.data.database.Characters
 import com.example.namebattler.data.jobData.JobManager
 import com.example.namebattler.util.EntryRule
-import kotlin.concurrent.thread
 
 class PartyFormationViewModel: ViewModel(){
 
-    var numOfRegistrations = MutableLiveData<Int>()
-
-
-    //TODO 後で別のViewModelへ移動させる 「BattleViewModel」とか
     /** パーティ構成画面 **/
 
     //OperationDatabaseViewModelからallCharacterを受け取って格納
@@ -36,45 +25,26 @@ class PartyFormationViewModel: ViewModel(){
         btnTextDecideParty = MutableLiveData<String>().apply {
             value = "3名選択してください"
         }
-
     }
-
-
-
     //選択するキャラクターデータの候補リスト
     var addCharacterList : MutableList<Characters> = mutableListOf()
-
-
-
     //パーティ編成画面のチェック状態（OperationDatabaseViewModelから値を受け取って来る）
     var isCheckedPartyFormation: MutableList<MutableLiveData<Boolean>> = mutableListOf()
-
-
     //ボタンテキスト
     var btnTextDecideParty = MutableLiveData<String>().apply {
         value = "3名選択してください"
     }
-
     //チェックした数を保持
     var buttonCounter : MutableLiveData<Int> = MutableLiveData()
-
     //チェック数が規定数に達しているか判定
     var isClickDecideParty : MutableLiveData<Boolean> = MutableLiveData()
 
-
-
-
     //    リスト（チェックボックス以外も含む）をタップした際にチェックがついたり外れたりする処理
     fun onClickedCheckbox(position: Int) {
-
         //タッチしたチェックボックスの状態を取得
         var isChecked = this.isCheckedPartyFormation[position].value ?: false
-
         //チェックしたキャラクターデータを抽出
         var clickedCharacter = allCharacterList[position]
-
-
-
         //チェック状態を反転してキャラクターデータを候補リストへ格納・除外する
         when (isChecked) {
             false -> {
@@ -126,15 +96,8 @@ class PartyFormationViewModel: ViewModel(){
         }
     }
 
-
-
     //DBに格納されている値から名前へと変換
     fun getJobName(index: Int): String {
         return JobManager().getJobList(index)
     }
-
-
-
-
-
 }

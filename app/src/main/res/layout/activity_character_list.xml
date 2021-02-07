@@ -4,13 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="operationDatabaseViewModel"
-            type="com.example.namebattler.viewModel.OperationDatabaseViewModel" />
-
-        <variable
-            name="characterViewModel"
-            type="com.example.namebattler.viewModel.CharacterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

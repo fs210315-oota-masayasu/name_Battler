@@ -12,7 +12,7 @@ import com.example.namebattler.R
 //EnumをリソースIDに変換する
 @InverseMethod("buttonIdToType")
 fun typeToButtonId(jobEnum: JobEnum): Int{
-    var selectedButtonId = -1
+    var selectedButtonId: Int
 
     jobEnum.run {
         selectedButtonId = when(this){
@@ -28,7 +28,7 @@ fun typeToButtonId(jobEnum: JobEnum): Int{
 }
 
 fun buttonIdToType(selectedButtonId: Int): JobEnum {
-    var type: JobEnum? = null
+    val type: JobEnum?
     when(selectedButtonId){
         R.id.rbt_select_warrior -> {
             type = JobEnum.WARRIOR
@@ -54,7 +54,7 @@ fun buttonIdToType(selectedButtonId: Int): JobEnum {
 //EnumをリソースIDに変換する
 @InverseMethod("operationButtonIdToType")
 fun typeToOperationButtonId(operationIdEnum: OperationIdEnum): Int{
-    var selectedButtonId = -1
+    var selectedButtonId: Int
 
     operationIdEnum.run {
         selectedButtonId = when(this){
@@ -69,20 +69,18 @@ fun typeToOperationButtonId(operationIdEnum: OperationIdEnum): Int{
 }
 
 fun operationButtonIdToType(selectedButtonId: Int): OperationIdEnum{
-    var type: OperationIdEnum? = null
-    when(selectedButtonId){
+    return when(selectedButtonId){
         R.id.btn_offensive -> {
-            type = OperationIdEnum.OFFENSIVE
+            OperationIdEnum.OFFENSIVE
         }
         R.id.btn_defensive -> {
-            type = OperationIdEnum.DEFENSIVE
+            OperationIdEnum.DEFENSIVE
         }
         R.id.btn_flexible ->{
-            type = OperationIdEnum.FLEXIBLE
+            OperationIdEnum.FLEXIBLE
         }
         else ->{
-            type = OperationIdEnum.ERROR
+            OperationIdEnum.ERROR
         }
     }
-    return type
 }

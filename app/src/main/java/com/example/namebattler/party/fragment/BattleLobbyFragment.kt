@@ -1,7 +1,6 @@
 package com.example.namebattler.party.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.namebattler.R
 import com.example.namebattler.battle.fragment.BattleMainFragment
@@ -37,20 +35,13 @@ class BattleLobbyFragment:Fragment() {
 
     var sendToEnemy = arrayListOf<CharacterHolder?>()
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
-
+    ): View {
         enemyViewModel.enemyFormation.value = EnemyManager().getEnemyData()
-
         binding = BattleLobbyBinding.inflate(inflater,container,false).apply {
-
-
 
             /** ヘッダー **/
             if (savedInstanceState == null) {
@@ -68,11 +59,8 @@ class BattleLobbyFragment:Fragment() {
                 fragmentTransaction.commit()
             }
 
-
             /** エネミーリスト **/
             lifecycleOwner = viewLifecycleOwner
-
-
             enemyViewModel.enemyFormation.observe(viewLifecycleOwner,{
 
                 //RecyclerViewの取得
@@ -84,9 +72,6 @@ class BattleLobbyFragment:Fragment() {
 
             })
 
-
-
-
             /** 編成済みパーティリスト **/
             val recyclerViewOfPartyList = partyListView
             val partyAdapter = PlayerListAdapter(partyFormationViewModel, viewLifecycleOwner)
@@ -95,13 +80,6 @@ class BattleLobbyFragment:Fragment() {
 
             //バトルメイン画面へ遷移
             btnBattleStart.setOnClickListener {
-
-
-
-                //val pList = partyFormationViewModel.selectionCharacterList.value ?: mutableListOf()
-//                val eList :MutableList<Characters> = (enemyViewModel.enemyFormation.value ?: listOf(
-//                    Characters()
-//                )) as MutableList<Characters>
 
                 //CharactersからCharacterHolderへのデータ変換
                 val partyInformationList = InformationManager().setCharacterHolderList(
@@ -112,20 +90,11 @@ class BattleLobbyFragment:Fragment() {
                     Belong.ENEMY,
                     (enemyViewModel.enemyFormation.value ?: mutableListOf(Characters())) as MutableList<Characters>)
 
-
                 //battleViewModelの各変数にCharacterHolderを格納
                 battleViewModel.sendFromLobbyToMainPartyList = partyInformationList
                 battleViewModel.sendFromLobbyToMainEnemyList = enemyInformationList
-
-
                 /** ステータスの初期情報の取得とLiveData（informationNotice）への格納 **/
                 battleViewModel.setInformationNotice()
-
-
-
-
-
-
 
                 //ヘッダー情報をセット
                 headerViewModel.apply {
@@ -133,30 +102,22 @@ class BattleLobbyFragment:Fragment() {
                     outputFlag = HeaderFlag.BATTLE_MAIN
                 }
 
-
                 // FragmentManagerのインスタンス生成
                 val fragmentManager: FragmentManager = parentFragmentManager
                 // FragmentTransactionのインスタンスを取得
                 val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-
-
-
                 fragmentTransaction.replace(
                     R.id.attach_screen,
                     BattleMainFragment()
                 )
                 fragmentTransaction.commit()
-
-
             }
 
             //敵編成を変更する
             btnReselectEnemy.setOnClickListener {
                 enemyViewModel.enemyFormation.postValue(EnemyManager().getEnemyData())
             }
-
         }
         return binding.root
     }
-
 }
