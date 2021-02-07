@@ -1,7 +1,6 @@
 package com.example.namebattler.characters.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +38,6 @@ class CharacterListFragment: Fragment() {
 
         setOperationDatabaseViewModel.numOfRegistrations.observe(viewLifecycleOwner, {
             val setText = "${getString(R.string.character_list)} ( $it )"
-            Log.d("<<< string >>>", "ヘッダーテキスト：$setText")
 
             headerViewModel.apply {
                 headerText.postValue(setText)
@@ -110,7 +108,6 @@ class CharacterListFragment: Fragment() {
                 btnCharacterNewCreate.setOnClickListener {
                     setCharacterViewModel.clearInputData()
                     //ヘッダー情報更新
-                    Log.d("<<< string >>>", "ヘッダーテキスト：${getString(R.string.create_character)}")
                     headerViewModel.headerText.postValue(getString(R.string.create_character))
                     headerViewModel.outputFlag = HeaderFlag.DEFAULT
 

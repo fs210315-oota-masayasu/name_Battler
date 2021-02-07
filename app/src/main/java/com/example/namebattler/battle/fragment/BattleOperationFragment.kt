@@ -126,9 +126,10 @@ class BattleOperationFragment : Fragment() {
 
             val list = mutableListOf<String>()
             battleLogAdapter.setBattleLog(list)
+
             //バトルログをターン開始時の位置までスクロールさせる
             informText.observe(viewLifecycleOwner, { it ->
-                recyclerViewOfBattleLog.scrollToPosition(battleLogAdapter.position ?: 0)
+                recyclerViewOfBattleLog.scrollToPosition((battleLogAdapter.position)?.plus(it.size -1 )?: 0)
                 it.forEach {
                     battleLogAdapter.addBattleLog(it)
                 }
