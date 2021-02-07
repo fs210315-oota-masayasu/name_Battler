@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt' // Kotlinでアノテーション処理をできるようになる
 
 android {
@@ -57,9 +57,11 @@ android {
 
 
 
+/*
 androidExtensions {
     defaultCacheImplementation = "SPARSE_ARRAY" // HASH_MAP (default), SPARSE_ARRAY, or NONE
 }
+*/
 
 // fragment-ktx用
 def ktx_version = "1.1.0"

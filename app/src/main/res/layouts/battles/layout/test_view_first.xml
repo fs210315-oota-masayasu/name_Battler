@@ -12,14 +12,9 @@
             name="characterViewModel"
             type="com.example.namebattler.viewModel.CharacterViewModel" />
 
+        <import type="com.example.namebattler.util.TestBindingUtils"/>
 
-<!--        <variable
-            name="viewModel"
-            type="com.example.namebattler.viewModel.OperationDatabaseViewModel" />
 
-        <variable
-            name="characterViewModel"
-            type="com.example.namebattler.viewModel.CharacterViewModel" />-->
     </data>
 
 
@@ -66,6 +61,57 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_1_view" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/radioA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RB-A" />
+
+            <RadioButton
+                android:id="@+id/radioB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RB-B" />
+
+            <RadioButton
+                android:id="@+id/radioC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RB-C" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/RB_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+        <EditText
+            android:id="@+id/test_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:ems="10"
+            android:hint="name"
+            android:inputType="textPersonName"
+            android:text="@={characterViewModel.inputCharacterName}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 <!--            android:onClick="@{() -> characterViewModel.onClickDecideParty()}"-->

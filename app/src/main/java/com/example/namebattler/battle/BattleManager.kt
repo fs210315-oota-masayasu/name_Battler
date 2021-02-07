@@ -1,5 +1,6 @@
 package com.example.namebattler.battle
 
+import android.util.Log
 import com.example.namebattler.data.battleData.ActionResultHolder
 import com.example.namebattler.data.battleData.BattleProcessManager
 import com.example.namebattler.data.battleData.CharacterInformationHolder
@@ -22,6 +23,8 @@ class BattleManager {
     private var deadList = arrayListOf<CharacterInformationHolder>()
     var count = 0
 
+
+
     fun initCharacterList(
         enemyObj: ArrayList<CharacterInformationHolder>,
         partyObj: ArrayList<CharacterInformationHolder>
@@ -34,6 +37,10 @@ class BattleManager {
         this.playerList = mutableListOf()
         this.playerList = partyObj
     }
+
+
+
+
 
     fun setCurrentInformation(characterInformation: ArrayList<CharacterInformationHolder>) {
         this.currentInformation = characterInformation
@@ -59,6 +66,8 @@ class BattleManager {
         val resultLog = mutableListOf<String>()
         var operation : String
 
+
+
         resultLog.add("--------[$count ターン]--------")
 
         val instanceOfBattleProcess = BattleProcessManager()
@@ -67,14 +76,14 @@ class BattleManager {
             //行動順に行動する
             initiative.forEach { map ->
                 //途中で勝敗が決した場合処理を抜け出す
-                val isEnding = isEnding()
-                if(isEnding != ""){
+                val isInterruption = isEnding()
+                if(isInterruption != ""){
                     return@loop
                 }
                 val pair = map.key
-                var doerCharacter = selectActionCharacter(pair)!!
+                val doerCharacter = selectActionCharacter(pair)!!
 
-                //敵味方で"operation"の情報が変わる
+                //エネミーの作戦を決定
                 operation = if (doerCharacter.belong == Belong.ENEMY.name){
                     EnemyManager().selectEnemyOperation()
                 }else {
@@ -89,7 +98,10 @@ class BattleManager {
                 val hp = doerCharacter.currentHp
                 if (hp < 1){
                     isLiving = false
+                }else{
+                    resultLog.add("")
                 }
+
 
                 if (isLiving){
                     //resultLog.add("")
@@ -101,7 +113,7 @@ class BattleManager {
                     if (resultAndLog.first) {
                         val selectAttackResult = selectAttackResult(operation, doerCharacter)
                         //行動結果を取得
-                        var attackResult = selectAttackResult.first
+                        val attackResult = selectAttackResult.first
                         //ターン数格納
                         attackResult.turnCorrection = count - 1
 
@@ -117,7 +129,7 @@ class BattleManager {
                         //行動結果を反映
                         when (attackResult.targetId) {
                             TargetIdEnum.ONE_ATTACK.id, TargetIdEnum.ALL_ATTACK.id -> {
-                                var log = instanceOfBattleProcess.attackProcess(targetList, attackResult)
+                                val log = instanceOfBattleProcess.attackProcess(targetList, attackResult)
                                 resultLog.addAll(log)
                             }
                             TargetIdEnum.MYSELF.id -> {
@@ -150,6 +162,8 @@ class BattleManager {
     ): Pair<ActionResultHolder, Pair<String, MutableList<CharacterInformationHolder>>> {
         //ジョブインスタンス取得
 
+
+
         //selectSkillで使用スキルと対象者を選定する
         /** selectSkill param
          * ( first : skillName , second =  target) **/
@@ -161,8 +175,11 @@ class BattleManager {
         val actorJob = actionCharacter.job.let { JobManager().getJobInstance(it) }
 
 
+
+
         //このタイミングで戦闘不能者をターゲットからはじく
         val targetList = getCurrentInformation().filterNot { it.currentHp <= 0 } as ArrayList<CharacterInformationHolder>
+
 
         selectSkill = actorJob!!.selectSkill(operation, actionCharacter, targetList)
 

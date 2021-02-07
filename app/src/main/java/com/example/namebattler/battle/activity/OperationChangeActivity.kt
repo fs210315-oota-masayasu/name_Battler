@@ -13,6 +13,8 @@ import com.example.namebattler.menu.HeaderOfOperationChangeFragment
 
 class OperationChangeActivity: AppCompatActivity() {
 
+    //TODO　削除対象
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -25,12 +27,13 @@ class OperationChangeActivity: AppCompatActivity() {
             // FragmentTransactionのインスタンスを取得
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
             // インスタンスに対して張り付け方を指定する
-            fragmentTransaction.replace(
-                R.id.header_area,
-                HeaderOfOperationChangeFragment.newInstance(
-                    "作戦"
-                )
-            )
+            //TODO　ヘッダー
+//            fragmentTransaction.replace(
+//                R.id.header_area,
+//                HeaderOfOperationChangeFragment.newInstance(
+//                    "作戦"
+//                )
+//            )
             // 張り付けを実行
             fragmentTransaction.commit()
         }

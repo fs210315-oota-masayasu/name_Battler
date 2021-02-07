@@ -4,14 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.namebattler.characters.activity.CharacterListActivity
 import com.example.namebattler.databinding.ActivityHomeBinding
-import com.example.namebattler.party.PartyFormationActivity
 import com.example.namebattler.util.ScopedAppActivity
 import com.example.namebattler.viewModel.HomeViewModel
-import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : ScopedAppActivity() {
 

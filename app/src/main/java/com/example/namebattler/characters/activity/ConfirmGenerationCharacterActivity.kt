@@ -13,6 +13,7 @@ import com.example.namebattler.util.ScopedAppActivity
 
 //キャラクター作成完了画面
 class ConfirmGenerationCharacterActivity : ScopedAppActivity() {
+    //TODO　削除対象
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,12 +26,12 @@ class ConfirmGenerationCharacterActivity : ScopedAppActivity() {
             // FragmentTransactionのインスタンスを取得
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
             // インスタンスに対して張り付け方を指定する
-            fragmentTransaction.replace(
-                R.id.header_area,
-                HeaderFragment.newInstance(
-                    "キャラ作成"
-                )
-            )
+//            fragmentTransaction.replace(
+//                R.id.header_area,
+//                HeaderFragment.newInstance(
+//                    "キャラ作成"
+//                )
+//            )
             // 張り付けを実行
             fragmentTransaction.commit()
         }
@@ -53,7 +54,7 @@ class ConfirmGenerationCharacterActivity : ScopedAppActivity() {
 
             fragmentTransaction.replace(
                 R.id.button_area,
-                AfterGenerationMenuFragment.newInstance()
+                AfterGenerationMenuFragment()
             )
             // 張り付けを実行
             fragmentTransaction.commit()

@@ -5,19 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.namebattler.R
 import com.example.namebattler.databinding.TestViewFirstBinding
 import com.example.namebattler.viewModel.CharacterViewModel
-import com.example.namebattler.viewModel.OperationDatabaseViewModel
 import com.example.namebattler.viewModel.getViewModelFactory
-import kotlinx.android.synthetic.main.test_view_first.*
+
 
 class TestFragment: Fragment() {
 
@@ -29,7 +26,7 @@ class TestFragment: Fragment() {
 
     private val setCharacterViewModel: CharacterViewModel by viewModels { getViewModelFactory() }
 
-    override fun onCreateView(
+/*    override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,6 +38,43 @@ class TestFragment: Fragment() {
             //fragmentが切り替わった時に処理が走る
             setCharacterViewModel.isClickDecideParty.postValue(false)
             setCharacterViewModel.buttonCounter.postValue(2)
+
+*//*
+
+            if (setCharacterViewModel.inputCharacterName.value != null){
+                Log.d("[]tag[]", "name :${setCharacterViewModel.inputCharacterName.value}")
+
+
+
+            }else{
+                Log.d("[]tag[]", "ViewName is Null")
+            }
+
+
+            setCharacterViewModel.radioType.observe(viewLifecycleOwner, Observer {
+                RBText.text = "Radio selected: $it"
+
+                if (setCharacterViewModel.inputCharacterName.value != null){
+                    Log.d("[]tag[]", "name :${setCharacterViewModel.inputCharacterName.value}")
+
+
+
+                }else{
+                    Log.d("[]tag[]", "ViewName is Null")
+                }
+
+
+
+            })
+
+            setCharacterViewModel.inputCharacterName.observe(viewLifecycleOwner, Observer {
+                RBText.text = "input name: $it"
+            })
+
+
+*//*
+
+
 
             Log.d("tag_begin", "${setCharacterViewModel.buttonCounter.value}")
 
@@ -89,8 +123,10 @@ class TestFragment: Fragment() {
                 }
             }
         }
+
+
         binding.lifecycleOwner = this.viewLifecycleOwner
         return binding.root
-    }
+    }*/
 
 }

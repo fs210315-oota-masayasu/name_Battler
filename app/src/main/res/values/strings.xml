@@ -1,11 +1,7 @@
 <resources>
     <string name="empty">Empty</string>
     <string name="app_name">nameBattler</string>
-    <string name="battleStart">バトル開始</string>
     <string name="next_turn">次のターン</string>
-    <string name="character_list">キャラ一覧</string>
-    <string name="battle_start">バトル開始</string>
-    <string name="battle_main">バトル</string>
     <string name="title_name">ネームバトラー</string>
     <string name="btn_new_create">新しく作成する</string>
     <string name="msg_enter_name">名前を入力してください</string>
@@ -44,7 +40,7 @@
     <string name="Priest">僧侶</string>
     <string name="Spellcaster">魔法使い</string>
     <string name="Warrior">戦士</string>
-    <string name="input_name">name</string>
+    <string name="input_name"> name </string>
     <string name="select_job">職業を選択してください</string>
     <string name="isDelete">削除する</string>
     <string name="fight_this_opponent">この相手と戦う</string>
@@ -60,6 +56,17 @@
     <string name="challenge_again">再挑戦</string>
     <string name="next_battle">次の対戦へ</string>
     <string name="end_battle">対戦を終了する</string>
+
+    <!-- ヘッダーテキスト -->
+    <string name="character_list">キャラ一覧</string>
+    <string name="details_character">キャラ詳細</string>
+    <string name="create_character">キャラ作成 </string>
+    <string name="party_formation">パーティ-編成 </string>
+    <string name="battle_start">バトル開始</string>
+    <string name="battle_main">バトル</string>
+    <string name="battle_result">バトル結果</string>
+    <string name="operation">作戦</string>
+
 
 
 

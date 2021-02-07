@@ -1,5 +1,6 @@
 package com.example.namebattler.data.enemyData
 
+import android.util.Log
 import com.example.namebattler.data.characterData.Player
 import com.example.namebattler.data.database.Characters
 import com.example.namebattler.data.jobData.JobManager
@@ -20,7 +21,10 @@ class EnemyManager {
     init {
         //初期化時にoperationListへ作戦名を格納
         operationEnum.forEach {
-            operationList.add(it.text)
+            if (it != OperationIdEnum.ERROR){
+                operationList.add(it.text)
+            }
+
         }
     }
 
@@ -39,6 +43,7 @@ class EnemyManager {
 
         //JobManager().jobListから重複なくジョブを3点取得
         val randomSelectJob = JobManager().jobEnumList.takeAtRandom(3)
+
 
         //戻り値用変数
         val enemyDataList = mutableListOf<Characters>()

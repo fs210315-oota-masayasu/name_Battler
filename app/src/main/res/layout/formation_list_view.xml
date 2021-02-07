@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -7,9 +8,11 @@
             name="viewModel"
             type="com.example.namebattler.viewModel.OperationDatabaseViewModel" />
 
+
+
         <variable
-            name="characterViewModel"
-            type="com.example.namebattler.viewModel.CharacterViewModel" />
+            name="partyFormationViewModel"
+            type="com.example.namebattler.viewModel.PartyFormationViewModel" />
 
 
         <variable
@@ -22,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="88dp"
         android:background="@drawable/default_list_frame"
-        >
+        android:onClick="@{() -> partyFormationViewModel.onClickedCheckbox(position)}">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,8 +38,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.09"
-                android:checked="@{characterViewModel.isCheckedPartyFormation[position]}"
-
+                android:checked="@{viewModel.isCheckedPartyFormation[position]}"
+                android:onClick="@{() -> partyFormationViewModel.onClickedCheckbox(position)}"
                 android:textColor="#000000" />
 
             <TextView
@@ -48,7 +51,8 @@
                 android:paddingLeft="20sp"
                 android:paddingRight="20sp"
                 android:text="@{viewModel.allCharacters[position].NAME}"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:autoSizeTextType="uniform" />
 
 
             <TextView
@@ -59,7 +63,8 @@
                 android:layout_weight="0.3"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@{viewModel.getJobName(viewModel.allCharacters[position].JOB)}"
-                android:textSize="24sp" />
+                android:textSize="18sp"
+                app:autoSizeTextType="uniform" />
         </LinearLayout>
 
 
@@ -209,5 +214,7 @@
 
     </FrameLayout>
 </layout>
+
+<!--               -->
 
 <!--                android:onClick="@{() -> characterViewModel.onClickedCheckbox(position)}"-->

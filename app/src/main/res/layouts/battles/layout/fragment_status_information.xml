@@ -1,91 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="176dp"
-    tools:context=".battle.fragment.StatusInformationFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
+    <data>
 
+    </data>
 
-    <LinearLayout
-        android:id="@+id/enemy_list"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/list_outer_frame"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
+        android:layout_height="176dp"
+        tools:context=".battle.fragment.StatusInformationFragment">
 
-        <FrameLayout
-            android:id="@+id/first_enemy"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/righit_vertical_line_frame">
+        <LinearLayout
+            android:id="@+id/enemy_list"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/list_outer_frame"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
-        </FrameLayout>
+            <FrameLayout
+                android:id="@+id/first_enemy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/righit_vertical_line_frame">
 
-        <FrameLayout
-            android:id="@+id/second_enemy"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/righit_vertical_line_frame">
+            </FrameLayout>
 
-        </FrameLayout>
+            <FrameLayout
+                android:id="@+id/second_enemy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/righit_vertical_line_frame">
 
-        <FrameLayout
-            android:id="@+id/third_enemy"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            </FrameLayout>
 
-        </FrameLayout>
+            <FrameLayout
+                android:id="@+id/third_enemy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-    </LinearLayout>
+            </FrameLayout>
+
+        </LinearLayout>
 
 
-    <LinearLayout
-        android:id="@+id/player_area"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_gravity="bottom"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/list_outer_frame"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
+        <LinearLayout
+            android:id="@+id/player_area"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/list_outer_frame"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
-        <FrameLayout
-            android:id="@+id/first_player"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/righit_vertical_line_frame">
+            <FrameLayout
+                android:id="@+id/first_player"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/righit_vertical_line_frame">
 
-        </FrameLayout>
+            </FrameLayout>
 
-        <FrameLayout
-            android:id="@+id/second_player"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/righit_vertical_line_frame">
+            <FrameLayout
+                android:id="@+id/second_player"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/righit_vertical_line_frame">
 
-        </FrameLayout>
+            </FrameLayout>
 
-        <FrameLayout
-            android:id="@+id/third_player"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            <FrameLayout
+                android:id="@+id/third_player"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-        </FrameLayout>
+            </FrameLayout>
 
-    </LinearLayout>
+        </LinearLayout>
 
-</FrameLayout>
+    </FrameLayout>
+</layout>

@@ -17,10 +17,11 @@ import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.databinding.ActivityCharacterListBinding
 import com.example.namebattler.menu.HeaderFragment
 import com.example.namebattler.viewModel.CharacterViewModel
-import kotlinx.android.synthetic.main.activity_character_list.*
 
 //キャラクター一覧画面
 class CharacterListActivity : AppCompatActivity() {
+
+    //TODO　削除対象
 
     private val newCharacterCreateActivityRequestCode = 1
 
@@ -60,12 +61,12 @@ class CharacterListActivity : AppCompatActivity() {
                         val setText = "キャラ一覧 ( $it )"
 
                         // インスタンスに対して張り付け方を指定する
-                        fragmentTransaction.replace(
-                            R.id.header_area,
-                            HeaderFragment.newInstance(
-                                setText
-                            )
-                        )
+//                        fragmentTransaction.replace(
+//                            R.id.header_area,
+//                            HeaderFragment.newInstance(
+//                                setText
+//                            )
+//                        )
                         // 張り付けを実行
                         fragmentTransaction.commit()
 
@@ -93,7 +94,20 @@ class CharacterListActivity : AppCompatActivity() {
             recyclerViewOfCharacters.adapter = adapter
 
             // RecyclerViewのクリックイベント（Adapter内のインターフェース実装）
+
             adapter.setOnItemClickListener(object :
+                CharaListAdapter.OnItemClickListener {
+                override fun onItemClickListener(
+                    view: View,
+                    position: Int,
+                ) {
+                    val intent = Intent(view.context, ConfirmCharacterStatusActivity::class.java)
+//                    intent.putExtra(CharacterHolder.EXTRA_DATA)
+                    startActivity(intent)
+                }
+            })
+
+/*            adapter.setOnItemClickListener(object :
                 CharaListAdapter.OnItemClickListener {
                 override fun onItemClickListener(
                     view: View,
@@ -104,15 +118,19 @@ class CharacterListActivity : AppCompatActivity() {
                     intent.putExtra(CharacterHolder.EXTRA_DATA, sendToData)
                     startActivity(intent)
                 }
-            })
+            })*/
 
 
+/*
             //キャラクター作成画面へ遷移
             btn_character_new_create.setOnClickListener {
                 val setCharacterNewCreate = Intent(this, NewCharacterGenerateActivity::class.java)
                 //startActivity(setCharacterNewCreate)
                 startActivityForResult(setCharacterNewCreate, newCharacterCreateActivityRequestCode)
             }
+
+*/
+
 
         })
     }

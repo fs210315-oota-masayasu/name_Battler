@@ -1,4 +1,4 @@
-package com.example.namebattler.party
+package com.example.namebattler.party.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,11 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.namebattler.R
 import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.databinding.PartyFormationBinding
-import com.example.namebattler.menu.HeaderFragment
+import com.example.namebattler.party.FormationListAdapter
 import com.example.namebattler.viewModel.CharacterViewModel
 import com.example.namebattler.viewModel.OperationDatabaseViewModel
 
 class PartyFormationActivity: AppCompatActivity() {
+
+    //TODO　削除対象
 
     private lateinit var characterViewModel: CharacterViewModel
     private lateinit var operationDatabaseViewModel: OperationDatabaseViewModel
@@ -28,20 +30,21 @@ class PartyFormationActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.party_formation)
 
-        operationDatabaseViewModel = ViewModelProvider(this).get(OperationDatabaseViewModel::class.java)
+        operationDatabaseViewModel =
+            ViewModelProvider(this).get(OperationDatabaseViewModel::class.java)
         characterViewModel = ViewModelProvider(this).get(CharacterViewModel::class.java)
 
         //キャラクター登録件数を取得（numOfRegistrationsに格納される）
         operationDatabaseViewModel.confirmNumOfRegistrations()
-        characterViewModel.numOfRegistrations.observe(this, Observer {
-            //numOfRegistrationsに格納したキャラクター登録件数をセット
-            characterViewModel.initCheckList()
-        })
+//        characterViewModel.numOfRegistrations.observe(this, Observer {
+        //numOfRegistrationsに格納したキャラクター登録件数をセット
+//            characterViewModel.initCheckList()
+//        })
 
         operationDatabaseViewModel.allCharacters.observe(this, Observer {
 
             /** ヘッダー **/
-            if (savedInstanceState == null){
+            if (savedInstanceState == null) {
                 // FragmentManagerのインスタンス生成
                 val fragmentManager: FragmentManager = supportFragmentManager
                 // FragmentTransactionのインスタンスを取得
@@ -52,18 +55,19 @@ class PartyFormationActivity: AppCompatActivity() {
 
                 val setText = "パーティー編成"
 
+                //TODO　ヘッダー
+
                 // インスタンスに対して張り付け方を指定する
-                fragmentTransaction.replace(
-                    R.id.header_area,
-                    HeaderFragment.newInstance(
-                        setText
-                    )
-                )
+//                fragmentTransaction.replace(
+//                    R.id.header_area,
+//                    HeaderFragment.newInstance(
+//                        setText
+//                    )
+//                )
                 // 張り付けを実行
                 fragmentTransaction.commit()
 
 //                })
-
 
 
 //            // インスタンスに対して張り付け方を指定する
@@ -79,32 +83,36 @@ class PartyFormationActivity: AppCompatActivity() {
 
             /** RecyclerView **/
 
-            val adapter = FormationListAdapter(characterViewModel,operationDatabaseViewModel, this)
+//            val adapter = FormationListAdapter(characterViewModel,operationDatabaseViewModel, this)
             //Liveデータからの通知を受けてRecyclerViewが走る
 //        characterViewModel.allCharacters.observe(this, Observer {
 
-            val binding: PartyFormationBinding = DataBindingUtil.setContentView(this, R.layout.party_formation)
+            val binding: PartyFormationBinding =
+                DataBindingUtil.setContentView(this, R.layout.party_formation)
 
             binding.lifecycleOwner = this
-            binding.viewModel = characterViewModel
+//            binding.viewModel = characterViewModel
 
             //adapterにlifecycleOwnerを渡す
             val recyclerViewOfCharacters = binding.formationListView
             recyclerViewOfCharacters.layoutManager = LinearLayoutManager(this)
-            recyclerViewOfCharacters.adapter = adapter
+//            recyclerViewOfCharacters.adapter = adapter
 
-            characterViewModel.selectionCharacterList.observe(this, Observer { it ->
+//            characterViewModel.selectionCharacterList.observe(this, Observer { it ->
 
-                it.forEach {
-                    Log.d("+++ Tag +++", "send to data : ${it.NAME}")
+            it.forEach {
+                Log.d("+++ Tag +++", "send to data : ${it.NAME}")
 
-                }
-            })
+            }
+        })
+    }
+}
 
-            characterViewModel.isClickDecideParty.observe(this, Observer {
-                val intent = Intent(this, BattleLobbyActivity::class.java)
-                startActivity(intent)
-            })
+
+//            characterViewModel.isClickDecideParty.observe(this, Observer {
+//                val intent = Intent(this, BattleLobbyActivity::class.java)
+//                startActivity(intent)
+//            })
 
 /*
             characterViewModel.color.postValue(R.color.inactiveColor)
@@ -127,17 +135,8 @@ class PartyFormationActivity: AppCompatActivity() {
 
                 Log.d("|| TAG ||", "@@@@@///@@@@")
 
-                characterViewModel.selectionCharacterList.observe(this, Observer {
-                    Log.d("//// TAG ////", "//// ${it[0].NAME} ////")
-                })*/
 
-//                val tete = characterViewModel.selectionCharacterList
-//
-//                tete.observe(this, Observer {
-//                    Log.d("|| TAG ||", "$it")
-//                }
-//
-//                )
+
 
 
 
@@ -163,7 +162,7 @@ class PartyFormationActivity: AppCompatActivity() {
 
 
 
-        })
+//        })
 
 
 
@@ -249,3 +248,7 @@ class PartyFormationActivity: AppCompatActivity() {
 }
 
 
+}
+
+
+ */

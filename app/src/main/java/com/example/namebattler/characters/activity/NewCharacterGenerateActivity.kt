@@ -22,11 +22,12 @@ import com.example.namebattler.data.jobData.JobManager
 import com.example.namebattler.menu.HeaderFragment
 import com.example.namebattler.util.Belong
 import com.example.namebattler.util.ScopedAppActivity
-import kotlinx.android.synthetic.main.character_new_create.*
+/*import kotlinx.android.synthetic.main.character_new_create.**/
 import kotlin.concurrent.thread
 
 //キャラクター作成画面
 class NewCharacterGenerateActivity : ScopedAppActivity(), TextWatcher {
+    //TODO　削除対象
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,12 +40,12 @@ class NewCharacterGenerateActivity : ScopedAppActivity(), TextWatcher {
             // FragmentTransactionのインスタンスを取得
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
             // インスタンスに対して張り付け方を指定する
-            fragmentTransaction.replace(
-                R.id.header_area,
-                HeaderFragment.newInstance(
-                    "キャラ作成"
-                )
-            )
+//            fragmentTransaction.replace(
+//                R.id.header_area,
+//                HeaderFragment.newInstance(
+//                    "キャラ作成"
+//                )
+//            )
             // 張り付けを実行
             fragmentTransaction.commit()
         }
@@ -65,6 +66,7 @@ class NewCharacterGenerateActivity : ScopedAppActivity(), TextWatcher {
                 radioButton = findViewById(checkedId)
             }
 
+/*
         //DBへのインサート処理 + 画面遷移
         btn_order_character_creation.setOnClickListener {
 
@@ -130,8 +132,8 @@ class NewCharacterGenerateActivity : ScopedAppActivity(), TextWatcher {
                     ms.show()
                 }
             }
-
         }
+        */
     }
 
     private fun setCharacterHolder(characters : Characters?): CharacterHolder? {

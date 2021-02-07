@@ -5,6 +5,7 @@ import com.example.namebattler.data.database.DateConverter
 import com.example.namebattler.data.jobData.JobManager
 import java.math.BigInteger
 import java.security.MessageDigest
+import kotlin.random.Random
 
 class Player(private val name: String, private val job: Int){
 
@@ -28,12 +29,12 @@ class Player(private val name: String, private val job: Int){
 
        jobObj.addParam(job)
 
-        this.hp = getNumber(name,0) + jobObj.hp
-        this.mp = getNumber(name,1) + jobObj.mp
-        this.str= getNumber(name,2) + jobObj.str
-        this.def= getNumber(name,3) + jobObj.def
-        this.agi= getNumber(name,4) + jobObj.agi
-        this.luck= getNumber(name,5) + jobObj.luck
+        this.hp = getNumber(name, Random.nextInt(9)) + jobObj.hp
+        this.mp = getNumber(name, Random.nextInt(9)) + jobObj.mp
+        this.str= getNumber(name, Random.nextInt(9)) + jobObj.str
+        this.def= getNumber(name, Random.nextInt(9)) + jobObj.def
+        this.agi= getNumber(name, Random.nextInt(9)) + jobObj.agi
+        this.luck= getNumber(name, Random.nextInt(9)) + jobObj.luck
 
         characters = Characters(
             name,

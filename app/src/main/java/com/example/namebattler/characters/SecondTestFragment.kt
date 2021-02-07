@@ -1,19 +1,13 @@
 package com.example.namebattler.characters
 
-import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.example.namebattler.R
 import com.example.namebattler.databinding.TestViewSecondBinding
 import com.example.namebattler.viewModel.CharacterViewModel
 import com.example.namebattler.viewModel.OperationDatabaseViewModel
@@ -39,31 +33,31 @@ class SecondTestFragment:Fragment() {
             characterViewModel = setCharacterViewModel
 
             //fragmentが切り替わった時に処理が走る
-            setCharacterViewModel.isClickDecideParty.postValue(false)
-            setCharacterViewModel.buttonCounter.postValue(2)
+//            setCharacterViewModel.isClickDecideParty.postValue(false)
+//            setCharacterViewModel.buttonCounter.postValue(2)
 
 
-            Log.d("tag_begin_2", "${setCharacterViewModel.buttonCounter.value}")
+//            Log.d("tag_begin_2", "${setCharacterViewModel.buttonCounter.value}")
 
 
             button2View.setOnClickListener {
-                Log.d("tag_cnt", "${setCharacterViewModel.buttonCounter.value}")
+//                Log.d("tag_cnt", "${setCharacterViewModel.buttonCounter.value}")
 
 
                 Log.d("button2View", "button2View_OK")
                 setCharacterViewModel.apply {
                     headerText.postValue("ボタン押したよ")
 
-                    if (setCharacterViewModel.buttonCounter.value == 3){
+/*                    if (setCharacterViewModel.buttonCounter.value == 3){
                         isClickDecideParty.postValue(true)
-                    }
+                    }*/
 
                 }
             }
 
             buttonSecond.setOnClickListener {
 
-                setCharacterViewModel.onClickDecideParty()
+/*                setCharacterViewModel.onClickDecideParty()
                 setCharacterViewModel.buttonCounter.postValue(3)
 
                 setCharacterViewModel.isClickDecideParty.apply {
@@ -73,7 +67,7 @@ class SecondTestFragment:Fragment() {
                         fragmentManager.popBackStack("test",FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
                     }
-                }
+                }*/
             }
         }
         binding.lifecycleOwner = this.viewLifecycleOwner

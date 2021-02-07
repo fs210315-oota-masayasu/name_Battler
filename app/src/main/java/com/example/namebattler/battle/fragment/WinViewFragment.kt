@@ -6,59 +6,108 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.viewModels
 import com.example.namebattler.HomeActivity
 import com.example.namebattler.R
-import com.example.namebattler.battle.activity.BattleMainActivity
 import com.example.namebattler.data.characterData.CharacterHolder
-import com.example.namebattler.party.PartyFormationActivity
-import kotlinx.android.synthetic.main.fragment_win_view.*
+import com.example.namebattler.databinding.FragmentWinViewBinding
+import com.example.namebattler.party.fragment.PartyFormationFragment
+import com.example.namebattler.util.HeaderFlag
+import com.example.namebattler.viewModel.BattleViewModel
+import com.example.namebattler.viewModel.HeaderViewModel
+import com.example.namebattler.viewModel.getViewModelFactory
+
+/*import kotlinx.android.synthetic.main.fragment_win_view.**/
 
 class WinViewFragment : Fragment() {
 
     var enemyObj = arrayListOf<CharacterHolder>()
     var playerObj = arrayListOf<CharacterHolder>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
+    private lateinit var binding: FragmentWinViewBinding
+    private val battleViewModel: BattleViewModel by viewModels{ getViewModelFactory() }
+    private val headerViewModel: HeaderViewModel by viewModels{ getViewModelFactory() }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentWinViewBinding.inflate(inflater, container, false).apply {
+
+
+
+
+            //再挑戦
+            challengeAgain.setOnClickListener {
+                //ヘッダー情報をセット
+                headerViewModel.apply {
+                    headerText.postValue(getString(R.string.battle_main))
+                    outputFlag = HeaderFlag.BATTLE_MAIN
+                }
+
+                /** ステータスの初期情報の取得とLiveData（informationNotice）への格納 **/
+                battleViewModel.setInformationNotice()
+
+                // FragmentManagerのインスタンス生成
+                val fragmentManager: FragmentManager = parentFragmentManager
+                // FragmentTransactionのインスタンスを取得
+                val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+
+                fragmentTransaction.replace(
+                    R.id.attach_screen,
+                    BattleMainFragment()
+                )
+                fragmentTransaction.commit()
+            }
+
+            //次の対戦へ
+            nextBattle.setOnClickListener {
+
+                //ヘッダー情報をセット
+                headerViewModel.apply {
+                    headerText.postValue(getString(R.string.party_formation))
+                    outputFlag = HeaderFlag.DEFAULT
+                }
+
+                if (savedInstanceState == null){
+                    // FragmentManagerのインスタンス生成
+                    val fragmentManager: FragmentManager = parentFragmentManager
+                    // FragmentTransactionのインスタンスを取得
+                    val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+                    // インスタンスに対して張り付け方を指定する
+                    fragmentTransaction.replace(
+                        R.id.attach_screen,
+                        PartyFormationFragment()
+                    )
+                    // 張り付けを実行
+                    fragmentTransaction.commit()
+                }
+
+            }
+
+            //対戦を終了する
+            endBattle.setOnClickListener {
+                val setIntentEndBattle = Intent(activity, HomeActivity::class.java)
+                setIntentEndBattle.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                startActivity(setIntentEndBattle)
+            }
+        }
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_win_view, container, false)
+        return binding.root
     }
 
     override fun onStart() {
         super.onStart()
-        //再挑戦
-        challenge_again.setOnClickListener {
-            val setIntentChallengeAgain = Intent(activity, BattleMainActivity::class.java)
-            setIntentChallengeAgain.putExtra(BattleMainActivity.ENEMY_KEY_STATE,enemyObj)
-            setIntentChallengeAgain.putExtra(BattleMainActivity.PLAYER_KEY_STATE,playerObj)
-            startActivity(setIntentChallengeAgain)
-        }
 
-        //次の対戦へ
-        next_battle.setOnClickListener {
-            val setIntentPartyCreate = Intent(activity, PartyFormationActivity::class.java)
-            setIntentPartyCreate.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            startActivity(setIntentPartyCreate)
-        }
-
-        //対戦を終了する
-        end_battle.setOnClickListener {
-            val setIntentEndBattle = Intent(activity, HomeActivity::class.java)
-            setIntentEndBattle.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            startActivity(setIntentEndBattle)
-        }
     }
 
 
-    companion object {
+/*    companion object {
         @JvmStatic
         fun newInstance(enemyList :ArrayList<CharacterHolder>, playerList :ArrayList<CharacterHolder>) =
             WinViewFragment().apply{
@@ -66,5 +115,5 @@ class WinViewFragment : Fragment() {
                 playerObj = playerList
         }
 
-    }
+    }*/
 }

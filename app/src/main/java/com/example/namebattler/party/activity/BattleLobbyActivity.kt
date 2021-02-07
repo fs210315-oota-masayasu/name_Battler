@@ -1,7 +1,8 @@
-package com.example.namebattler.party
+package com.example.namebattler.party.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -13,10 +14,11 @@ import com.example.namebattler.battle.activity.BattleMainActivity
 import com.example.namebattler.viewModel.OperationDatabaseViewModel
 import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.data.enemyData.EnemyManager
-import com.example.namebattler.menu.HeaderFragment
-import kotlinx.android.synthetic.main.battle_lobby.*
+import com.example.namebattler.party.EnemyListAdapter
+
 
 class BattleLobbyActivity : AppCompatActivity() {
+    //TODO　削除対象
 
     private lateinit var operationDatabaseViewModel: OperationDatabaseViewModel
     private var nameList = mutableListOf <String?>()
@@ -40,12 +42,13 @@ class BattleLobbyActivity : AppCompatActivity() {
             // FragmentTransactionのインスタンスを取得
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
             // インスタンスに対して張り付け方を指定する
-            fragmentTransaction.replace(
-                R.id.header_area,
-                HeaderFragment.newInstance(
-                    "バトル開始"
-                )
-            )
+            // TODO　ヘッダー
+//            fragmentTransaction.replace(
+//                R.id.header_area,
+//                HeaderFragment.newInstance(
+//                    "バトル開始"
+//                )
+//            )
             // 張り付けを実行
             fragmentTransaction.commit()
         }
@@ -55,31 +58,34 @@ class BattleLobbyActivity : AppCompatActivity() {
 
         //敵パーティリスト
         val recyclerViewOfEnemyList = findViewById<RecyclerView>(R.id.enemy_list_view)
-        val enemyAdapter = EnemyListAdapter(this)
+//        val enemyAdapter = EnemyListAdapter(this)
 
-        recyclerViewOfEnemyList.adapter = enemyAdapter
+//        recyclerViewOfEnemyList.adapter = enemyAdapter
         recyclerViewOfEnemyList.layoutManager = LinearLayoutManager(this)
 
         val getEnemyList = EnemyManager().getEnemyData()
 
-        sendToEnemy = enemyAdapter.list
+//        sendToEnemy = enemyAdapter.list
 
-        enemyAdapter.setCharacter(getEnemyList)
+//        enemyAdapter.setCharacter(getEnemyList)
 
 
         //編成済みパーティリスト
         val recyclerViewOfPartyList = findViewById<RecyclerView>(R.id.party_list_view)
-        val partyAdapter = PlayerListAdapter(this)
+//        val partyAdapter = PlayerListAdapter(this)
         val itemDecoration =  DividerItemDecoration(this, LinearLayoutManager(this).orientation)
 
-        recyclerViewOfPartyList.adapter = partyAdapter
+//        recyclerViewOfPartyList.adapter = partyAdapter
         recyclerViewOfPartyList.layoutManager = LinearLayoutManager(this)
         recyclerViewOfPartyList.addItemDecoration(itemDecoration)
 
         @Suppress("UNCHECKED_CAST")
-        partyAdapter.setCharacter(states as ArrayList<CharacterHolder>)
+//        partyAdapter.setCharacter(states as ArrayList<CharacterHolder>)
 
         //バトルメイン画面へ遷移
+
+        val btn_battle_start = findViewById<Button>(R.id.btn_battle_start)
+
         btn_battle_start.setOnClickListener {
             val intent = Intent(this, BattleMainActivity::class.java)
             intent.putExtra(BattleMainActivity.ENEMY_KEY_STATE,sendToEnemy)
@@ -88,6 +94,9 @@ class BattleLobbyActivity : AppCompatActivity() {
         }
 
         //パーティ編成画面へ戻る
+
+        val btn_reselect_enemy = findViewById<Button>(R.id.btn_reselect_enemy)
+
         btn_reselect_enemy.setOnClickListener {
             val intent = Intent(this, PartyFormationActivity::class.java)
             startActivity(intent)

@@ -1,19 +1,33 @@
 package com.example.namebattler
 
 import android.os.Bundle
-import android.os.PersistableBundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.example.namebattler.characters.fragment.CharacterListFragment
-import com.example.namebattler.party.PartyFormationFragment
+import androidx.fragment.app.viewModels
+import com.example.namebattler.databinding.ActivityFoundationBinding
+import com.example.namebattler.party.fragment.PartyFormationFragment
+import com.example.namebattler.util.HeaderFlag
+import com.example.namebattler.viewModel.HeaderViewModel
+import com.example.namebattler.viewModel.PartyFormationViewModel
+import com.example.namebattler.viewModel.getViewModelFactory
 
 class BattleActivity  : AppCompatActivity() {
+
+    private val partyFormationViewModel: PartyFormationViewModel by viewModels{ getViewModelFactory() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_foundation)
 
-        //ヘッダー
+        DataBindingUtil.setContentView<ActivityFoundationBinding>(this,R.layout.activity_foundation)
+
+        //初期化処理
+        partyFormationViewModel.initPartyFormationData()
+
+
+
         if (savedInstanceState == null){
             // FragmentManagerのインスタンス生成
             val fragmentManager: FragmentManager = supportFragmentManager

@@ -2,21 +2,52 @@ package com.example.namebattler.data.battleData
 
 import androidx.lifecycle.MutableLiveData
 import com.example.namebattler.data.characterData.CharacterHolder
+import com.example.namebattler.data.database.Characters
+import com.example.namebattler.data.jobData.JobManager
 import com.example.namebattler.util.Belong
 import com.example.namebattler.util.TotalIndexEnum
 
 class InformationManager {
+
+    /** Characters -> CharacterHolder へ変換**/
+    private fun String.convertCharacterHolder(characters : Characters): CharacterHolder {
+        return CharacterHolder(
+//            Belong.PLAYER.name, //所属
+            this,
+            characters.NAME,
+            JobManager().getJobList(characters.JOB),
+            characters.HP,
+            characters.MP,
+            characters.STR,
+            characters.DEF,
+            characters.AGI,
+            characters.LUCK,
+            characters.CREATE_AT
+        )
+    }
+
+    fun setCharacterHolderList(belong: Belong, characterList: MutableList<Characters>):ArrayList<CharacterHolder>{
+
+        val list  = arrayListOf<CharacterHolder>()
+
+        characterList.forEach {
+            list.add(belong.name.convertCharacterHolder(it))
+        }
+        return list
+
+    }
+
 
     //ユニークなインスタンスを渡す
     fun getInstance(): InformationManager {
         return instance
     }
 
-    var informationNotice = MutableLiveData<ArrayList<CharacterInformationHolder>>()
+/*    var informationNotice = MutableLiveData<ArrayList<CharacterInformationHolder>>()
 
     fun setInformationNotice(characterInformationList: ArrayList<CharacterInformationHolder>) {
         informationNotice.postValue(characterInformationList)
-    }
+    }*/
 
     //キャラクターデータをバトル処理用のデータへ変換
     private fun Int.setOutputInformationHolder(holder: CharacterHolder, condition :MutableMap<String,Int>): CharacterInformationHolder {

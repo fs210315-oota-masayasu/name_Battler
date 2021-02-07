@@ -4,6 +4,8 @@ import com.example.namebattler.util.OperationIdEnum
 
 class Operation {
 
+    //　TODO　削除
+
     fun getInstance():Operation{
         return instance
     }

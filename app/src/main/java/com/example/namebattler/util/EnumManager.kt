@@ -2,11 +2,34 @@ package com.example.namebattler.util
 
 import com.example.namebattler.data.jobData.*
 
+enum class RadioType{
+    TYPE_A,
+    TYPE_B,
+    TYPE_C
+}
+
+enum class HeaderFlag{
+    DEFAULT,
+    BATTLE_MAIN,
+    OPERATION_CHANGE,
+    RETURN_HOME,
+    PARTY_FORMATION,
+    NONE,
+}
+
+enum class BackStack{
+    CHARACTER_LIST,
+    NEW_CHARACTER_GENERATE,
+    PARTY_FORMATION,
+    BATTLE_MAIN,
+}
+
 enum class JobEnum (val jobName :String, val obj: JobManager.JobAbstract){
     WARRIOR("戦士" , Warrior()),
     SPELL_CASTER("魔法使い", SpellCaster()),
     PRIEST("僧侶", Priest()),
     BERSERK("バーサーカー", Berserk()),
+    NONE("ERROR",Warrior())
 }
 
 enum class EndEnum{
@@ -32,6 +55,7 @@ enum class OperationIdEnum(val id: Int, val text: String) {
     OFFENSIVE (0, "ガンガンいこうぜ"),
     DEFENSIVE(1, "いのちだいじに"),
     FLEXIBLE(2, "バッチリがんばれ"),
+    ERROR(9, "ERROR"),
 }
 
 enum class ConditionEnum(val id: Int, val text: String) {

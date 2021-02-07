@@ -24,10 +24,10 @@
         <activity android:name=".characters.activity.CharacterListActivity">
         </activity>
 
-        <activity android:name=".party.PartyFormationActivity">
+        <activity android:name=".party.activity.PartyFormationActivity">
         </activity>
 
-        <activity android:name=".party.BattleLobbyActivity">
+        <activity android:name=".party.activity.BattleLobbyActivity">
         </activity>
 
         <activity android:name=".characters.activity.NewCharacterGenerateActivity">

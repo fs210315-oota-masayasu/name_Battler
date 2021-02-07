@@ -11,6 +11,7 @@ import com.example.namebattler.util.ScopedAppActivity
 
 //キャラクター詳細画面
 class ConfirmCharacterStatusActivity   : ScopedAppActivity() {
+    //TODO　削除対象
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.output_screen)
@@ -22,12 +23,12 @@ class ConfirmCharacterStatusActivity   : ScopedAppActivity() {
             // FragmentTransactionのインスタンスを取得
             val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
             // インスタンスに対して張り付け方を指定する
-            fragmentTransaction.replace(
-                R.id.header_area,
-                HeaderFragment.newInstance(
-                    "キャラ詳細"
-                )
-            )
+//            fragmentTransaction.replace(
+//                R.id.header_area,
+//                HeaderFragment.newInstance(
+//                    "キャラ詳細"
+//                )
+//            )
             // 張り付けを実行
             fragmentTransaction.commit()
         }

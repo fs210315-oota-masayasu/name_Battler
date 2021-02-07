@@ -1,62 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".battle.fragment.BattleOperationFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:ignore="UselessParent">
+        tools:context=".battle.fragment.BattleOperationFragment">
 
         <LinearLayout
-            android:id="@+id/current_operation_area"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
 
-            <TextView
-                android:id="@+id/value_current_operation"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:padding="10dp"
-                android:text="@string/empty"
-                android:textSize="18sp" />
+            <LinearLayout
+                android:id="@+id/current_operation_area"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+                <TextView
+                    android:id="@+id/value_current_operation"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:text="@string/empty"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btn_change_operation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/buttonColor"
+                    android:text="@string/change_operation"
+                    android:textColor="@color/buttonLabel"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/log_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp" />
 
             <Button
-                android:id="@+id/btn_change_operation"
-                android:layout_width="wrap_content"
+                android:id="@+id/btn_next_turn"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:background="@color/buttonColor"
-                android:text="@string/change_operation"
+                android:text="@string/next_turn"
                 android:textColor="@color/buttonLabel"
-                android:textSize="18sp" />
+                android:textSize="30sp" />
+
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/log_list_view"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp" />
-
-        <Button
-            android:id="@+id/btn_next_turn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:background="@color/buttonColor"
-            android:text="@string/next_turn"
-            android:textColor="@color/buttonLabel"
-            android:textSize="30sp" />
-
-    </LinearLayout>
-
-</FrameLayout>
+    </FrameLayout>
+</layout>

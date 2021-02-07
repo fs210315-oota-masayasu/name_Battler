@@ -1,147 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/character_information_view"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="20dp"
-    android:layout_marginTop="5dp"
-    android:orientation="vertical"
-    tools:context=".battle.fragment.InformationViewFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
 
-    <TextView
-        android:id="@+id/txt_value_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="-1dp"
-        android:text="TextView"
-        app:autoSizeMaxTextSize="16sp"
-        app:autoSizeMinTextSize="14sp"
-        app:autoSizeTextType="uniform" />
+    </data>
 
     <LinearLayout
-        android:id="@+id/hp_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="-1dp"
-        android:layout_marginBottom="-1dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/txt_status_hp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/display_name_hp"
-            app:autoSizeMaxTextSize="16sp"
-            app:autoSizeMinTextSize="14sp"
-            app:autoSizeTextType="uniform" />
-
-        <TextView
-            android:id="@+id/txt_value_current_hp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="100"
-            app:autoSizeMaxTextSize="16sp"
-            app:autoSizeMinTextSize="14dp"
-            app:autoSizeTextType="uniform" />
-
-        <TextView
-            android:id="@+id/txt_slash"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/slash"
-            app:autoSizeMaxTextSize="16sp"
-            app:autoSizeMinTextSize="14sp"
-            app:autoSizeTextType="uniform" />
-
-        <TextView
-            android:id="@+id/txt_value_max_hp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:gravity="center"
-            android:text="999"
-            app:autoSizeMaxTextSize="16sp"
-            app:autoSizeMinTextSize="14sp"
-            app:autoSizeTextType="uniform" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/mp_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="-1dp"
-        android:layout_marginBottom="-1dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/txt_status_mp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/display_name_mp"
-            app:autoSizeMaxTextSize="16sp"
-            app:autoSizeMinTextSize="14sp"
-            app:autoSizeTextType="uniform" />
-
-        <TextView
-            android:id="@+id/txt_value_current_mp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="100"
-            app:autoSizeMaxTextSize="16sp"
-            app:autoSizeMinTextSize="14sp"
-            app:autoSizeTextType="uniform" />
-
-        <TextView
-            android:id="@+id/txt_slash2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/slash"
-            app:autoSizeMaxTextSize="16sp"
-            app:autoSizeMinTextSize="14sp"
-            app:autoSizeTextType="uniform" />
-
-        <TextView
-            android:id="@+id/txt_value_max_mp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:text="999"
-            app:autoSizeMaxTextSize="16sp"
-            app:autoSizeMinTextSize="14dp"
-            app:autoSizeTextType="uniform" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/txt_value_condition"
-        android:layout_width="match_parent"
+        android:id="@+id/character_information_view"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-1dp"
-        android:text="TextView"
-        app:autoSizeMaxTextSize="16sp"
-        app:autoSizeMinTextSize="14sp"
-        app:autoSizeTextType="uniform" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        tools:context=".battle.fragment.InformationViewFragment">
 
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/txt_value_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-1dp"
+            android:text="TextView"
+            app:autoSizeMaxTextSize="16sp"
+            app:autoSizeMinTextSize="14sp"
+            app:autoSizeTextType="uniform" />
+
+        <LinearLayout
+            android:id="@+id/hp_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="-1dp"
+            android:layout_marginBottom="-1dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_status_hp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/display_name_hp"
+                app:autoSizeMaxTextSize="16sp"
+                app:autoSizeMinTextSize="14sp"
+                app:autoSizeTextType="uniform" />
+
+            <TextView
+                android:id="@+id/txt_value_current_hp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="100"
+                app:autoSizeMaxTextSize="16sp"
+                app:autoSizeMinTextSize="14dp"
+                app:autoSizeTextType="uniform" />
+
+            <TextView
+                android:id="@+id/txt_slash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/slash"
+                app:autoSizeMaxTextSize="16sp"
+                app:autoSizeMinTextSize="14sp"
+                app:autoSizeTextType="uniform" />
+
+            <TextView
+                android:id="@+id/txt_value_max_hp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:gravity="center"
+                android:text="999"
+                app:autoSizeMaxTextSize="16sp"
+                app:autoSizeMinTextSize="14sp"
+                app:autoSizeTextType="uniform" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mp_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="-1dp"
+            android:layout_marginBottom="-1dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_status_mp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/display_name_mp"
+                app:autoSizeMaxTextSize="16sp"
+                app:autoSizeMinTextSize="14sp"
+                app:autoSizeTextType="uniform" />
+
+            <TextView
+                android:id="@+id/txt_value_current_mp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="100"
+                app:autoSizeMaxTextSize="16sp"
+                app:autoSizeMinTextSize="14sp"
+                app:autoSizeTextType="uniform" />
+
+            <TextView
+                android:id="@+id/txt_slash2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/slash"
+                app:autoSizeMaxTextSize="16sp"
+                app:autoSizeMinTextSize="14sp"
+                app:autoSizeTextType="uniform" />
+
+            <TextView
+                android:id="@+id/txt_value_max_mp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="999"
+                app:autoSizeMaxTextSize="16sp"
+                app:autoSizeMinTextSize="14dp"
+                app:autoSizeTextType="uniform" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_value_condition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-1dp"
+            android:text="TextView"
+            app:autoSizeMaxTextSize="16sp"
+            app:autoSizeMinTextSize="14sp"
+            app:autoSizeTextType="uniform" />
+
+
+    </LinearLayout>
+</layout>

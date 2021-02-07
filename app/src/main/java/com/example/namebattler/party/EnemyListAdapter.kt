@@ -4,15 +4,72 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.namebattler.R
+import com.example.namebattler.characters.CharaListAdapter
 import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.data.database.Characters
 import com.example.namebattler.data.jobData.JobManager
+import com.example.namebattler.databinding.EnemyListViewBinding
+import com.example.namebattler.databinding.ListViewBinding
 import com.example.namebattler.util.Belong
-import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.list_view.view.*
+import com.example.namebattler.viewModel.EnemyViewModel
 
+
+//BattleLobbyActivity：敵パーティリスト
+class EnemyListAdapter(private val enemyViewModel : EnemyViewModel,
+                       private val parentLifecycleOwner: LifecycleOwner
+                       ) : RecyclerView.Adapter<EnemyListAdapter.EnemyListViewHolder>(){
+
+//    private var character = emptyList<Characters>() // Cached copy of character
+
+    private var sendToComplete : CharacterHolder = CharacterHolder()
+//    var list  = arrayListOf<CharacterHolder?>()
+
+
+    /** viewHolder **/
+    inner class EnemyListViewHolder(val binding: EnemyListViewBinding) : RecyclerView.ViewHolder(binding.root)
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EnemyListViewHolder {
+        val binding = DataBindingUtil.inflate<EnemyListViewBinding>(
+            LayoutInflater.from(parent.context),
+            R.layout.enemy_list_view,
+            parent,
+            false
+        )
+        return EnemyListViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: EnemyListViewHolder, position: Int) {
+
+        val list = enemyViewModel.enemyFormation.value ?: listOf()
+
+        holder.apply {
+            binding.enemyViewModel = enemyViewModel
+            binding.position = position
+
+            //LifecycleOwnerをViewHolderにセット
+            binding.lifecycleOwner = parentLifecycleOwner
+        }
+    }
+
+
+
+/*    internal fun setCharacter(character: List<Characters>){
+        this.character = character
+        notifyDataSetChanged()
+    }*/
+
+    override fun getItemCount() = enemyViewModel.enemyFormation.value?.size?: 0
+
+}
+
+
+/*
 //BattleLobbyActivity：敵パーティリスト
 class EnemyListAdapter internal constructor(context : Context
 ) : RecyclerView.Adapter<EnemyListAdapter.EnemyListViewHolder>(){
@@ -23,7 +80,9 @@ class EnemyListAdapter internal constructor(context : Context
     private var sendToComplete : CharacterHolder = CharacterHolder()
     var list  = arrayListOf<CharacterHolder?>()
 
-    inner class EnemyListViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer
+//    inner class EnemyListViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer
+
+    inner class EnemyListViewHolder(val containerView: View) : RecyclerView.ViewHolder(containerView)
 
 
 //    inner class EnemyListViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
@@ -45,6 +104,19 @@ class EnemyListAdapter internal constructor(context : Context
     override fun onBindViewHolder(holder: EnemyListViewHolder, position: Int) {
         val current = character[position]
 
+        holder.itemView.findViewById<TextView>(R.id.value_name).text = current.NAME
+        //職業ごとに割り振っているIDから名前を取得
+        holder.itemView.findViewById<TextView>(R.id.value_job).text = JobManager().getJobList(current.JOB)
+        holder.itemView.findViewById<TextView>(R.id.value_status_hp).text = current.HP.toString()
+        holder.itemView.findViewById<TextView>(R.id.value_status_mp).text = current.MP.toString()
+        holder.itemView.findViewById<TextView>(R.id.value_status_str).text = current.STR.toString()
+        holder.itemView.findViewById<TextView>(R.id.value_status_def).text = current.DEF.toString()
+        holder.itemView.findViewById<TextView>(R.id.value_status_agi).text = current.AGI.toString()
+
+
+
+*/
+/*
         holder.itemView.value_name.text = current.NAME
         //職業ごとに割り振っているIDから名前を取得
         holder.itemView.value_job.text = JobManager().getJobList(current.JOB)
@@ -53,15 +125,9 @@ class EnemyListAdapter internal constructor(context : Context
         holder.itemView.value_status_str.text = current.STR.toString()
         holder.itemView.value_status_def.text = current.DEF.toString()
         holder.itemView.value_status_agi.text = current.AGI.toString()
+*//*
 
-//        holder.charaNameView.text = current.NAME
-//        holder.charaJobView.text = JobManager()
-//            .getJobList(current.JOB) // インデックスから名前を取得
-//        holder.charaHpView.text = current.HP.toString()
-//        holder.charaMpView.text = current.MP.toString()
-//        holder.charaStrView.text = current.STR.toString()
-//        holder.charaDefView.text = current.DEF.toString()
-//        holder.charaAgiView.text = current.AGI.toString()
+
 
         sendToComplete =
             CharacterHolder(
@@ -87,3 +153,4 @@ class EnemyListAdapter internal constructor(context : Context
     override fun getItemCount() = character.size
 
 }
+*/

@@ -1,44 +1,39 @@
 package com.example.namebattler.party
 
-import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.namebattler.R
+import com.example.namebattler.characters.CharaListAdapter
 import com.example.namebattler.data.characterData.CharacterHolder
 import com.example.namebattler.data.database.Characters
-import com.example.namebattler.data.jobData.JobManager
 import com.example.namebattler.databinding.FormationListViewBinding
-import com.example.namebattler.databinding.ListViewBinding
 import com.example.namebattler.util.Belong
-import com.example.namebattler.viewModel.CharacterViewModel
 import com.example.namebattler.viewModel.OperationDatabaseViewModel
+import com.example.namebattler.viewModel.PartyFormationViewModel
 
-class FormationListAdapter(
-    private val viewModel: CharacterViewModel,
-    private val operationDatabaseViewModel: OperationDatabaseViewModel,
-    private val parentLifecycleOwner: LifecycleOwner
-) : RecyclerView.Adapter<FormationListAdapter.FormationListViewHolder>() {
+class FormationListAdapter(private val operationDatabaseViewModel: OperationDatabaseViewModel,
+                           private val partyFormationViewModel: PartyFormationViewModel,
+                           private val parentLifecycleOwner: LifecycleOwner
+                           ) : RecyclerView.Adapter<FormationListAdapter.FormationListViewHolder>() {
 
+    /** viewHolder **/
     class FormationListViewHolder(val binding: FormationListViewBinding) :
         RecyclerView.ViewHolder(binding.root)
 
+    //生成するリストのlayout指定
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FormationListViewHolder {
-
         val binding = DataBindingUtil.inflate<FormationListViewBinding>(
             LayoutInflater.from(parent.context),
             R.layout.formation_list_view,
             parent,
             false
         )
-//        val partyListView = inflater.inflate(R.layout.formation_list_view, parent, false)
         return FormationListViewHolder(binding)
     }
 
@@ -47,15 +42,63 @@ class FormationListAdapter(
         return operationDatabaseViewModel.allCharacters.value?.size ?: 0
     }
 
+
+    //チェックカウントを格納する
+    var noticeChangeCount = MutableLiveData<Int>()
+
     override fun onBindViewHolder(holder: FormationListViewHolder, position: Int) {
 
+
         val list = operationDatabaseViewModel.allCharacters.value ?: listOf()
+
+        partyFormationViewModel.allCharacterList = list as MutableList<Characters>
+
+
+
         holder.binding.viewModel = operationDatabaseViewModel
+        holder.binding.partyFormationViewModel = partyFormationViewModel
 
         holder.binding.position = position
-
         //LifecycleOwnerをViewHolderにセット
         holder.binding.lifecycleOwner = parentLifecycleOwner
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/** 不要 **/
+//            partyFormationViewModel.onClickedCheckbox(position, list as MutableList<Characters>)
+
+
+//            var isChecked = partyFormationViewModel.isCheckedPartyFormation[position].value ?: false
+//            if (!isChecked) {
+//                isChecked = true
+//            } else if (isChecked) {
+//                isChecked = false
+//            }
+//
+//            holder.binding.checkBoxList.isChecked = isChecked
+//            partyFormationViewModel.isCheckedPartyFormation[position].value = isChecked
+
+
 
 
 
@@ -194,7 +237,7 @@ class FormationListAdapter(
 //    private var cnt = 0
 
         //チェックカウントを格納する
-        var noticeChangeCount = MutableLiveData<Int>()
+//        var noticeChangeCount = MutableLiveData<Int>()
 
 
 //    internal fun setCharacter(character: List<Characters>) {
@@ -203,8 +246,8 @@ class FormationListAdapter(
 //    }
 
 
-    }
-}
+//    }
+//}
 
 
 /** not DataBinding **/

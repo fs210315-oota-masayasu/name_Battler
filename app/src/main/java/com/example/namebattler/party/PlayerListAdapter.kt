@@ -4,13 +4,54 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.namebattler.R
 import com.example.namebattler.data.characterData.CharacterHolder
-import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.list_view.view.*
+import com.example.namebattler.databinding.PartyListViewBinding
+import com.example.namebattler.viewModel.PartyFormationViewModel
 
-////BattleLobbyActivity：編成済パーティリスト
+
+/** 編成済パーティリスト  **/
+class PlayerListAdapter(private val partyFormationViewModel: PartyFormationViewModel,
+                        private val parentLifecycleOwner: LifecycleOwner
+                        ) : RecyclerView.Adapter<PlayerListAdapter.PartyListViewHolder>() {
+
+
+    /** viewHolder **/
+    class PartyListViewHolder(val binding : PartyListViewBinding) : RecyclerView.ViewHolder(binding.root)
+
+
+    //生成するリストのlayout指定
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PartyListViewHolder {
+        val binding = DataBindingUtil.inflate<PartyListViewBinding>(
+            LayoutInflater.from(parent.context),
+            R.layout.party_list_view,
+            parent,
+            false
+        )
+        return PartyListViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: PartyListViewHolder, position: Int) {
+//        val current = character[position]
+        holder.apply {
+            binding.partyFormationViewModel = partyFormationViewModel
+            binding.position = position
+
+            binding.lifecycleOwner = parentLifecycleOwner
+        }
+
+
+    }
+
+
+    override fun getItemCount() = partyFormationViewModel.selectionCharacterList.value?.size?:0
+}
+
+/** old  **/
+/*
 class PlayerListAdapter  internal constructor(
     context : Context
 ) : RecyclerView.Adapter<PlayerListAdapter.PartyListViewHolder>() {
@@ -18,7 +59,11 @@ class PlayerListAdapter  internal constructor(
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var character = mutableListOf<CharacterHolder>()
 
-    inner class PartyListViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer
+    inner class PartyListViewHolder(val containerView: View) : RecyclerView.ViewHolder(containerView)
+//    inner class PartyListViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer
+
+
+
 //    inner class PartyListViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 //        val charaNameView : TextView = itemView.findViewById(R.id.value_name)
 //        val charaJobView : TextView = itemView.findViewById(R.id.value_job)
@@ -39,6 +84,8 @@ class PlayerListAdapter  internal constructor(
     override fun onBindViewHolder(holder: PartyListViewHolder, position: Int) {
         val current = character[position]
 
+*/
+/*
         holder.itemView.value_name.text = current.name
         holder.itemView.value_job.text = current.job
         holder.itemView.value_status_hp.text = current.hp.toString()
@@ -46,6 +93,13 @@ class PlayerListAdapter  internal constructor(
         holder.itemView.value_status_str.text = current.str.toString()
         holder.itemView.value_status_def.text = current.def.toString()
         holder.itemView.value_status_agi.text = current.agi.toString()
+*//*
+
+
+
+
+
+
 
 
 
@@ -67,3 +121,4 @@ class PlayerListAdapter  internal constructor(
 
     override fun getItemCount() = character.size
 }
+*/

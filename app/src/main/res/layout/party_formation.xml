@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.namebattler.viewModel.CharacterViewModel" />
+            type="com.example.namebattler.viewModel.PartyFormationViewModel" />
 
         <variable
             name="position"
@@ -59,14 +59,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
-            android:onClick="@{() -> viewModel.onClickDecideParty()}"
+
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
-<!--
-            app:btn_background_test="@{viewModel.buttonColorOF ? @color/buttonColor:  @color/inactiveColor}"
--->
+<!--            android:onClick="@{() -> viewModel.onClickDecideParty()}"-->
 
 

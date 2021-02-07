@@ -104,7 +104,7 @@ class BattleProcessManager {
             val targetId = targetInformation.id
             characterInformation[targetId] = targetInformation
         }
-        resultLog.add("")
+//        resultLog.add("")
         return resultLog
     }
 
@@ -211,7 +211,7 @@ class BattleProcessManager {
                 //ログ
                 whatLog = "眠っている"
                 resultLog.add(whoIs + whatLog)
-                resultLog.add("")
+//                resultLog.add("")
              }else {                //valueが0の場合はmapから削除する
                 characterInformation[doerId].cond.remove(ConditionEnum.SLEEP.text)
                 whatLog = "目が覚めた"

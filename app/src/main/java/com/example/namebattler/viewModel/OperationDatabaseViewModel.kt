@@ -12,6 +12,7 @@ import com.example.namebattler.data.database.AppDatabase
 import com.example.namebattler.data.database.Characters
 import com.example.namebattler.data.jobData.JobManager
 import com.example.namebattler.util.Belong
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.concurrent.thread
 
@@ -21,7 +22,9 @@ class OperationDatabaseViewModel(application: Application) : AndroidViewModel(ap
     private val repository: CharactersRepository
     val allCharacters: LiveData<List<Characters>>
 
-    val countOverlap = MutableLiveData<Int>()
+//    val countOverlap = MutableLiveData<Int>()
+
+    var countOverlap = MutableLiveData<Int>()
     val numOfRegistrations = MutableLiveData<Int>()
 
     init {
@@ -58,9 +61,25 @@ class OperationDatabaseViewModel(application: Application) : AndroidViewModel(ap
         }
     }
 
-    fun confirm(searchName: String) {
-        countOverlap.postValue(countOverlap(searchName))
+    //パーティ編成画面のチェック状態を保持するリスト
+    var isCheckedPartyFormation: MutableList<MutableLiveData<Boolean>> = mutableListOf()
+
+    //isCheckedPartyFormationのサイズ数を登録件数と同一にしてfalseで埋める
+    fun initCheckList() {
+        isCheckedPartyFormation =
+            MutableList(numOfRegistrations.value ?: 0) { MutableLiveData(false) }
     }
+
+    fun confirm(searchName: String) {
+        Log.d("VM_NAME","おなまえ：$searchName")
+
+        viewModelScope.launch(Dispatchers.IO) {
+
+            Log.d("VM_CO", "すでにありますか？${countOverlap(searchName)}")
+            countOverlap.postValue(countOverlap(searchName))
+        }
+    }
+
 
     //DBに格納されている値から名前へと変換
     fun getJobName(index: Int): String {

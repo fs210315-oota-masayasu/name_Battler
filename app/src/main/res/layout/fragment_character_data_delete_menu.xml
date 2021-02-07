@@ -51,7 +51,7 @@
                 android:id="@+id/value_status_create_at"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{String.valueOf(characterViewModel.characterStatus.CREATE_AT)}"
+                android:text="@{characterViewModel.toStringCreateAt(characterViewModel.characterStatus.CREATE_AT)}"
                 android:textSize="30sp" />
         </LinearLayout>
 
@@ -73,3 +73,5 @@
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+
+<!--                 android:text="@{String.valueOf(characterViewModel.characterStatus.CREATE_AT)}" -->

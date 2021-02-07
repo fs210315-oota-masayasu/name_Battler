@@ -20,6 +20,7 @@ public abstract class AppDatabase : RoomDatabase() {
             INSTANCE?.let { database ->
                 scope.launch {
 
+/*
                     //初期登録例（最初にDB内のクリアしないと起動時に重複して登録される）
                     var characterDao = database.charactersDao()
                     //クリア処理
@@ -38,6 +39,36 @@ public abstract class AppDatabase : RoomDatabase() {
                             1588085823101
                         )
                     characterDao.insert(accessCheckCharaData)
+
+
+                    accessCheckCharaData =
+                        Characters(
+                            "白魔術師",
+                            0,
+                            80,
+                            80,
+                            80,
+                            80,
+                            80,
+                            80,
+                            1588085823101
+                        )
+                    characterDao.insert(accessCheckCharaData)
+
+                    accessCheckCharaData =
+                        Characters(
+                            "おおお",
+                            0,
+                            30,
+                            30,
+                            30,
+                            30,
+                            30,
+                            30,
+                            1588085823101
+                        )
+                    characterDao.insert(accessCheckCharaData)
+                    */
                 }
             }
         }
