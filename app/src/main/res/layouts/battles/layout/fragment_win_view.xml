@@ -10,7 +10,7 @@
         android:id="@+id/win_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".battle.fragment.WinViewFragment">
+        tools:context=".presentation.fragment.battle.WinViewFragment">
 
         <ImageView
             android:id="@+id/img_pose_win"

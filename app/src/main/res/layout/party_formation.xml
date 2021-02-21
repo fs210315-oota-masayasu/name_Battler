@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.namebattler.viewModel.PartyFormationViewModel" />
+            type="com.example.namebattler.function.viewModel.PartyFormationViewModel" />
         <variable
             name="position"
             type="Integer" />

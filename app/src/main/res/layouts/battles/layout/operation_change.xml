@@ -5,9 +5,9 @@
     <data>
         <variable
             name="battleViewModel"
-            type="com.example.namebattler.viewModel.BattleViewModel" />
+            type="com.example.namebattler.function.viewModel.BattleViewModel" />
 
-        <import type="com.example.namebattler.util.BindingUtils"/>
+        <import type="com.example.namebattler.presentation.dataBindingUtils.characters.BindingUtils"/>
 
     </data>
 

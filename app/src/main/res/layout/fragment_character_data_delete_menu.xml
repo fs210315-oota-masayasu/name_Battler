@@ -6,7 +6,7 @@
     <data>
         <variable
             name="characterViewModel"
-            type="com.example.namebattler.viewModel.CharacterViewModel" />
+            type="com.example.namebattler.function.viewModel.CharacterViewModel" />
 
     </data>
 
@@ -14,7 +14,7 @@
         android:id="@+id/button_area"
         android:layout_width="match_parent"
         android:layout_height="175dp"
-        tools:context=".characters.fragment.CharacterDataDeleteMenuFragment">
+        tools:context=".presentation.fragment.characters.CharacterDataDeleteMenuFragment">
 
         <LinearLayout
             android:id="@+id/status_name"

@@ -6,9 +6,9 @@
     <data>
         <variable
             name="characterViewModel"
-            type="com.example.namebattler.viewModel.CharacterViewModel" />
+            type="com.example.namebattler.function.viewModel.CharacterViewModel" />
 
-        <import type="com.example.namebattler.util.BindingUtils"/>
+        <import type="com.example.namebattler.presentation.dataBindingUtils.characters.BindingUtils"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

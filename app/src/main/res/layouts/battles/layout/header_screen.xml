@@ -9,5 +9,5 @@
         android:id="@+id/output_header_screen"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        tools:context=".menu.HeaderFragment" />
+        tools:context=".presentation.fragment.header.HeaderFragment" />
 </layout>

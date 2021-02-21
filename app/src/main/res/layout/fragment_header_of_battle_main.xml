@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
             name="headerViewModel"
-            type="com.example.namebattler.viewModel.HeaderViewModel" />
+            type="com.example.namebattler.function.viewModel.HeaderViewModel" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        tools:context=".menu.HeaderOfBattleMainFragment">
+        tools:context=".presentation.fragment.header.HeaderOfBattleMainFragment">
 
         <TextView
             android:id="@+id/txt_header_of_battle_main"
@@ -20,7 +21,7 @@
             android:background="@color/inactiveColor"
             android:gravity="center"
             android:text="@{headerViewModel.headerText}"
-            android:textSize="30sp" />
+            android:textSize="24sp" />
 
     </FrameLayout>
 </layout>

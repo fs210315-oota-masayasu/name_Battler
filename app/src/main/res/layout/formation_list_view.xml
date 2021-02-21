@@ -6,11 +6,11 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.namebattler.viewModel.OperationDatabaseViewModel" />
+            type="com.example.namebattler.function.viewModel.OperationDatabaseViewModel" />
 
         <variable
             name="partyFormationViewModel"
-            type="com.example.namebattler.viewModel.PartyFormationViewModel" />
+            type="com.example.namebattler.function.viewModel.PartyFormationViewModel" />
 
         <variable
             name="position"

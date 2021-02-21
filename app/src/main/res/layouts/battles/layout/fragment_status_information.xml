@@ -8,7 +8,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="176dp"
-        tools:context=".battle.fragment.StatusInformationFragment">
+        tools:context=".presentation.fragment.battle.StatusInformationFragment">
 
         <LinearLayout
             android:id="@+id/enemy_list"

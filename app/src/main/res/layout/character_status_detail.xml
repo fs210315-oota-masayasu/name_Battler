@@ -6,14 +6,14 @@
     <data>
         <variable
             name="characterViewModel"
-            type="com.example.namebattler.viewModel.CharacterViewModel" />
+            type="com.example.namebattler.function.viewModel.CharacterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/commonLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".characters.fragment.CharacterStatusDetailFragment">
+        tools:context=".presentation.fragment.characters.CharacterStatusDetailFragment">
 
         <TextView
             android:id="@+id/value_name"

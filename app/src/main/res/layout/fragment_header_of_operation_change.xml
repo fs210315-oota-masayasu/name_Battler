@@ -5,14 +5,15 @@
     <data>
         <variable
             name="headerViewModel"
-            type="com.example.namebattler.viewModel.HeaderViewModel" />
+            type="com.example.namebattler.function.viewModel.HeaderViewModel" />
     </data>
 
     <FrameLayout
         android:id="@+id/header_of_operation"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        tools:context=".menu.HeaderOfOperationChangeFragment">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".presentation.fragment.header.HeaderOfOperationChangeFragment">
 
         <TextView
             android:id="@+id/txt_header"
@@ -21,7 +22,7 @@
             android:background="@color/inactiveColor"
             android:gravity="center"
             android:text="@{headerViewModel.headerText}"
-            android:textSize="30sp"
+            android:textSize="24sp"
             tools:layout_conversion_absoluteHeight="731dp"
             tools:layout_conversion_absoluteWidth="411dp"
             tools:layout_editor_absoluteX="0dp"
