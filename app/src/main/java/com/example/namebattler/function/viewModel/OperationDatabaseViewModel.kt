@@ -69,11 +69,7 @@ class OperationDatabaseViewModel(application: Application) : AndroidViewModel(ap
     }
 
     fun confirm(searchName: String) {
-        Log.d("VM_NAME","おなまえ：$searchName")
-
         viewModelScope.launch(Dispatchers.IO) {
-
-            Log.d("VM_CO", "すでにありますか？${countOverlap(searchName)}")
             countOverlap.postValue(countOverlap(searchName))
         }
     }
