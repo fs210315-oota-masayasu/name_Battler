@@ -106,10 +106,9 @@ class CharacterListFragment: Fragment() {
                 })
                 //キャラクター作成画面へ遷移
                 btnCharacterNewCreate.setOnClickListener {
-                    setCharacterViewModel.clearInputData()
                     //ヘッダー情報更新
                     headerViewModel.headerText.postValue(getString(R.string.create_character))
-                    headerViewModel.outputFlag = HeaderFlag.DEFAULT
+                    headerViewModel.outputFlag = HeaderFlag.NEW_CHARACTER_GENERATE
 
                     val fragmentManager: FragmentManager = parentFragmentManager
                     val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
@@ -125,5 +124,12 @@ class CharacterListFragment: Fragment() {
             })
         }
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        //確実にデータをClearする
+        setCharacterViewModel.clearInputData()
     }
 }

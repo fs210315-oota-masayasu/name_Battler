@@ -35,6 +35,8 @@ class NewCharacterGenerateFragment: Fragment(), TextWatcher , AlertDataUpdate.No
         savedInstanceState: Bundle?
     ): View? {
 
+
+
         binding = CharacterNewCreateBinding.inflate(inflater, container, false).apply {
             characterViewModel = setCharacterViewModel
 
@@ -74,7 +76,6 @@ class NewCharacterGenerateFragment: Fragment(), TextWatcher , AlertDataUpdate.No
 
                     setOperationDatabaseViewModel.countOverlap.observe(viewLifecycleOwner, Observer {
                         countOverlap ->
-
                         setOperationDatabaseViewModel.apply {
                             if (countOverlap == 1){
                                 val dialog = AlertDataUpdate()
@@ -86,20 +87,17 @@ class NewCharacterGenerateFragment: Fragment(), TextWatcher , AlertDataUpdate.No
 
                                 //ヘッダー情報更新
                                 headerViewModel.headerText.postValue(getString(R.string.create_character))
-                                headerViewModel.outputFlag = HeaderFlag.DEFAULT
+                                headerViewModel.outputFlag = HeaderFlag.CONFIRM_GENERATION_CHARACTER
 
                                 //画面遷移
                                 val fragmentManager: FragmentManager = parentFragmentManager
                                 val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
 
-                                fragmentTransaction.addToBackStack(BackStack.NEW_CHARACTER_GENERATE.name)
-
-
                                 fragmentTransaction.replace(
                                     R.id.attach_screen,
                                     ConfirmGenerationCharacterFragment()
                                 )
-                                fragmentTransaction.commit()
+                                fragmentTransaction.remove(this@NewCharacterGenerateFragment).commit()
                             }
                         }
                     })
@@ -138,22 +136,24 @@ class NewCharacterGenerateFragment: Fragment(), TextWatcher , AlertDataUpdate.No
 
 
     override fun onDialogPositiveClick(dialog: DialogFragment) {
+
+
         //ヘッダー情報更新
-        Log.d("<<< string >>>", "ヘッダーテキスト：${getString(R.string.create_character)}")
         headerViewModel.headerText.postValue(getString(R.string.create_character))
-        headerViewModel.outputFlag = HeaderFlag.DEFAULT
+        headerViewModel.outputFlag = HeaderFlag.CONFIRM_GENERATION_CHARACTER
         //画面遷移
         val fragmentManager: FragmentManager = parentFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
 
-        fragmentTransaction.addToBackStack(BackStack.NEW_CHARACTER_GENERATE.name)
+//        fragmentTransaction.addToBackStack(BackStack.NEW_CHARACTER_GENERATE.name)
         fragmentTransaction.replace(
             R.id.attach_screen,
             ConfirmGenerationCharacterFragment()
         )
 
-        fragmentTransaction.commit()
 
+
+        fragmentTransaction.remove(this@NewCharacterGenerateFragment).commit()
     }
     override fun onDialogNegativeClick(dialog: DialogFragment) {
         val inputName = binding.setInputName

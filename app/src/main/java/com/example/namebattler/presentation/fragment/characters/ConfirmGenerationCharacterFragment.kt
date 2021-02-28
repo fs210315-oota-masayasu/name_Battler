@@ -10,8 +10,11 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import com.example.namebattler.R
 import com.example.namebattler.databinding.OutputScreenBinding
+import com.example.namebattler.function.HeaderFlag
+import com.example.namebattler.function.JobEnum
 import com.example.namebattler.presentation.fragment.header.HeaderFragment
 import com.example.namebattler.function.viewModel.CharacterViewModel
+import com.example.namebattler.function.viewModel.HeaderViewModel
 import com.example.namebattler.function.viewModel.getViewModelFactory
 
 /** キャラクター作成完了画面 **/
@@ -19,6 +22,7 @@ class ConfirmGenerationCharacterFragment: Fragment() {
 
     private lateinit var binding: OutputScreenBinding
     private val setCharacterViewModel : CharacterViewModel by viewModels{ getViewModelFactory() }
+    private val headerViewModel: HeaderViewModel by viewModels{ getViewModelFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +46,10 @@ class ConfirmGenerationCharacterFragment: Fragment() {
                 // 張り付けを実行
                 fragmentTransaction.commit()
             }
+
+            //ヘッダー情報更新
+            headerViewModel.headerText.postValue(getString(R.string.create_character))
+            headerViewModel.outputFlag = HeaderFlag.NEW_CHARACTER_GENERATE
 
             if (savedInstanceState == null){
                 // FragmentManagerのインスタンス生成

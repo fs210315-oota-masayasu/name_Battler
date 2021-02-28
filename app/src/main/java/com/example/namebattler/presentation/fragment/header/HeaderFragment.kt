@@ -67,6 +67,18 @@ class HeaderFragment : Fragment() {
                     HeaderOfReturnPartyFormationFragment()
                 )
             }
+            HeaderFlag.CONFIRM_GENERATION_CHARACTER -> {
+                fragmentTransaction.replace(
+                    R.id.output_header_screen,
+                    HeaderOfConfirmGenerationCharacterFragment()
+                )
+            }
+            HeaderFlag.NEW_CHARACTER_GENERATE -> {
+                fragmentTransaction.replace(
+                    R.id.output_header_screen,
+                    HeaderNewCharacterGenerateFragment()
+                )
+            }
 
         }
         fragmentTransaction.commit()
