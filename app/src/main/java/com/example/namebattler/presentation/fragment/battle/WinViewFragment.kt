@@ -29,6 +29,10 @@ class WinViewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentWinViewBinding.inflate(inflater, container, false).apply {
+
+            //作戦を初期化
+            battleViewModel.resetOperationRatioType()
+
             //再挑戦
             challengeAgain.setOnClickListener {
                 //ヘッダー情報をセット
@@ -39,6 +43,7 @@ class WinViewFragment : Fragment() {
 
                 /** ステータスの初期情報の取得とLiveData（informationNotice）への格納 **/
                 battleViewModel.setInformationNotice()
+
                 // FragmentManagerのインスタンス生成
                 val fragmentManager: FragmentManager = parentFragmentManager
                 // FragmentTransactionのインスタンスを取得

@@ -51,5 +51,9 @@ class BattleViewModel: ViewModel() {
     //ラジオボタンで選択した作戦を格納
     var operationRadioType = MutableLiveData(OperationIdEnum.OFFENSIVE)
 
+    fun resetOperationRatioType(){
+        operationRadioType = MutableLiveData(OperationIdEnum.OFFENSIVE)
+    }
+
 
 }

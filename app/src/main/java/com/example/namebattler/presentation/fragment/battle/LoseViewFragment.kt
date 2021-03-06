@@ -31,6 +31,9 @@ class LoseViewFragment : Fragment() {
     ): View? {
         binding = FragmentLoseViewBinding.inflate(inflater, container, false).apply {
 
+            //作戦を初期化
+            battleViewModel.resetOperationRatioType()
+
             //再挑戦
             challengeAgain.setOnClickListener {
 
