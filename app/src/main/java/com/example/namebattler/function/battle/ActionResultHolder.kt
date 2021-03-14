@@ -1,7 +1,7 @@
 package com.example.namebattler.function.battle
 
 data class ActionResultHolder(
-    var turnCorrection :Int,
+    var attackMagnification :Int,   //攻撃倍率（ターン数を格納）
     var flavorText: MutableList<String>,
     var damageToHp: Int,
     var cureToHp: Int,

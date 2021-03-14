@@ -9,14 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
-import com.example.namebattler.presentation.HomeActivity
 import com.example.namebattler.R
 import com.example.namebattler.databinding.FragmentLoseViewBinding
-import com.example.namebattler.presentation.fragment.party.PartyFormationFragment
 import com.example.namebattler.function.HeaderFlag
 import com.example.namebattler.function.viewModel.BattleViewModel
 import com.example.namebattler.function.viewModel.HeaderViewModel
 import com.example.namebattler.function.viewModel.getViewModelFactory
+import com.example.namebattler.presentation.HomeActivity
+import com.example.namebattler.presentation.fragment.party.PartyFormationFragment
 
 class LoseViewFragment : Fragment() {
 
@@ -31,8 +31,9 @@ class LoseViewFragment : Fragment() {
     ): View? {
         binding = FragmentLoseViewBinding.inflate(inflater, container, false).apply {
 
-            //作戦を初期化
+            //作戦・ログを初期化
             battleViewModel.resetOperationRatioType()
+            battleViewModel.resetBattleLog()
 
             //再挑戦
             challengeAgain.setOnClickListener {
@@ -57,7 +58,6 @@ class LoseViewFragment : Fragment() {
                 )
                 fragmentTransaction.commit()
             }
-
             //次の対戦へ
             nextBattle.setOnClickListener {
 
@@ -66,8 +66,6 @@ class LoseViewFragment : Fragment() {
                     headerText.postValue(getString(R.string.party_formation))
                     outputFlag = HeaderFlag.DEFAULT
                 }
-
-
                 if (savedInstanceState == null){
                     // FragmentManagerのインスタンス生成
                     val fragmentManager: FragmentManager = parentFragmentManager
@@ -81,7 +79,6 @@ class LoseViewFragment : Fragment() {
                     // 張り付けを実行
                     fragmentTransaction.commit()
                 }
-
             }
 
             //対戦を終了する

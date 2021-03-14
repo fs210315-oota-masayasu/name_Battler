@@ -19,6 +19,10 @@ class BattleProcessDetails {
         this.deadList = deadList
     }
 
+    fun getBattleProcessInformation(): ArrayList<CharacterInformationHolder>{
+        return characterInformation
+    }
+
     fun attackProcess(
         targetList: MutableList<CharacterInformationHolder>,
         attackResult: ActionResultHolder
@@ -38,7 +42,7 @@ class BattleProcessDetails {
 
             val isDamage = checkDamageType(attackResult, defPoint)
             if (isDamage == DamageTypeEnum.NORMAL_DAMAGE.name) {
-                damage = attackResult.damageToHp + (attackResult.damageToHp / 10 * attackResult.turnCorrection)
+                damage = attackResult.damageToHp + (attackResult.damageToHp / 10 * attackResult.attackMagnification)
 
                 //ログ設定
                 val whatDamage = damage.toString() + "のダメージをおった"
@@ -233,7 +237,7 @@ class BattleProcessDetails {
     }
 
     //各Buffのターン数更新
-    fun updateCurrentInformation(doerId: Int) {
+    fun updateCurrentCondition(doerId: Int) {
         characterInformation[doerId].effectTimeOfStr =
             checkEffectTime(characterInformation[doerId].effectTimeOfStr)
         characterInformation[doerId].effectTimeOfDef =

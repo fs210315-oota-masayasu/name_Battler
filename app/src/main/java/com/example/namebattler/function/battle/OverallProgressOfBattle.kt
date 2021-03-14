@@ -6,18 +6,18 @@ import com.example.namebattler.function.Belong
 import com.example.namebattler.function.EndEnum
 import com.example.namebattler.function.OperationIdEnum
 import com.example.namebattler.function.TargetIdEnum
+import com.example.namebattler.function.viewModel.BattleViewModel
 
 
-class ASetOfBattleProcess {
+class OverallProgressOfBattle(private var battleViewModel: BattleViewModel) {
+
 
     private var initiative: Map<Pair<String, String>, Int> = mutableMapOf()
 
     private var enemyList = mutableListOf<CharacterInformationHolder>()
     private var playerList = mutableListOf<CharacterInformationHolder>()
 
-    private var currentInformation = arrayListOf<CharacterInformationHolder>()
     private var deadList = arrayListOf<CharacterInformationHolder>()
-    var count = 0
 
     fun initCharacterList(
         enemyObj: ArrayList<CharacterInformationHolder>,
@@ -30,14 +30,6 @@ class ASetOfBattleProcess {
         //初期化処理
         this.playerList = mutableListOf()
         this.playerList = partyObj
-    }
-
-    fun setCurrentInformation(characterInformation: ArrayList<CharacterInformationHolder>) {
-        this.currentInformation = characterInformation
-    }
-
-    fun getCurrentInformation(): ArrayList<CharacterInformationHolder> {
-        return currentInformation
     }
 
     /** 行動順決め **/
@@ -55,14 +47,21 @@ class ASetOfBattleProcess {
     }
 
     /** 戦闘処理 **/
-    fun battleProcess(sendToOperation: String): MutableList<String> {
+    fun turnProgressOfBattle(sendToOperation: String) {
         val resultLog = mutableListOf<String>()
         var operation : String
+
+        //ターン経過処理
+        var count = battleViewModel.currentTurn.value ?:0
+        count++
+
+        //battleViewModelから前のターンのログ情報を取得
+        resultLog.addAll(battleViewModel.battleLogData.value?: mutableListOf())
 
         resultLog.add("--------[$count ターン]--------")
 
         val instanceOfBattleProcess = BattleProcessDetails()
-        instanceOfBattleProcess.setBattleProcessInformation(currentInformation, deadList)
+        instanceOfBattleProcess.setBattleProcessInformation(battleViewModel.informationNotice.value?: arrayListOf(), deadList)
         run loop@{
             //行動順に行動する
             initiative.forEach { map ->
@@ -92,10 +91,7 @@ class ASetOfBattleProcess {
                 }else{
                     resultLog.add("")
                 }
-
-
                 if (isLiving){
-                    //resultLog.add("")
                     resultLog.add("${doerCharacter.name}の行動")
 
                     val resultAndLog = instanceOfBattleProcess.conditionProcess(doerId, doerCharacter)
@@ -103,19 +99,24 @@ class ASetOfBattleProcess {
 
                     if (resultAndLog.first) {
                         val selectAttackResult = selectAttackResult(operation, doerCharacter)
+
+                        val isEmptyEnemyList = selectAttackResult.second
+
+                        //敵が全員先頭不能時に途中で処理を抜けれるように
+                        if(isEmptyEnemyList.first == "NONE"){
+                            return@loop
+                        }
                         //行動結果を取得
                         val attackResult = selectAttackResult.first
-                        //ターン数格納
-                        attackResult.turnCorrection = count - 1
+                        //攻撃倍率に経過ターン数を格納
+                        attackResult.attackMagnification = battleViewModel.currentTurn.value?:0 - 1
 
                         val selectSkill = selectAttackResult.second
-
                         //ログ情報設定[行動内容]
                         resultLog.addAll(attackResult.flavorText)
                         //標的情報(複数含む)
                         val targetList = selectSkill.second
                         //標的用の識別ID
-                        //var targetId: Int
 
                         //行動結果を反映
                         when (attackResult.targetId) {
@@ -137,13 +138,20 @@ class ASetOfBattleProcess {
                         instanceOfBattleProcess.mpPayment(doerId, attackResult)
                     }
 
-                    //行動中のキャラの情報更新
-                    instanceOfBattleProcess.updateCurrentInformation(doerId)
-
+                    //行動中のキャラのコンディション情報更新
+                    instanceOfBattleProcess.updateCurrentCondition(doerId)
                 }
             }
         }
-        return resultLog
+
+        //現在のターンを格納
+        battleViewModel.currentTurn.postValue(count)
+
+        //ログ情報を格納
+        battleViewModel.battleLogData.postValue(resultLog)
+        //キャラクター情報をLiveDataへ格納
+        battleViewModel.setInformationNotice(instanceOfBattleProcess.getBattleProcessInformation())
+
     }
 
     /** 行動処理決め **/
@@ -163,18 +171,20 @@ class ASetOfBattleProcess {
         val actorJob = actionCharacter.job.let { JobParameterProduction().getJobInstance(it) }
 
         //このタイミングで戦闘不能者をターゲットからはじく
-        val targetList = getCurrentInformation().filterNot { it.currentHp <= 0 } as ArrayList<CharacterInformationHolder>
+        val targetList = battleViewModel.informationNotice.value?.filterNot { it.currentHp <= 0 } as ArrayList<CharacterInformationHolder>
 
 
         selectSkill = actorJob!!.selectSkill(operation, actionCharacter, targetList)
 
-        when (operation) {
-            OperationIdEnum.OFFENSIVE.text -> attackResult =
-                actorJob.offensiveAction(actionCharacter, selectSkill.first)
-            OperationIdEnum.DEFENSIVE.text -> attackResult =
-                actorJob.defensiveAction(actionCharacter, selectSkill.first)
-            OperationIdEnum.FLEXIBLE.text -> attackResult =
-                actorJob.flexibleAction(actionCharacter, selectSkill.first)
+        if (selectSkill.first != "NONE"){
+            when (operation) {
+                OperationIdEnum.OFFENSIVE.text -> attackResult =
+                    actorJob.offensiveAction(actionCharacter, selectSkill.first)
+                OperationIdEnum.DEFENSIVE.text -> attackResult =
+                    actorJob.defensiveAction(actionCharacter, selectSkill.first)
+                OperationIdEnum.FLEXIBLE.text -> attackResult =
+                    actorJob.flexibleAction(actionCharacter, selectSkill.first)
+            }
         }
 
         return Pair(attackResult, selectSkill)

@@ -136,11 +136,13 @@ class NewCharacterGenerateFragment: Fragment(), TextWatcher , AlertDataUpdate.No
 
 
     override fun onDialogPositiveClick(dialog: DialogFragment) {
-
-
         //ヘッダー情報更新
         headerViewModel.headerText.postValue(getString(R.string.create_character))
         headerViewModel.outputFlag = HeaderFlag.CONFIRM_GENERATION_CHARACTER
+
+        //Insert処理フラグ
+        setCharacterViewModel.isInsertCharacter = false
+
         //画面遷移
         val fragmentManager: FragmentManager = parentFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()

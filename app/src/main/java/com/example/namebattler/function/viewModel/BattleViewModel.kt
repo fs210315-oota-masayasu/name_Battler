@@ -14,13 +14,14 @@ class BattleViewModel: ViewModel() {
     var sendFromLobbyToMainPartyList :ArrayList<CharacterHolder> = arrayListOf()
     var sendFromLobbyToMainEnemyList :ArrayList<CharacterHolder> = arrayListOf()
 
+    //経過ターン
+    var currentTurn  = MutableLiveData<Int>()
 
     var enemyStatusList: ArrayList<CharacterInformationHolder> = arrayListOf()
     var playerStatusList: ArrayList<CharacterInformationHolder> = arrayListOf()
 
     //バトルに参加する敵味方すべてのステータス情報
     var informationNotice = MutableLiveData<ArrayList<CharacterInformationHolder>>()
-
 
     //BattleManagerへ渡す戦闘処理用のステータス情報
     var currentEnemyList = arrayListOf<CharacterInformationHolder>()
@@ -37,7 +38,13 @@ class BattleViewModel: ViewModel() {
         informationNotice.postValue(characterInformationList)
     }
 
-    //バトル開始時にデータを格納する
+    var battleLogData = MutableLiveData<MutableList<String>>()
+    fun resetBattleLog(){
+        battleLogData = MutableLiveData<MutableList<String>>()
+        currentTurn = MutableLiveData<Int>()
+    }
+
+    //パーティー編成画面からバトルメイン画面へ遷移する時にデータを格納する
     fun setInformationNotice() {
         //敵味方のステータス情報を戦闘処理用に変換
         enemyStatusList = BattleInformation().initOutputInformationList(sendFromLobbyToMainEnemyList)
@@ -46,6 +53,7 @@ class BattleViewModel: ViewModel() {
         //敵味方の戦闘処理データを一つに纏めてinformationNoticeへ格納
         val initInformation = BattleInformation().getOutputInformationList(enemyStatusList, playerStatusList)
         informationNotice.postValue(initInformation)
+
     }
 
     //ラジオボタンで選択した作戦を格納

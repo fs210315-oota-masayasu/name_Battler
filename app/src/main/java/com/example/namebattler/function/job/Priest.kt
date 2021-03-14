@@ -215,25 +215,33 @@ class Priest : JobParameterProduction.JobAbstract() {
         var targetCharacter = mutableListOf<CharacterInformationHolder>()
         var actionName: String? = null
 
-        //僧侶クラスには複数目標のスキルはなし
-        when (operationName) {
-            OperationIdEnum.OFFENSIVE.text -> {
-                targetCharacter!!.add(enemyList.random())
-                actionName = SKillEnum.ONE_MELEE_ATTACK.name
-            }
-            OperationIdEnum.DEFENSIVE.text, OperationIdEnum.FLEXIBLE.text -> {
-                val needOfRescueList =
-                    buddyDiagnosis(operationName, characterHolder.currentMp, buddyList)
-                actionName = needOfRescueList.first
-                when (actionName) {
-                    SKillEnum.CURE_WOUNDS.name, SKillEnum.REFRESH.name ->
-                        targetCharacter!!.add(needOfRescueList.second.random())
+        if(enemyList.isNotEmpty()){
+            //僧侶クラスには複数目標のスキルはなし
+            when (operationName) {
+                OperationIdEnum.OFFENSIVE.text -> {
+                    targetCharacter!!.add(enemyList.random())
+                    actionName = SKillEnum.ONE_MELEE_ATTACK.name
+                }
+                OperationIdEnum.DEFENSIVE.text, OperationIdEnum.FLEXIBLE.text -> {
+                    val needOfRescueList =
+                        buddyDiagnosis(operationName, characterHolder.currentMp, buddyList)
+                    actionName = needOfRescueList.first
+                    when (actionName) {
+                        SKillEnum.CURE_WOUNDS.name, SKillEnum.REFRESH.name ->
+                            targetCharacter!!.add(needOfRescueList.second.random())
 
-                    SKillEnum.ONE_MELEE_ATTACK.name ->
-                        targetCharacter!!.add(enemyList.random())
+                        SKillEnum.ONE_MELEE_ATTACK.name ->
+                            targetCharacter!!.add(enemyList.random())
+                    }
                 }
             }
+        }else{
+            actionName = "NONE"
+            targetCharacter.add(CharacterInformationHolder())
         }
+
+
+
         return Pair(actionName ?: "", targetCharacter!!)
     }
 

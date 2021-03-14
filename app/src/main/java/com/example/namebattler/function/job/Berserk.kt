@@ -180,36 +180,44 @@ class Berserk : JobParameterProduction.JobAbstract() {
         var targetCharacter = mutableListOf<CharacterInformationHolder>()
         var actionName: String? = null
 
-        when (operationName) {
-            OperationIdEnum.OFFENSIVE.text -> {
-                targetCharacter.add(enemyList.random())
-                actionName = SKillEnum.ONE_MELEE_ATTACK.name
-            }
-            OperationIdEnum.DEFENSIVE.text -> {
-                val selectActionId = (0..1).random()
-                //HPの残り％を算出
-                val stateOfHp = getPercent(characterHolder.currentHp, characterHolder.maxHp)
-                if (stateOfHp <= 80 && selectActionId == 0) {
-                    targetCharacter.add(characterHolder)
-                    actionName = SKillEnum.GUARD.name
-                } else {
+        if(enemyList.isNotEmpty()){
+            when (operationName) {
+                OperationIdEnum.OFFENSIVE.text -> {
                     targetCharacter.add(enemyList.random())
                     actionName = SKillEnum.ONE_MELEE_ATTACK.name
                 }
-            }
-            OperationIdEnum.FLEXIBLE.text -> {
-                val selectActionId = (0..1).random()
-                //HPの残り％を算出
-                val stateOfHp = getPercent(characterHolder.currentHp, characterHolder.maxHp)
-                if (stateOfHp <= 30 && selectActionId == 0) {
-                    targetCharacter!!.add(characterHolder)
-                    actionName = SKillEnum.GUARD.name
-                } else {
-                    targetCharacter!!.add(enemyList.random())
-                    actionName = SKillEnum.ONE_MELEE_ATTACK.name
+                OperationIdEnum.DEFENSIVE.text -> {
+                    val selectActionId = (0..1).random()
+                    //HPの残り％を算出
+                    val stateOfHp = getPercent(characterHolder.currentHp, characterHolder.maxHp)
+                    if (stateOfHp <= 80 && selectActionId == 0) {
+                        targetCharacter.add(characterHolder)
+                        actionName = SKillEnum.GUARD.name
+                    } else {
+                        targetCharacter.add(enemyList.random())
+                        actionName = SKillEnum.ONE_MELEE_ATTACK.name
+                    }
+                }
+                OperationIdEnum.FLEXIBLE.text -> {
+                    val selectActionId = (0..1).random()
+                    //HPの残り％を算出
+                    val stateOfHp = getPercent(characterHolder.currentHp, characterHolder.maxHp)
+                    if (stateOfHp <= 30 && selectActionId == 0) {
+                        targetCharacter!!.add(characterHolder)
+                        actionName = SKillEnum.GUARD.name
+                    } else {
+                        targetCharacter!!.add(enemyList.random())
+                        actionName = SKillEnum.ONE_MELEE_ATTACK.name
+                    }
                 }
             }
-        }
+
+    }else{
+        actionName = "NONE"
+        targetCharacter.add(CharacterInformationHolder())
+    }
+
+
         return Pair(actionName ?: "", targetCharacter!!)
     }
 

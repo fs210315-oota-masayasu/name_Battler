@@ -30,8 +30,9 @@ class WinViewFragment : Fragment() {
     ): View? {
         binding = FragmentWinViewBinding.inflate(inflater, container, false).apply {
 
-            //作戦を初期化
+            //作戦・ログを初期化
             battleViewModel.resetOperationRatioType()
+            battleViewModel.resetBattleLog()
 
             //再挑戦
             challengeAgain.setOnClickListener {

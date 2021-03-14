@@ -12,7 +12,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.namebattler.R
 import com.example.namebattler.presentation.adapter.battle.BattleLogAdapter
-import com.example.namebattler.function.battle.ASetOfBattleProcess
+import com.example.namebattler.function.battle.OverallProgressOfBattle
 import com.example.namebattler.function.battle.CharacterInformationHolder
 import com.example.namebattler.databinding.FragmentBattleOperationBinding
 import com.example.namebattler.function.BackStack
@@ -29,12 +29,8 @@ class BattleOperationFragment : Fragment() {
 
     private val battleViewModel: BattleViewModel by viewModels { getViewModelFactory() }
     private val headerViewModel: HeaderViewModel by viewModels { getViewModelFactory() }
-    private lateinit var battleManager: ASetOfBattleProcess
-    var informText = MutableLiveData<MutableList<String>>()
+    private lateinit var overallProgressOfBattle: OverallProgressOfBattle
     var endingInformation = MutableLiveData<String>()
-
-    var count = 0
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,72 +64,55 @@ class BattleOperationFragment : Fragment() {
                 changeOperationFragmentTransaction.commit()
             }
 
-            //battleManagerのインスタンス取得
-            battleManager = ASetOfBattleProcess()
+            //OverallProgressOfBattleのインスタンス取得
+            overallProgressOfBattle = OverallProgressOfBattle(battleViewModel)
             //エネミーデータとパーティデータへ分割
             battleViewModel.toSplitCurrentList()
 
-            //battleManagerに戦闘処理用の各変数にデータを格納
-            battleManager.setCurrentInformation(
-                battleViewModel.informationNotice.value ?: arrayListOf()
-            )
             //Battle
-            battleManager.initCharacterList(
+            overallProgressOfBattle.initCharacterList(
                 battleViewModel.currentEnemyList,
                 battleViewModel.currentPlayerList
             )
-            battleManager.initInitiative()
+            overallProgressOfBattle.initInitiative()
+
+
+            //ログ出力
+            battleViewModel.battleLogData.observe(viewLifecycleOwner,{
+                //バトルログをrecyclerViewで表示
+                val adapter = BattleLogAdapter(battleViewModel, viewLifecycleOwner)
+                val recyclerViewOfBattleLog = logListView
+                lifecycleOwner = viewLifecycleOwner
+
+                //adapterにlifecycleOwnerを渡す
+                recyclerViewOfBattleLog.layoutManager = LinearLayoutManager(this@BattleOperationFragment.context)
+                recyclerViewOfBattleLog.adapter = adapter
+
+                recyclerViewOfBattleLog.scrollToPosition(adapter.itemCount - 1)
+
+            })
+
 
             //「次のターン」押下時の処理
             btnNextTurn.setOnClickListener {
 
                 //勝敗の情報を取得
-                val isEnding = battleManager.isEnding()
+                val isEnding = overallProgressOfBattle.isEnding()
                 //作戦を取得
                 val operationName = battleViewModel.operationRadioType.value?.text ?: "ERROR"
-                //ターン経過数
-                count++
-                battleManager.count = count
 
                 //勝敗がついていたら「次ターン」でバトル画面を表示させる
                 if (isEnding != "") {
                     endingInformation.postValue(isEnding)
                 } else {
                     //出力するログ情報（addした順に出力される）
-                    val setLogData = mutableListOf<String>()
+                    var setLogData = mutableListOf<String>()
 
                     //バトル処理
-                    val setText = battleManager.battleProcess(operationName)
-                    setLogData.addAll(setText)
+                    overallProgressOfBattle.turnProgressOfBattle(operationName)
 
-                    val resultInformation: ArrayList<CharacterInformationHolder> =
-                        battleManager.getCurrentInformation()
-
-
-                    //キャラクター情報をLiveDataへ格納
-                    battleViewModel.setInformationNotice(resultInformation)
-                    //ログ情報をLiveDataに格納
-                    informText.postValue(setLogData)
                 }
             }
-
-            //バトルログをrecyclerViewで表示
-            val recyclerViewOfBattleLog = logListView
-            val battleLogAdapter = BattleLogAdapter()
-            recyclerViewOfBattleLog.adapter = battleLogAdapter
-            recyclerViewOfBattleLog.layoutManager =
-                LinearLayoutManager(this@BattleOperationFragment.context)
-
-            val list = mutableListOf<String>()
-            battleLogAdapter.setBattleLog(list)
-
-            //バトルログをターン開始時の位置までスクロールさせる
-            informText.observe(viewLifecycleOwner, { it ->
-                recyclerViewOfBattleLog.scrollToPosition((battleLogAdapter.position)?.plus(it.size -1 )?: 0)
-                it.forEach {
-                    battleLogAdapter.addBattleLog(it)
-                }
-            })
 
             //勝敗がついていた時にバトル結果画面を表示させる
             endingInformation.observe(viewLifecycleOwner, {

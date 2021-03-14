@@ -208,56 +208,64 @@ class SpellCaster : JobParameterProduction.JobAbstract() {
         var targetCharacter = mutableListOf<CharacterInformationHolder>()
         var actionName: String? = null
 
-        when (operationName) {
-            OperationIdEnum.OFFENSIVE.text -> {
-                val selectSpell = (0..1).random()
-                //mp残量チェック
-                if (selectSpell == 0 && characterHolder.currentMp >= 30) {
-                    targetCharacter = enemyList
-                    actionName = SKillEnum.FIREBALL.name
+        if(enemyList.isNotEmpty()){
 
-                } else if (selectSpell == 1 || characterHolder.currentMp >= 20) {
-                    targetCharacter.add(enemyList.random())
-                    actionName = SKillEnum.THUNDERBOLT.name
+            when (operationName) {
+                OperationIdEnum.OFFENSIVE.text -> {
+                    val selectSpell = (0..1).random()
+                    //mp残量チェック
+                    if (selectSpell == 0 && characterHolder.currentMp >= 30) {
+                        targetCharacter = enemyList
+                        actionName = SKillEnum.FIREBALL.name
 
-                } else {
-                    targetCharacter.add(enemyList.random())
-                    actionName = SKillEnum.ONE_MELEE_ATTACK.name
+                    } else if (selectSpell == 1 || characterHolder.currentMp >= 20) {
+                        targetCharacter.add(enemyList.random())
+                        actionName = SKillEnum.THUNDERBOLT.name
+
+                    } else {
+                        targetCharacter.add(enemyList.random())
+                        actionName = SKillEnum.ONE_MELEE_ATTACK.name
+                    }
+                }
+                OperationIdEnum.DEFENSIVE.text -> {
+                    val needOfRescueList = buddyDiagnosis(operationName,characterHolder.currentMp , buddyList)
+                    actionName = needOfRescueList.first
+                    when (actionName) {
+                        SKillEnum.REFRESH.name ->
+                            targetCharacter.add(needOfRescueList.second.random())
+                        SKillEnum.SLEEP_CLOUD.name, SKillEnum.ONE_MELEE_ATTACK.name ->
+                            targetCharacter = enemyList
+
+                    }
+                }
+                OperationIdEnum.FLEXIBLE.text ->{
+                    val selectSpell = (0..2).random()
+                    //mp残量チェック
+                    if (selectSpell == 0 && characterHolder.currentMp >= 30) {
+                        targetCharacter = enemyList
+                        actionName = SKillEnum.FIREBALL.name
+
+                    } else if (selectSpell == 1 || characterHolder.currentMp >= 20) {
+                        targetCharacter.add(enemyList.random())
+                        actionName = SKillEnum.THUNDERBOLT.name
+
+                    } else if(selectSpell == 2 || characterHolder.currentMp >= 10){
+                        targetCharacter = enemyList
+                        actionName = SKillEnum.SLEEP_CLOUD.name
+
+
+                    } else {
+                        targetCharacter.add(enemyList.random())
+                        actionName = SKillEnum.ONE_MELEE_ATTACK.name
+                    }
                 }
             }
-            OperationIdEnum.DEFENSIVE.text -> {
-                val needOfRescueList = buddyDiagnosis(operationName,characterHolder.currentMp , buddyList)
-                actionName = needOfRescueList.first
-                        when (actionName) {
-                            SKillEnum.REFRESH.name ->
-                                targetCharacter.add(needOfRescueList.second.random())
-                            SKillEnum.SLEEP_CLOUD.name, SKillEnum.ONE_MELEE_ATTACK.name ->
-                                targetCharacter = enemyList
 
-                        }
-            }
-            OperationIdEnum.FLEXIBLE.text ->{
-                val selectSpell = (0..2).random()
-                //mp残量チェック
-                if (selectSpell == 0 && characterHolder.currentMp >= 30) {
-                    targetCharacter = enemyList
-                    actionName = SKillEnum.FIREBALL.name
-
-                } else if (selectSpell == 1 || characterHolder.currentMp >= 20) {
-                    targetCharacter.add(enemyList.random())
-                    actionName = SKillEnum.THUNDERBOLT.name
-
-                } else if(selectSpell == 2 || characterHolder.currentMp >= 10){
-                    targetCharacter = enemyList
-                    actionName = SKillEnum.SLEEP_CLOUD.name
-
-
-                } else {
-                    targetCharacter.add(enemyList.random())
-                    actionName = SKillEnum.ONE_MELEE_ATTACK.name
-                }
-            }
+        }else{
+            actionName = "NONE"
+            targetCharacter.add(CharacterInformationHolder())
         }
+
         return Pair(actionName ?: "", targetCharacter)
     }
 
