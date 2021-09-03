@@ -1,2 +1,2 @@
 # name_Battler
-![](./NameBattler.gif)
+![](./images/NameBattler.gif)
